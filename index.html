@@ -12,6 +12,8 @@
 
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xxxxxxx" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
     </head>
 
     <body class="bg-gray-200 m-4">
@@ -20,7 +22,7 @@
 
             <span class="font-semibold">Dashboard</span>
 
-            <span class="font-semibold text-blue-500 border-b border-blue-500">Goals</span>
+            <span class="font-semibold text-blue-500 border-b -mb-2 border-blue-800">Goals</span>
             
             <span class="font-semibold">Behaviour</span>
 
@@ -52,25 +54,29 @@
 
             <!-- business goals -->
 
-            <div class="w-full sm:w-1/4 space-y-2">
+            <div class="w-full sm:w-1/4 space-y-2 overflow-y-auto max-h-72">
 
-                <button class="bg-blue-500 text-white py-2 w-full rounded">+ New goal</button>
+                <button class="bg-blue-500 text-white py-2 w-full rounded text-center">
 
+                    + New goal
+
+                </button>
+                
                 <div class="bg-blue-500">
 
-                    <div class="ml-2 border border-blue-500 bg-blue-100 p-2 text-center text-sm font-semibold">
+                    <div class="ml-2 border border-blue-500 bg-blue-100 h-20 mx-auto p-2 text-center text-sm font-semibold flex items-center justify-center flex-col">
 
                         Business Goal 001
 
                         <span class="block text-xs text-gray-600">8 business metrics</span>
 
                     </div>
-
+                    
                 </div>
 
                 <div class="bg-gray-300">
 
-                    <div class="ml-2 border bg-white p-2 text-center text-sm font-semibold">
+                    <div class="ml-2 border bg-white h-20 mx-auto p-2 text-center text-sm font-semibold flex items-center justify-center flex-col">
 
                         Business Goal 002
                         
@@ -82,7 +88,7 @@
 
                 <div class="bg-gray-300">
 
-                    <div class="ml-2 border bg-white p-2 text-center text-sm font-semibold">
+                    <div class="ml-2 border bg-white h-20 mx-auto p-2 text-center text-sm font-semibold flex items-center justify-center flex-col">
 
                         Business Goal 003
 
@@ -98,11 +104,11 @@
 
             <div class="bg-white w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 mt-4 sm:mt-0">
 
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center">
 
                     <h3 class="font-semibold text-lg">1. Improve marketing sales by 10%</h3>
 
-                    <span class="text-sm bg-yellow-200 text-yellow-800 py-1 px-2 rounded-full mt-2 sm:mt-0">Not Started</span>
+                    <span class="text-xs ml-2 bg-yellow-200 text-yellow-800 rounded-full py-1 px-2 rounded-full mt-2 sm:mt-0">Not Started</span>
 
                 </div>
 
@@ -130,13 +136,13 @@
 
                 <p class="font-semibold flex justify-center bg-gray-100 p-2">Goal Summary</p>
 
-                <p class="border-b flex justify-between">Goal Status: <span class="text-gray-600">Not Started</span></p>
+                <p class="border-b flex justify-between">Goal Status: <span class="text-gray-600 text-xs">Not Started</span></p>
 
-                <p class="border-b flex justify-between">Date Created: <span class="text-gray-600">12/08/2023</span></p>
+                <p class="border-b flex justify-between">Date Created: <span class="text-gray-600 text-xs">12/08/2023</span></p>
 
-                <p class="border-b flex justify-between">Mid-year Ends In: <span class="text-gray-600">2 months</span></p>
+                <p class="border-b flex justify-between">Mid-year Ends In: <span class="text-gray-600 text-xs">2 months</span></p>
 
-                <p class="border-b flex justify-between">End-year Date: <span class="text-gray-600">12/05/2024</span></p>
+                <p class="border-b flex justify-between">End-year Date: <span class="text-gray-600 text-xs">12/05/2024</span></p>
 
             </div>
 
@@ -150,9 +156,9 @@
 
                 <span class="border p-2 bg-white rounded">Mid Year</span>
 
-                <span class="border p-2 bg-white rounded">End Year</span>
+                <span class="p-2">End Year</span>
 
-                <span class="border p-2 bg-white rounded">Ratings</span>
+                <span class="p-2">Ratings</span>
 
             </div>
 
@@ -160,7 +166,7 @@
 
                 <h2 class="font-semibold text-lg">Employee Comments</h2>
 
-                <textarea class="w-full mt-2 p-2 border rounded" rows="4" placeholder="Add your comments..."></textarea>
+                <textarea class="w-full mt-2 p-2 border border-gray-300 rounded" rows="4" placeholder="Add your comments..."></textarea>
 
             </div>
 
@@ -168,9 +174,9 @@
 
                 <h2 class="font-semibold text-lg">Supervisor Comments</h2>
 
-                <p class="border shadow-lg p-4 rounded-xl text-sm">
+                <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm">
 
-                    The employee has diligently pursued my business goals and my individual development plans, consistently
+                    The employee have diligently pursued my business goals and my individual development plans, consistently
                     meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and
                     continuous improvement throughout the first half of the year.
 
@@ -182,7 +188,7 @@
 
                 <button class="p-3 border border-gray-500 rounded text-sm">Save Draft</button>
 
-                <button class="p-3 bg-green-500 text-white rounded text-sm">Submit Final</button>
+                <button class="p-3 bg-green-500 text-white rounded text-sm">Submit Final<i class="fa-solid fa-c"></i></button>
                 
             </div>
 
