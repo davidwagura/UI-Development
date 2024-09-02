@@ -14,6 +14,8 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/heroicons@2.0.18/dist/outline/heroicons-outline.css">
 
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     </head>
 
     <body class="m-4" style="background-color: #eef1f0;">
@@ -184,7 +186,7 @@
 
                 <a href="#" class="border mx-auto flex justify-start bg-white rounded p-2 items-center">Mid Year</a>
 
-                <a href="#" class="items-center flex justify-center p-2">End Year</a>
+                <a href="#" class="items-center flex justify-center p-2">End year</a>
 
                 <a href="#" class="flex justify-end items-center p-2">Ratings</a>
 
@@ -194,7 +196,21 @@
 
                 <h2 class="font-semibold text-lg" style="color: #4e6285;">Employee Comments</h2>
 
-                <textarea class="w-full mt-2 p-2 border border-gray-300 rounded" rows="4" placeholder="Add your comments..."></textarea>
+                <div id="editor-container"></div>
+
+                <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+                <script>
+
+                    var quill = new Quill('#editor-container', {
+
+                        theme: 'snow', 
+
+                        placeholder: 'Enter your comments here...'
+
+                    });
+
+                </script>
 
             </div>
 
@@ -222,7 +238,6 @@
 
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 21l18-9-18-9v7l13.5 2-13.5 2v7z" />
 
-                      
                     </svg>
 
                 </button>
