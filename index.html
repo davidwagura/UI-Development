@@ -20,6 +20,7 @@
 
 
     </head>
+    
     <style>
         .goal-content:target {
             display: block;
@@ -110,6 +111,7 @@
 
             </nav>
         </div>
+
         <div>
 
             <div class="flex flex-col sm:flex-row sm:space-x-4">
@@ -120,14 +122,20 @@
                     <a href="#" class="block rounded py-2 mb-4 text-center" style="background-color: #40a8e1;color:#FFFFFF">+ New goal</a>
 
                     <div class="overflow-y-auto space-y-2" style="max-height: 17rem;"> <!-- Set max-height -->
-                        <a v-for="(goal, index) in goals" :key="goal.id" href="#" @click.prevent="selectedGoal = index" class="block rounded" :style="{ backgroundColor: selectedGoal === index ? '#40a8e1' : '#d5d9db', color: selectedGoal === index ? '#ffffff' : '#324d74' }">
-                            <div class="ml-3 border h-20 mx-auto p-2 text-center rounded font-medium text-lg flex items-center justify-center flex-col" :style="{ backgroundColor: selectedGoal === index ? '#f2fcff' : '#ffffff', borderColor: selectedGoal === index ? '#40a8e1' : '#d4d9da', color:'#2d4870' }">
-                                {{ goal.title }}
-                                <span class="block text-sm" style="color: #9dacc0;">{{ goal.title }}</span>
-                            </div>
-                        </a>
-                    </div>
 
+                        <a v-for="(goal, index) in goals" :key="goal.id" href="#" @click.prevent="selectedGoal = index" class="block rounded" :style="{ backgroundColor: selectedGoal === index ? '#40a8e1' : '#d5d9db', color: selectedGoal === index ? '#ffffff' : '#324d74' }">
+
+                            <div class="ml-3 border h-20 mx-auto p-2 text-center rounded font-medium text-lg flex items-center justify-center flex-col" :style="{ backgroundColor: selectedGoal === index ? '#f2fcff' : '#ffffff', borderColor: selectedGoal === index ? '#40a8e1' : '#d4d9da', color:'#2d4870' }">
+
+                                {{ goal.title }}
+
+                                <span class="block text-sm" style="color: #9dacc0;">{{ goal.title }}</span>
+
+                            </div>
+
+                        </a>
+
+                    </div>
 
                 </nav>
 
@@ -197,153 +205,88 @@
             </div>
 
         </div>
+        
         <!-- Comments Section -->
         <div class="shadow-lg rounded-xl p-4 mt-12" style="background-color: #ffffff;">
+
             <!-- Tabs -->
             <ul class="max-w-auto w-full sm:w-1/4 flex justify-start space-x-4 p-1 rounded" style="background-color: #eef1f0; color: #364e74;">
+
                 <li v-for="(tab, index) in tabs" :key="index" class="pl-2">
+
                     <a
-                            href="#"
-                            class="border mx-auto flex justify-start shadow-lg font-medium rounded p-1 items-center"
-                            :class="{ 'bg-white': activeTab === index }"
-                            @click.prevent="setActiveTab(index)"
+
+                        href="#"
+                        class="border mx-auto flex justify-start shadow-lg font-medium rounded p-1 items-center"
+                        :class="{ 'bg-white': activeTab === index }"
+                        @click.prevent="setActiveTab(index)"
+
                     >
+
                         {{ tab.label }}
+
                     </a>
+
                 </li>
+
             </ul>
 
             <!-- Tab Content -->
             <div class="mt-4">
+
                 <h2 class="font-semibold text-lg" style="color: #4e6285;">{{ tabs[activeTab].label }} Comments</h2>
+
                 <div v-if="activeTab === 0">
+
                     <!-- Employee Comments with Quill Editor -->
                     <div id="editor-container"></div>
+
                 </div>
+
                 <div v-if="activeTab === 1">
+
                     <!-- Supervisor Comments -->
                     <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm" style="color: #738092;">
+
                         The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
+                    
                     </p>
+
                 </div>
+
                 <div v-if="activeTab === 2">
+
                     <!-- Ratings or other content -->
                     <p class="text-sm" style="color: #738092;">Rating information goes here.</p>
+
                 </div>
+
             </div>
 
             <!-- Action Buttons -->
             <div class="flex justify-end space-x-4 mt-8">
+                
                 <button class="p-3 border rounded text-sm" style="border-color: #95a5bb; background-color: #ffffff;">Save Draft</button>
+
                 <button class="p-3 rounded text-sm flex items-center space-x-2" style="background-color: #3cb047; color: #ffffff;">
+
                     <span>Submit Final</span>
+                    
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 21l18-9-18-9v7l13.5 2-13.5 2v7z" />
+
                     </svg>
+
                 </button>
+
             </div>
+
         </div>
+
+        <script src="./script.js"></script>
+
     </body>
-    <script>
-
-        const { createApp } = Vue;
-
-        createApp({
-
-            data() {
-
-                return {
-                    selectedGoal: 0,
-                    goals: [
-
-                        {
-                            id: 1,
-                            title: "Business Goal 001",
-                            metrics: `<ul>
-                                                <li>Engage Customers on social media Customers on social media</li>
-                                                <li>Boost google adverts Engage Customers on social media</li>
-                                                <li>Engage Customers on social media</li>
-                                                <li>Boost google adverts Engage Customers on social media</li>
-                                                <li>Boost google adverts Engage Customers on social media</li>
-                                                <li>Engage Customers on social media</li>
-                                                <li>Boost google adverts Engage Customers on social media</li>
-                                            </ul>`,
-                            description: "1. Grow business revenue",
-                            status: "Not Started"
-                        },
-
-                        {
-                            id: 2,
-                            title: "Business Goal 002",
-                            metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
-                                                <li>Improve customer engagement metrics</li>
-                                                <li>Increase social media outreach by 50%</li>
-                                            </ul>`,
-                            description: "2. Improve our client base",
-                            status: "In Progress"
-                        },
-                        {
-                            id: 3,
-                            title: "Business Goal 003",
-                            metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
-                                                <li>Optimize company workflows</li>
-                                                <li>Reduce overhead costs by 10%</li>
-                                            </ul>`,
-                            description: "3. Optimizing company workflows",
-                            status: "Completed"
-                        },
-                        {
-                            id: 4,
-                            title: "Business Goal 004",
-                            metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
-                                                <li>Show company workflows</li>
-                                                <li>Introduce overhead costs by 10%</li>
-                                            </ul>`,
-                            description: "4. Custom Goal",
-                            status: "Completed"
-                        },
-                        {
-                            id: 5,
-                            title: "Business Goal 005",
-                            metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
-                                                <li>Place company workflows</li>
-                                                <li>Place overhead costs by 10%</li>
-                                            </ul>`,
-                            description: "5. Custom Goal",
-                            status: "Completed"
-                        },
-                        {
-                            id: 6,
-                            title: "Business Goal 006",
-                            metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
-                                                <li>Show company workflows</li>
-                                                <li>Show overhead costs by 10%</li>
-                                            </ul>`,
-                            description: "6. Custom Goal",
-                            status: "Completed"
-                        }
-                    ],
-                    activeTab: 0,
-                    tabs: [
-                        { label: 'Mid Year' },
-                        { label: 'End Year' },
-                        { label: 'Ratings' },
-                    ],
-                };
-
-            },
-
-            methods: {
-                selectGoal(index) {
-                    this.selectedGoal = index;
-                },
-                setActiveTab(index) {
-                    this.activeTab = index;
-                },
-            },
-
-        }).mount('#app');
-
-    </script>
+    
 </html>
    
