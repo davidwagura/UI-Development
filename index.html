@@ -16,6 +16,8 @@
 
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 
@@ -233,23 +235,28 @@
 
             <!-- Tab Content -->
             <div class="mt-4">
-
-                <h2 class="font-semibold text-lg" style="color: #4e6285;">{{ tabs[activeTab].label }} Comments</h2>
-
                 <div v-if="activeTab === 0">
-
                     <!-- Employee Comments with Quill Editor -->
-                    <div id="editor-container"></div>
+                    <h2 class="font-semibold text-sm" style="color: #4e6285;">Employee's Comments</h2>
+                    <div class="quill-editor"></div>
+                    <!-- Supervisor Comments -->
+                    <h2 class="font-semibold text-sm" style="color: #4e6285;">Supervisor's Comments</h2>
+
+                    <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm" style="color: #738092;">
+
+                        [MID]The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
+
+                    </p>
 
                 </div>
 
                 <div v-if="activeTab === 1">
-
-                    <!-- Supervisor Comments -->
-                    <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm" style="color: #738092;">
-
-                        The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
-                    
+                    <!-- Employee Comments with Quill Editor -->
+                    <h2 class="font-semibold text-sm" style="color: #4e6285;">Employee's Comments</h2>
+                    <div class="quill-editor"></div>
+                    <h2 class="font-semibold text-sm" style="color: #4e6285;">Supervisor's Comments</h2>
+                    <p class="border border-gray-300 shadow-lg p-4 rounded text-sm" style="color: #738092;">
+                        [END]The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
                     </p>
 
                 </div>
