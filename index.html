@@ -179,13 +179,13 @@
                 
                     <p class="border-b py-2 flex justify-between">Goal Status:
                     
-                        <span id="goal-status" class="text-xs" style="color: #a0aec1;">Not Started</span>
+                        <span id="goal-status" class="text-xs" style="color: #a0aec1;">{{ goals[selectedGoal].status }}</span>
                     
                     </p>
                 
                     <p class="border-b py-2 flex justify-between">Date Created:
                     
-                        <span id="date-created" class="text-xs" style="color: #a0aec1;">12/08/2023</span>
+                        <span id="date-created" class="text-xs" style="color: #a0aec1;">{{ goals[selectedGoal].created }}</span>
                     
                     </p>
                     <p class="border-b py-2 flex justify-between block">Mid-year Ends In:

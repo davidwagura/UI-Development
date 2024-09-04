@@ -23,7 +23,8 @@ createApp({
                                         <li>Boost google adverts Engage Customers on social media</li>
                                     </ul>`,
                     description: "1. Grow business revenue",
-                    status: "Not Started"
+                    status: "Not Started",
+                    created:"23/02/2024"
                 },
 
                 {
@@ -34,7 +35,8 @@ createApp({
                                         <li>Increase social media outreach by 50%</li>
                                     </ul>`,
                     description: "2. Improve our client base",
-                    status: "In Progress"
+                    status: "In Progress",
+                    created:"26/02/2024"
                 },
 
                 {
@@ -45,7 +47,8 @@ createApp({
                                         <li>Reduce overhead costs by 10%</li>
                                     </ul>`,
                     description: "3. Optimizing company workflows",
-                    status: "Completed"
+                    status: "Completed",
+                    created:"17/02/2024"
                 },
 
                 {
@@ -56,7 +59,8 @@ createApp({
                                         <li>Introduce overhead costs by 10%</li>
                                     </ul>`,
                     description: "4. Custom Goal",
-                    status: "Completed"
+                    status: "In Progress",
+                    created:"12/05/2024"
                 },
 
                 {
@@ -67,7 +71,8 @@ createApp({
                                         <li>Place overhead costs by 10%</li>
                                     </ul>`,
                     description: "5. Custom Goal",
-                    status: "Completed"
+                    status: "Completed",
+                    created:"12/02/2024"
                 },
 
                 {
@@ -78,7 +83,8 @@ createApp({
                                         <li>Show overhead costs by 10%</li>
                                     </ul>`,
                     description: "6. Custom Goal",
-                    status: "Completed"
+                    status: "In Progress",
+                    created:"12/08/2024"
                 }
             ],
 
