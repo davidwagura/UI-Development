@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Tailwind CSS -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <!-- Heroicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/heroicons@2.0.18/dist/outline/heroicons-outline.css">
+    <!-- Quill CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- Vue 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body class="m-4" style="background-color: #eef1f0;">
+
+<div id="app">
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center my-4" style="color: #2f4870;">
+        <div class="text-xl font-semibold" style="color:#3a5278">My business goals</div>
+        <nav class="space-x-4 text-sm flex mt-2 sm:mt-0">
+            <div class="flex">
+                <a href="#" class="font-semibold text-gray-500">Performance</a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="flex">
+                <a href="#" class="font-semibold text-gray-500">Self Assessment</a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="flex">
+                <a href="#" class="font-semibold text-gray-500">Goals</a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Goals and Content Section -->
+    <div class="flex flex-col sm:flex-row sm:space-x-4">
+        <!-- Goals Tabs -->
+        <nav class="w-full sm:w-1/4 pr-4">
+            <a href="#" class="block rounded py-2 mb-4 text-center" style="background-color: #40a8e1;color:#FFFFFF">+ New goal</a>
+            <div class="overflow-auto space-y-2 ">
+                <a v-for="(goal, index) in goals" :key="goal.id" href="#" @click.prevent="selectedGoal = index" class="block rounded" :style="{ backgroundColor: selectedGoal === index ? '#40a8e1' : '#d5d9db', color: selectedGoal === index ? '#ffffff' : '#324d74' }">
+                    <div class="ml-3 border h-20 mx-auto p-2 text-center rounded font-medium text-lg flex items-center justify-center flex-col" :style="{ backgroundColor: selectedGoal === index ? '#f2fcff' : '#ffffff', borderColor: '#40a8e1',color:'black' }">
+                        {{ goal.title }}
+                        <span class="block text-sm" style="color: #9dacc0;">{{ goal.title }}</span>
+                    </div>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Goal Details -->
+        <div class="w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 mt-4 sm:mt-0" style="background-color: #ffffff;">
+            <div v-if="selectedGoal !== null" class="goal-content">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center w-full">
+                    <h3 class="font-semibold text-lg">{{ goals[selectedGoal].description }}</h3>
+                    <span class="text-xs ml-2 bg-yellow-200 rounded-full py-1 px-2 mt-2 sm:mt-0" style="background-color: #e8e097;">{{ goals[selectedGoal].status }}</span>
+                </div>
+                <hr class="my-4">
+                <div class="p-4 rounded" style="background-color: #fdf9d3;">
+                    <div v-html="goals[selectedGoal].metrics" class="pl-4 space-y-2 text-sm"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const { createApp } = Vue;
+    createApp({
+        data() {
+            return {
+                selectedGoal: 0,
+                goals: [
+                    {
+                        id: 1,
+                        title: "Business Goal 001",
+                        metrics: `<ul>
+                                        <li>Engage Customers on social media Customers on social media</li>
+                                        <li>Boost google adverts Engage Customers on social media</li>
+                                        <li>Engage Customers on social media</li>
+                                        <li>Boost google adverts Engage Customers on social media</li>
+                                        <li>Boost google adverts Engage Customers on social media</li>
+                                        <li>Engage Customers on social media</li>
+                                        <li>Boost google adverts Engage Customers on social media</li>
+                                     </ul>`,
+                        description: "1. Grow business revenue",
+                        status: "Not Started"
+                    },
+                    {
+                        id: 2,
+                        title: "Business Goal 002",
+                        metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
+                                        <li>Improve customer engagement metrics</li>
+                                        <li>Increase social media outreach by 50%</li>
+                                      </ul>`,
+                        description: "2. Improve our client base",
+                        status: "In Progress"
+                    },
+                    {
+                        id: 3,
+                        title: "Business Goal 003",
+                        metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
+                                        <li>Optimize company workflows</li>
+                                        <li>Reduce overhead costs by 10%</li>
+                                      </ul>`,
+                        description: "3. Optimizing company workflows",
+                        status: "Completed"
+                    }
+                ]
+            };
+        },
+        methods: {
+            selectGoal(index) {
+                this.selectedGoal = index;
+            },
+        },
+    }).mount('#app');
+</script>
+</body>
+
+</html>
