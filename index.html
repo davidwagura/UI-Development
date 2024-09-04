@@ -16,26 +16,18 @@
 
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
     </head>
 
     <style>
 
-        .goal-content {
-
-            display: none;
-
-        }
         .goal-content:target {
 
             display: block;
 
         }
-
-        /* #editor-container {
-
-            border-radius: 12px;
-
-        } */
 
     </style>
     
@@ -129,218 +121,171 @@
         </div>
 
         <!-- Goals and Content Section -->
-        <div class="flex flex-col sm:flex-row sm:space-x-4">
+        <div id="app">
 
-            <!-- Goals Tabs -->
-            <nav class="w-full sm:w-1/4  pr-4">
+            <div class="flex flex-col sm:flex-row sm:space-x-4">
 
-                <a href="" class="tab block rounded py-2 mb-4 text-center" style="background-color: #40a8e1; color: white;">+ New goal</a>
+                <!-- Goals Tabs -->
+                <nav class="w-full sm:w-1/4 pr-4">
 
-                <div class="overflow-auto space-y-2 ">
-
-                    <a href="#goal1" class="tab block rounded" style="background-color: #40a8e1;">
-
-                        <div class="ml-3 border h-20 mx-auto p-2 text-center rounded font-medium text-lg flex items-center justify-center flex-col" style="background-color: #f2fcff; border-color: #40a8e1;">
-                          
-                            Business Goal 001
-                          
-                            <span class="block text-sm" style="color: #9dacc0;">8 business metrics</span>
-                    
-                        </div>
+                    <a href="#" class="block rounded py-2 mb-4 text-center" style="background-color: #40a8e1;color:#FFFFFF">+ New goal</a>
                    
-                    </a>
-                   
-                    <a href="#goal2" class="tab block rounded" style="background-color: #d5d9db; color: #324d74;">
+                    <div class="overflow-y-auto space-y-2 ">
                        
-                        <div class="ml-3 border bg-white h-20 mx-auto p-2 text-center rounded text-lg flex items-center justify-center flex-col" style="background-color: #ffffff;">
-                          
-                            Business Goal 002
-                          
-                            <span class="block text-sm" style="color: #9dacc0;">5 business metrics</span>
-                       
-                        </div>
-                   
-                    </a>
-                   
-                    <a href="#goal3" class="tab block rounded" style="background-color: #d5d9db; color: #324d74;">
-                     
-                        <div class="ml-3 border rounded bg-white h-20 mx-auto p-2 text-center font-medium text-lg flex items-center justify-center flex-col" style="background-color: #ffffff;">
-                     
-                            Business Goal 003
-                       
-                            <span class="block text-sm" style="color: #9dacc0;">1 business metrics</span>
-                       
-                        </div>
-                   
-                    </a>
-    
-                </div>
-
-            </nav>
-
-            <!-- Goal Details -->
-            <div class="w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0" style="background-color: #ffffff;">
-                
-                <div id="goal1" class="goal-content hidden">
-                  
-                    <div class="flex flex-col sm:flex-row mb-4 items-start sm:items-center w-full">
-                            
-                        <h3 class="font-semibold text-lg">1. Improve marketing sales by 10%</h3>
-                    
-                        <span class="text-xs ml-2 bg-yellow-200 rounded-full py-1 px-2 mt-2 sm:mt-0" style="background-color: #e8e097;">Not Started</span>
-                    
-                        <div class="ml-auto">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-
-                            </svg>
-
-                        </div>
-
-                    </div>           
-                    
-                    <div class="p-4 rounded" style="background-color: #fdf9d3;">
-                       
-                        <ul class="list-disc pl-4 space-y-2 text-sm">
-                            
-                            <li>Engage Customers on social media Customers on social media</li>
-                            <li>Boost google adverts Engage Customers on social media</li>
-                            <li>Engage Customers on social media</li>
-                            <li>Boost google adverts Engage Customers on social media</li>
-                            <li>Boost google adverts Engage Customers on social media</li>
-                            <li>Engage Customers on social media</li>
-                            <li>Boost google adverts Engage Customers on social media</li>
-                       
-                        </ul>
-                  
-                    </div>
-                
-                </div>
-               
-                <div id="goal2" class="goal-content hidden">
-                    
-                    <div class="flex flex-col sm:flex-row mb-4 items-start sm:items-center w-full">
-                            
-                        <h3 class="font-semibold text-lg">2. Increase revenue by 15%</h3>
-                    
-                        <span class="text-xs ml-2 rounded-full py-1 px-2 mt-2 sm:mt-0" style="background-color: #e8e097;">Not Started</span>
-                    
-                        <div class="ml-auto">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-
-                            </svg>
-
-                        </div>
-
-                    
-                    </div>           
-                    
-                    <div class="p-4 rounded" style="background-color: #fdf9d3;">
-                        
-                        <ul class="list-disc pl-4 space-y-2 text-sm">
+                        <a v-for="(goal, index) in goals" :key="goal.id" href="#" @click.prevent="selectedGoal = index" class="block rounded" :style="{ backgroundColor: selectedGoal === index ? '#40a8e1' : '#d5d9db', color: selectedGoal === index ? '#ffffff' : '#324d74' }">
                            
-                            <li>Expand market reach</li>
-                            <li>Improve customer satisfaction</li>
-                            <li>Increase product offerings</li>
-                        
-                        </ul>
-                   
-                    </div>
-                
-                </div>
-               
-                <div id="goal3" class="goal-content hidden">
-                    
-                    <div class="flex flex-col sm:flex-row mb-4 items-start sm:items-center w-full">
-                            
-                    <h3 class="font-semibold text-lg">3. Enhance team productivity by 20%</h3>
-                    
-                        <span class="text-xs ml-2 bg-yellow-200 rounded-full py-1 px-2 mt-2 sm:mt-0" style="background-color: #e8e097;">Not Started</span>
-                    
-                        <div class="ml-auto">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-
-                            </svg>
-
-                        </div>
-
-                    </div>           
-                   
-                    <div class="p-4 rounded" style="background-color: #fdf8d2;">
-                      
-                        <ul class="list-disc pl-4 space-y-2 text-sm">
-                            
-                            <li>Implement new project management tools</li>
-                            <li>Conduct team-building activities</li>
-                            <li>Improve communication channels</li>
-                        
-                        </ul>
-                    
-                    </div>
-                
-                </div>
-                
-                <div id="goal-4" class="goal-content hidden">
-                   
-                    <h3 class="font-semibold text-lg">4. Reduce operational costs by 5%</h3>
-                   
-                    <span class="text-xs ml-2 rounded-full py-1 px-2 mt-2" style="background-color: #f8d7da; color: #721c24;">Delayed</span>
-                    
-                    <div class="p-4 rounded" style="background-color: #fdf8d2;">
-                        
-                        <ul class="list-disc pl-4 space-y-2 text-sm">
+                            <div class="ml-3 border h-20 mx-auto p-2 text-center rounded font-medium text-lg flex items-center justify-center flex-col" :style="{ backgroundColor: selectedGoal === index ? '#f2fcff' : '#ffffff', borderColor: selectedGoal === index ? '#40a8e1' : '#d4d9da', color:'#2d4870' }">
+                                
+                                {{ goal.title }}
+                              
+                                <span class="block text-sm" style="color: #9dacc0;">{{ goal.title }}</span>
                            
-                            <li>Negotiate with suppliers</li>
-                            <li>Optimize resource allocation</li>
-                            <li>Reduce unnecessary expenses</li>
+                            </div>
                        
-                        </ul>
-                    
+                        </a>
+                
                     </div>
                 
-                </div>
-           
-            </div>
+                </nav>
 
-            <!-- Summary Section -->
-            <div class="border w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0" style="background-color: #ffffff;">
-              
-                <p class="font-semibold text-center p-2" style="background-color: #f2f2f2;">Goal Summary</p>
-               
-                <p class="border-b py-2 flex justify-between">Goal Status:
-                  
-                    <span id="goal-status" class="text-xs" style="color: #a0aec1;">Not Started</span>
+                <!-- Goal Details -->
+                <div class="w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0" style="background-color: #ffffff;">
+                    
+                    <div v-if="selectedGoal !== null" class="goal-content">
+                    
+                        <div class="flex flex-col sm:flex-row mb-4 items-start sm:items-center w-full">
+                                
+                            <h3 class="font-semibold text-lg">{{ goals[selectedGoal].description }}</h3>
+                        
+                            <span class="text-xs ml-2 bg-yellow-200 rounded-full py-1 px-2 mt-2 sm:mt-0" style="background-color: #e8e097;">{{ goals[selectedGoal].status }}</span>
+                        
+                            <div class="ml-auto">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+
+                                </svg>
+
+                            </div>
+
+                        </div>     
+                        
+                        <div class="p-4 rounded" style="background-color: #fdf9d3;">
+                        
+                            <div v-html="goals[selectedGoal].metrics" class="pl-4 space-y-2 text-sm"></div>
+                    
+                        </div>
+                    
+                    </div>
+                                            
+                </div>
+
+                <!-- Summary Section -->
+                <div class="border w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0" style="background-color: #ffffff;">
                 
-                </p>
-              
-                <p class="border-b py-2 flex justify-between">Date Created:
-                   
-                    <span id="date-created" class="text-xs" style="color: #a0aec1;">12/08/2023</span>
+                    <p class="font-semibold text-center p-2" style="background-color: #f2f2f2;">Goal Summary</p>
                 
-                </p>
-                <p class="border-b py-2 flex justify-between block">Mid-year Ends In:
+                    <p class="border-b py-2 flex justify-between">Goal Status:
+                    
+                        <span id="goal-status" class="text-xs" style="color: #a0aec1;">Not Started</span>
+                    
+                    </p>
                 
-                    <span id="mid-year" class="text-xs" style="color: #a0aec1;">2 months</span>
+                    <p class="border-b py-2 flex justify-between">Date Created:
+                    
+                        <span id="date-created" class="text-xs" style="color: #a0aec1;">12/08/2023</span>
+                    
+                    </p>
+                    <p class="border-b py-2 flex justify-between block">Mid-year Ends In:
+                    
+                        <span id="mid-year" class="text-xs" style="color: #a0aec1;">2 months</span>
+                    
+                    </p>
+                    
+                    <p class="border-b py-2 flex justify-between">End-year Date:
+                    
+                        <span id="end-year" class="text-xs" style="color: #a0aec1;">12/05/2024</span>
                 
-                </p>
-                
-                <p class="border-b py-2 flex justify-between">End-year Date:
-                   
-                    <span id="end-year" class="text-xs" style="color: #a0aec1;">12/05/2024</span>
-               
-                </p>
-           
+                    </p>
+            
+                </div>
+
             </div>
 
         </div>
+
+        <script>
+
+            const { createApp } = Vue;
+
+            createApp({
+
+                data() {
+
+                    return {
+
+                        selectedGoal: 0,
+
+                        goals: [
+
+                            {
+                                id: 1,
+                                title: "Business Goal 001",
+                                metrics: `<ul>
+                                                <li>Engage Customers on social media Customers on social media</li>
+                                                <li>Boost google adverts Engage Customers on social media</li>
+                                                <li>Engage Customers on social media</li>
+                                                <li>Boost google adverts Engage Customers on social media</li>
+                                                <li>Boost google adverts Engage Customers on social media</li>
+                                                <li>Engage Customers on social media</li>
+                                                <li>Boost google adverts Engage Customers on social media</li>
+                                            </ul>`,
+                                description: "1. Grow business revenue",
+                                status: "Not Started"
+                            },
+
+                            {
+                                id: 2,
+                                title: "Business Goal 002",
+                                metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
+                                                <li>Improve customer engagement metrics</li>
+                                                <li>Increase social media outreach by 50%</li>
+                                            </ul>`,
+                                description: "2. Improve our client base",
+                                status: "In Progress"
+                            },
+
+                            {
+                                id: 3,
+                                title: "Business Goal 003",
+                                metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
+                                                <li>Optimize company workflows</li>
+                                                <li>Reduce overhead costs by 10%</li>
+                                            </ul>`,
+                                description: "3. Optimizing company workflows",
+                                status: "Completed"
+                            }
+
+                        ]
+
+                    };
+
+                },
+
+                methods: {
+
+                    selectGoal(index) {
+
+                        this.selectedGoal = index;
+
+                    },
+
+                },
+
+            }).mount('#app');
+
+        </script>
 
         <!-- Comments Section -->
         <div class="shadow-lg rounded-xl p-4 mt-12" style="background-color: #ffffff;">
