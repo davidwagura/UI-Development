@@ -7,7 +7,7 @@ createApp({
         return {
 
             selectedGoal: 0,
-            
+
             goals: [
 
                 {

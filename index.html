@@ -17,28 +17,25 @@
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
+        
+        <link rel="stylesheet" href="./styles.css">
 
     </head>
-    
-    <style>
-        .goal-content:target {
-            display: block;
-        }
-    </style>
-    <body id="app" class="m-4" style="background-color: #eef1f0;">
+
+    <body id="app" class="m-4">
+
         <!-- Top Navigation -->
-        <div class="font-medium border-b w-full md:w-full" style="color: #2f4870; border-color: #bec7d3;">
+        <div class="top-navigation font-medium border-b w-full md:w-full">
 
             <ul class="flex flex-wrap -mb-px">
                 
                 <li class="me-2">
 
-                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg" style="color: #2f4870; border-color: transparent; transition: color 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.color='#40a8e1'; this.style.borderColor='#40a8e1';" onmouseout="this.style.color='#2f4870'; this.style.borderColor='transparent';">Dashboard</a>
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Dashboard</a>
 
                 </li>
 
-                <li class="me-2">
+                <li class=" active-tab me-2">
 
                     <a href="#" class="inline-block p-4 border-b-2 rounded-t-lg" style="color: #40a8e1; border-color: #40a8e1;">Goals</a>
 
@@ -46,19 +43,19 @@
 
                 <li class="me-2">
 
-                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg" style="color: #2f4870; border-color: transparent; transition: color 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.color='#40a8e1'; this.style.borderColor='#40a8e1';" onmouseout="this.style.color='#2f4870'; this.style.borderColor='transparent';">Behavior</a>
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Behavior</a>
                
                 </li>
 
                 <li class="me-2">
 
-                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg" style="color: #2f4870; border-color: transparent; transition: color 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.color='#40a8e1'; this.style.borderColor='#40a8e1';" onmouseout="this.style.color='#2f4870'; this.style.borderColor='transparent';">IDP</a>
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">IDP</a>
                 
                 </li>
                 
                 <li class="me-2">
                   
-                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg" style="color: #2f4870; border-color: transparent; transition: color 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.color='#40a8e1'; this.style.borderColor='#40a8e1';" onmouseout="this.style.color='#2f4870'; this.style.borderColor='transparent';">PIP</a>
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">PIP</a>
                
                 </li>
            
@@ -67,9 +64,9 @@
         </div>
 
         <!-- My Business Goals Section -->
-        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center my-4" style="color: #2f4870;">
+        <div class="business-goals flex-col flex sm:flex-row sm:justify-between sm:items-center my-4 ">
 
-            <div class="text-xl font-semibold" style="color:#3a5278">My business goals</div>
+            <div class="text-xl font-semibold">My business goals</div>
 
             <nav class="space-x-4 text-sm flex mt-2 sm:mt-0">
 
@@ -110,6 +107,7 @@
                 </div>
 
             </nav>
+
         </div>
 
         <div>
@@ -117,11 +115,11 @@
             <div class="flex flex-col sm:flex-row sm:space-x-4">
 
                 <!-- Goals Tabs -->
-                <nav class="w-full sm:w-1/4 pr-4">
+                <nav class="goal-tabs w-full sm:w-1/4 pr-4">
 
-                    <a href="#" class="block rounded py-2 mb-4 text-center" style="background-color: #40a8e1;color:#FFFFFF">+ New goal</a>
+                    <a href="#" class="block rounded py-2 mb-4 text-center">+ New goal</a>
 
-                    <div class="overflow-y-auto space-y-2" style="max-height: 17rem;"> <!-- Set max-height -->
+                    <div class="section overflow-y-auto space-y-2"> <!-- Set max-height -->
 
                         <a v-for="(goal, index) in goals" :key="goal.id" href="#" @click.prevent="selectedGoal = index" class="block rounded" :style="{ backgroundColor: selectedGoal === index ? '#40a8e1' : '#d5d9db', color: selectedGoal === index ? '#ffffff' : '#324d74' }">
 
@@ -129,7 +127,7 @@
 
                                 {{ goal.title }}
 
-                                <span class="block text-sm" style="color: #9dacc0;">{{ goal.title }}</span>
+                                <span class="block text-sm">{{ goal.title }}</span>
 
                             </div>
 
@@ -140,7 +138,7 @@
                 </nav>
 
                 <!-- Goal Details -->
-                <div class="w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0" style="background-color: #ffffff;">
+                <div class="goal-details w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0">
                     
                     <div v-if="selectedGoal !== null" class="goal-content">
                     
@@ -148,7 +146,7 @@
                                 
                             <h3 class="font-semibold text-lg">{{ goals[selectedGoal].description }}</h3>
                         
-                            <span class="text-xs ml-2 bg-yellow-200 rounded-full py-1 px-2 mt-2 sm:mt-0" style="background-color: #e8e097;">{{ goals[selectedGoal].status }}</span>
+                            <span class="ml-2 rounded-full text-sm py-1 px-2 mt-2 sm:mt-0">{{ goals[selectedGoal].status }}</span>
                         
                             <div class="ml-auto">
 
@@ -162,7 +160,7 @@
 
                         </div>     
                         
-                        <div class="p-4 rounded" style="background-color: #fdf9d3;">
+                        <div class="p-4 rounded content">
                         
                             <div v-html="goals[selectedGoal].metrics" class="pl-4 space-y-2 text-sm"></div>
                     
@@ -173,30 +171,31 @@
                 </div>
 
                 <!-- Summary Section -->
-                <div class="border w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0" style="background-color: #ffffff;">
+                <div class="summary-section border w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0">
                 
-                    <p class="font-semibold text-center p-2" style="background-color: #f2f2f2;">Goal Summary</p>
+                    <p class="title font-semibold text-center p-2">Goal Summary</p>
                 
                     <p class="border-b py-2 flex justify-between">Goal Status:
                     
-                        <span id="goal-status" class="text-xs" style="color: #a0aec1;">Not Started</span>
+                        <span id="goal-status" class="text-xs">Not Started</span>
                     
                     </p>
                 
                     <p class="border-b py-2 flex justify-between">Date Created:
                     
-                        <span id="date-created" class="text-xs" style="color: #a0aec1;">12/08/2023</span>
+                        <span id="date-created" class="text-xs">12/08/2023</span>
                     
                     </p>
+
                     <p class="border-b py-2 flex justify-between block">Mid-year Ends In:
                     
-                        <span id="mid-year" class="text-xs" style="color: #a0aec1;">2 months</span>
+                        <span id="mid-year" class="text-xs">2 months</span>
                     
                     </p>
                     
                     <p class="border-b py-2 flex justify-between">End-year Date:
                     
-                        <span id="end-year" class="text-xs" style="color: #a0aec1;">12/05/2024</span>
+                        <span id="end-year" class="text-xs">12/05/2024</span>
                 
                     </p>
             
@@ -207,10 +206,10 @@
         </div>
         
         <!-- Comments Section -->
-        <div class="shadow-lg rounded-xl p-4 mt-12" style="background-color: #ffffff;">
+        <div class="comment-section shadow-lg rounded-xl p-4 mt-12">
 
             <!-- Tabs -->
-            <ul class="max-w-auto w-full sm:w-1/4 flex justify-start space-x-4 p-1 rounded" style="background-color: #eef1f0; color: #364e74;">
+            <ul class="max-w-auto w-full sm:w-1/4 flex justify-start space-x-4 p-1 rounded">
 
                 <li v-for="(tab, index) in tabs" :key="index" class="pl-2">
 
@@ -232,21 +231,37 @@
             </ul>
 
             <!-- Tab Content -->
-            <div class="mt-4">
+            <div class="tab-content mt-4">
 
-                <h2 class="font-semibold text-lg" style="color: #4e6285;">{{ tabs[activeTab].label }} Comments</h2>
+                <h2 class="font-semibold text-lg">{{ tabs[activeTab].label }} Comments</h2>
 
                 <div v-if="activeTab === 0">
 
                     <!-- Employee Comments with Quill Editor -->
-                    <div id="editor-container"></div>
 
+                    <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm">
+
+                        The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
+                    
+                    </p>
+
+                    <!-- <div id="editor-container"></div>
+
+                    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+                    <script>
+                        var quill = new Quill('#editor-container', {
+                            modules: {
+                                toolbar: '#toolbar'
+                            },
+                            theme: 'snow'
+                        });
+                    </script> -->
                 </div>
 
                 <div v-if="activeTab === 1">
 
                     <!-- Supervisor Comments -->
-                    <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm" style="color: #738092;">
+                    <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm">
 
                         The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
                     
@@ -257,18 +272,18 @@
                 <div v-if="activeTab === 2">
 
                     <!-- Ratings or other content -->
-                    <p class="text-sm" style="color: #738092;">Rating information goes here.</p>
+                    <p class="text-sm">Rating information goes here.</p>
 
                 </div>
 
             </div>
 
             <!-- Action Buttons -->
-            <div class="flex justify-end space-x-4 mt-8">
+            <div class="action-buttons flex justify-end space-x-4 mt-8">
                 
-                <button class="p-3 border rounded text-sm" style="border-color: #95a5bb; background-color: #ffffff;">Save Draft</button>
+                <button class="btn1 p-3 border rounded text-sm">Save Draft</button>
 
-                <button class="p-3 rounded text-sm flex items-center space-x-2" style="background-color: #3cb047; color: #ffffff;">
+                <button class="btn2 p-3 rounded text-sm flex items-center space-x-2">
 
                     <span>Submit Final</span>
                     
