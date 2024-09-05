@@ -11,6 +11,12 @@ createApp({
 
             selectedGoal: 0,
 
+            newGoalTitle: "",
+
+            newGoalMetrics: "",
+
+            newGoalDescription: "",
+
             goals: [
 
                 {
@@ -100,7 +106,9 @@ createApp({
     },
 
     mounted() {
+
         this.initializeQuillEditor();
+
     },
 
 
@@ -128,14 +136,61 @@ createApp({
                         ['link']
                     ]
                 }
+                
             });
+
+            this.quillMetric = new Quill('#editor-metric1', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link']],
+                },
+            });
+
+            this.quillMetric = new Quill('#editor-metric2', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link']],
+                },
+            });
+
+            this.quillMetric = new Quill('#editor-container', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link']],
+                },
+            });
+
+            this.quillMetric = new Quill('#editor-container2', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link']],
+                },
+            });
+
+
         },
         submitGoal() {
-            // Implement your goal submission logic here
-            console.log('Goal submitted');
-            this.showModal = false;
-        }
+            // Collect the data from Quill editors
+            const newMetrics = this.quillMetric.root.innerHTML;
+            const newDescription = this.quill.root.innerHTML;
 
+            // Push the new goal to the goals array
+            this.goals.push({
+                id: this.goals.length + 1,
+                title: this.newGoalTitle,
+                metrics: newMetrics,
+                description: newDescription,
+                status: "Not Started",
+            });
+
+            // Reset the input fields
+            this.newGoalTitle = "";
+            this.quill.setText('');
+            this.quillMetric.setText('');
+
+            // Close the modal
+            this.showModal = false;
+        },    
     },
 
 }).mount('#app');

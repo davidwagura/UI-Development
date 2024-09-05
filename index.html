@@ -159,7 +159,7 @@
 
                                         <h3 class="font-medium">Business goal</h3>
 
-                                        <div id="editor" class="h-16 border rounded-lg p-2 mt-2"></div>
+                                        <div v-model="newGoalTitle" id="editor" class="h-16 border rounded p-2 mt-2"></div>
 
                                     </div>
                             
@@ -170,7 +170,7 @@
 
                                         <div class="flex items-center">
 
-                                            <div id="editor-metric1" class="h-16 w-full border border-gray-300 rounded p-2 mt-2"></div>
+                                            <div id="editor-metric1" v-model="newGoalMetrics" class="h-16 w-full border border-gray-300 rounded p-2 mt-2"></div>
                                           
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mx-2" viewBox="0 0 20 20" fill="red">
 
@@ -182,7 +182,7 @@
                                           
                                         <div class="flex items-center">
 
-                                            <div id="editor-metric2" class="h-16 w-full border border-gray-300 rounded p-2 mt-2"></div>
+                                            <div id="editor-metric2" v-model="newGoalDescription" class="h-16 w-full border border-gray-300 rounded p-2 mt-2"></div>
 
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mx-2" viewBox="0 0 20 20" fill="green">
                                                 
@@ -211,7 +211,7 @@
 
                                     <button class="btn-1 px-4 py-2 border rounded-lg">Save Draft</button>
 
-                                    <button class="btn2 px-4 py-2 border rounded-lg">Add Final</button>
+                                    <button @click="submitGoal" class="btn2 px-4 py-2 border rounded-lg">Add Final</button>
 
                                 </div>
 
@@ -342,80 +342,79 @@
                 <h2 class="font-semibold text-lg">{{ tabs[activeTab].label }} Comments</h2>
 
                 <div class="mt-4">
-                <div v-if="activeTab === 0">
-                    <!-- Employee Comments with Quill Editor -->
-                    <h2 class="font-semibold text-sm" style="color: #4e6285;">Employee's Comments</h2>
-                    <div class="quill-editor"></div>
-                    <!-- Supervisor Comments -->
-                    <h2 class="font-semibold text-sm" style="color: #4e6285;">Supervisor's Comments</h2>
 
-                    <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm" style="color: #738092;">
+                    <div v-if="activeTab === 0">
+                        <!-- Employee Comments with Quill Editor -->
 
-                        [MID]The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
+                        <h2 class="font-semibold text-sm" style="color: #4e6285;">Employee's Comments</h2>
 
-                    </p>
+                        <div id="editor-container"></div>
+                        <!-- Supervisor Comments -->
+                        <h2 class="font-semibold text-sm" style="color: #4e6285;">Supervisor's Comments</h2>
 
-                    <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm">
+                        <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm" style="color: #738092;">
 
-                        The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
-                    
-                    </p>
+                            [MID]The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
 
-                    <!-- <div id="editor-container"></div>
+                        </p>
 
-                    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-                    <script>
-                        var quill = new Quill('#editor-container', {
-                            modules: {
-                                toolbar: '#toolbar'
-                            },
-                            theme: 'snow'
-                        });
-                    </script> -->
+                        <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm">
+
+                            The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
+                        
+                        </p>
+
+                    </div>
+
+                    <div v-if="activeTab === 1">
+
+                        <!-- Supervisor Comments -->
+                        <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm">
+
+                            The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
+                        
+                        <!-- Employee Comments with Quill Editor -->
+                        <h2 class="font-semibold text-sm" style="color: #4e6285;">Employee's Comments</h2>
+
+                        <div id="editor-container2"></div>
+
+                        <h2 class="font-semibold text-sm" style="color: #4e6285;">Supervisor's Comments</h2>
+
+                        <p class="border border-gray-300 shadow-lg p-4 rounded text-sm" style="color: #738092;">
+
+                            [END]The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
+                        
+                        </p>
+
+                    </div>
+
+                    <div v-if="activeTab === 2">
+
+                        <!-- Ratings or other content -->
+                        <p class="text-sm">Rating information goes here.</p>
+
+                    </div>
+
                 </div>
 
-                <div v-if="activeTab === 1">
-
-                    <!-- Supervisor Comments -->
-                    <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm">
-
-                        The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
+                <!-- Action Buttons -->
+                <div class="action-buttons flex justify-end space-x-4 mt-8">
                     
-                    <!-- Employee Comments with Quill Editor -->
-                    <h2 class="font-semibold text-sm" style="color: #4e6285;">Employee's Comments</h2>
-                    <div class="quill-editor"></div>
-                    <h2 class="font-semibold text-sm" style="color: #4e6285;">Supervisor's Comments</h2>
-                    <p class="border border-gray-300 shadow-lg p-4 rounded text-sm" style="color: #738092;">
-                        [END]The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
-                    </p>
+                    <button class="btn1 p-3 border rounded text-sm">Save Draft</button>
+
+                    <button class="btn2 p-3 rounded text-sm flex items-center space-x-2">
+
+                        <span>Submit Final</span>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 21l18-9-18-9v7l13.5 2-13.5 2v7z" />
+
+                        </svg>
+
+                    </button>
 
                 </div>
-
-                <div v-if="activeTab === 2">
-
-                    <!-- Ratings or other content -->
-                    <p class="text-sm">Rating information goes here.</p>
-
-                </div>
-
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="action-buttons flex justify-end space-x-4 mt-8">
-                
-                <button class="btn1 p-3 border rounded text-sm">Save Draft</button>
-
-                <button class="btn2 p-3 rounded text-sm flex items-center space-x-2">
-
-                    <span>Submit Final</span>
-                    
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 21l18-9-18-9v7l13.5 2-13.5 2v7z" />
-
-                    </svg>
-
-                </button>
 
             </div>
 
