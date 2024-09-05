@@ -7,6 +7,8 @@ createApp({
 
         return {
 
+            showModal: false,
+
             selectedGoal: 0,
 
             goals: [
@@ -97,6 +99,11 @@ createApp({
 
     },
 
+    mounted() {
+        this.initializeQuillEditor();
+    },
+
+
     methods: {
 
         selectGoal(index) {
@@ -110,6 +117,24 @@ createApp({
             this.activeTab = index;
 
         },
+
+        initializeQuillEditor() {
+            const quill = new Quill('#editor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline'],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        ['link']
+                    ]
+                }
+            });
+        },
+        submitGoal() {
+            // Implement your goal submission logic here
+            console.log('Goal submitted');
+            this.showModal = false;
+        }
 
     },
 
