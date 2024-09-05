@@ -1,0 +1,128 @@
+Notes:
+When using Vite with Vue 3 and TypeScript, combined with Pinia for state management, you can structure your application in a modular and maintainable way. Here’s a basic outline of how you might organize your app:
+
+1. Folder Structure
+   css
+   src/
+   ├── api/
+   │   └── apiClient.ts
+   │   └── services/
+   │       └── userService.ts
+   │       └── productService.ts
+   ├── components/
+   │   └── YourComponent.vue
+   │   └── AnotherComponent.vue
+   ├── store/
+   │   └── userStore.ts
+   │   └── productStore.ts
+   ├── views/
+   │   └── Home.vue
+   │   └── About.vue
+   ├── router/
+   │   └── index.ts
+   ├── App.vue
+   ├── main.ts
+   ├── styles/
+   │   └── main.css
+   └── utils/
+   └── helpers.ts
+2. API Layer
+   In src/api/, you can set up an API client and services for interacting with your backend.
+
+apiClient.ts
+    import axios from 'axios';
+    const apiClient = axios.create({
+    baseURL: import.meta.env.VITE_API_BASE_URL,
+    headers: {
+    'Content-Type': 'application/json',
+    },
+    });
+    export default apiClient;
+
+userService.ts
+    import apiClient from './apiClient';
+
+    export const getUser = async (id: string) => {
+    const response = await apiClient.get(`/users/${id}`);
+        return response.data;
+    };
+
+    export const getUsers = async () => {
+    const response = await apiClient.get('/users');
+        return response.data;
+    };
+3. Store Layer (Pinia)
+   In src/store/, you can create stores for managing state.
+
+userStore.ts
+    import { defineStore } from 'pinia';
+    import { getUser, getUsers } from '../api/services/userService';
+
+    export const useUserStore = defineStore('userStore', {
+        state: () => ({
+        user: null as any,
+        users: [] as any[],
+    }),
+    actions: {
+        async fetchUser(id: string) {
+        this.user = await getUser(id);
+    },
+    async fetchUsers() {
+        this.users = await getUsers();
+    },
+    },
+    });
+4. Components
+   Components in src/components/ will use stores to fetch and manage data.
+
+YourComponent.vue
+    <template>
+          <div>
+            <h1>User Info</h1>
+            <p v-if="user">{{ user.name }}</p>
+          </div>
+        </template>
+
+        <script lang="ts" setup>
+        import { useUserStore } from '@/store/userStore';
+        import { onMounted } from 'vue';
+
+        const store = useUserStore();
+        const user = store.user;
+
+        onMounted(async () => {
+          await store.fetchUser('some-id');
+        });
+        </script>
+5. Router
+   Set up routing in src/router/index.ts.
+    import { createRouter, createWebHistory } from "vue-router";
+    import Home from "../views/Home.vue";
+    import About from "../views/About.vue";
+
+    const routes = [
+      { path: "/", component: Home },
+      { path: "/about", component: About },
+    ];
+
+    const router = createRouter({
+      history: createWebHistory(import.meta.env.BASE_URL),
+      routes,
+    });
+    export default router;
+
+6. Main Entry Point
+   In src/main.ts, initialize your app.
+    import { createApp } from "vue";
+    import App from "./App.vue";
+    import router from "./router";
+    import { createPinia } from "pinia";
+
+    const app = createApp(App);
+    app.use(router);
+    app.use(createPinia());
+    app.mount("#app");
+7. Styling
+   Add your global styles in src/styles/main.css.
+8. Utilities
+   Helper functions or utilities can go into src/utils/.
