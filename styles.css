@@ -1,0 +1,151 @@
+.goal-content:target {
+
+    display: block;
+
+}
+
+body {
+
+    background-color: #eef1f0;
+
+}
+
+.top-navigation {
+
+    color: #2f4870; 
+    
+    border-color: #bec7d3;
+
+}
+
+.top-navigation ul li a{
+
+    color: #2f4870;
+
+    border-color: transparent;
+
+    transition: color 0.3s ease, border-color 0.3s ease;
+
+}
+
+.top-navigation ul li a:hover {
+    
+    color: #40a8e1;
+
+    border-color: #40a8e1;
+
+}
+
+.active-tab {
+
+    color: #40a8e1;
+
+    border-color: #40a8e1;
+
+}
+
+.business-goals {
+
+    color: #2f4870;
+
+}
+
+.goal-tabs a{
+
+    background-color: #40a8e1;
+
+    color:#FFFFFF; 
+
+}
+
+.goal-tabs .section{
+
+    max-height: 17rem;
+
+}
+
+.goal-tabs .section span {
+
+    color: #9dacc0;
+
+}
+
+.goal-details {
+
+    background-color: #ffffff;
+
+}
+
+
+.goal-details span{
+
+    background-color: #e8e097;
+
+}
+
+.goal-details .content {
+
+    background-color: #fdf9d3;
+
+}
+
+.summary-section {
+
+    background-color: #ffffff;
+    
+}
+
+.summary-section .title {
+
+    background-color: #f2f2f2;
+
+}
+
+.summary-section span {
+
+    color: #a0aec1;
+
+}
+
+.comment-section {
+    
+    background-color: #ffffff;
+
+}
+
+.comment-section ul {
+
+    background-color: #eef1f0; 
+
+    color: #364e74;
+
+}
+
+.tab-content h2 {
+
+    color: #4e6285;
+
+}
+
+.tab-content p {
+
+    color: #738092;
+
+}
+
+.action-buttons .btn1 {
+
+    border-color: #95a5bb;
+
+    background-color: #ffffff;
+
+}
+
+.action-buttons .btn2 {
+
+    background-color: #3cb047;
+
+    color: #ffffff;
+
+}
+
