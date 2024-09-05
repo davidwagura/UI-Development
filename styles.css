@@ -133,6 +133,12 @@ body {
 
 }
 
+.tab-content .active-tab  h2{
+
+    color: #4e6285
+
+}
+
 .action-buttons .btn1 {
 
     border-color: #95a5bb;
