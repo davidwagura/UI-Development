@@ -278,18 +278,14 @@
                     <p class="title font-semibold text-center p-2">Goal Summary</p>
                 
                     <p class="border-b py-2 flex justify-between">Goal Status:
-                    
-                        <span id="goal-status" class="text-xs">Not Started</span>
 
-                        <span id="goal-status" class="text-xs" style="color: #a0aec1;">{{ goals[selectedGoal].status }}</span>
+                        <span id="goal-status" class="text-xs">{{ goals[selectedGoal].status }}</span>
                     
                     </p>
                 
                     <p class="border-b py-2 flex justify-between">Date Created:
-                    
-                        <span id="date-created" class="text-xs">12/08/2023</span>
 
-                        <span id="date-created" class="text-xs" style="color: #a0aec1;">{{ goals[selectedGoal].created }}</span>
+                        <span id="date-created" class="text-xs">{{ goals[selectedGoal].created }}</span>
                     
                     </p>
 
@@ -348,7 +344,7 @@
 
                         <h2 class="font-semibold text-sm" style="color: #4e6285;">Employee's Comments</h2>
 
-                        <div id="editor-container"></div>
+                        <div class="quill-editor"></div>
                         <!-- Supervisor Comments -->
                         <h2 class="font-semibold text-sm" style="color: #4e6285;">Supervisor's Comments</h2>
 
@@ -358,25 +354,13 @@
 
                         </p>
 
-                        <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm">
-
-                            The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
-                        
-                        </p>
-
                     </div>
 
                     <div v-if="activeTab === 1">
 
-                        <!-- Supervisor Comments -->
-                        <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm">
-
-                            The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
-                        
-                        <!-- Employee Comments with Quill Editor -->
                         <h2 class="font-semibold text-sm" style="color: #4e6285;">Employee's Comments</h2>
 
-                        <div id="editor-container2"></div>
+                        <div class="quill-editor"></div>
 
                         <h2 class="font-semibold text-sm" style="color: #4e6285;">Supervisor's Comments</h2>
 

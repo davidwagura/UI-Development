@@ -32,7 +32,8 @@ createApp({
                                         <li>Boost google adverts Engage Customers on social media</li>
                                     </ul>`,
                     description: "1. Grow business revenue",
-                    status: "Not Started"
+                    status: "Not Started",
+                    created:'15/02/2024'
                 },
 
                 {
@@ -43,7 +44,8 @@ createApp({
                                         <li>Increase social media outreach by 50%</li>
                                     </ul>`,
                     description: "2. Improve our client base",
-                    status: "In Progress"
+                    status: "In Progress",
+                    created:'08/08/2024'
                 },
 
                 {
@@ -54,7 +56,8 @@ createApp({
                                         <li>Reduce overhead costs by 10%</li>
                                     </ul>`,
                     description: "3. Optimizing company workflows",
-                    status: "Completed"
+                    status: "Completed",
+                    created:'03/08/2024'
                 },
 
                 {
@@ -65,7 +68,8 @@ createApp({
                                         <li>Introduce overhead costs by 10%</li>
                                     </ul>`,
                     description: "4. Custom Goal",
-                    status: "Completed"
+                    status: "Completed",
+                    created:'12/02/2024'
                 },
 
                 {
@@ -76,7 +80,8 @@ createApp({
                                         <li>Place overhead costs by 10%</li>
                                     </ul>`,
                     description: "5. Custom Goal",
-                    status: "Completed"
+                    status: "Completed",
+                    created:'04/02/2024'
                 },
 
                 {
@@ -87,7 +92,8 @@ createApp({
                                         <li>Show overhead costs by 10%</li>
                                     </ul>`,
                     description: "6. Custom Goal",
-                    status: "Completed"
+                    status: "Completed",
+                    created:'05/02/2024'
                 }
             ],
 
@@ -123,53 +129,34 @@ createApp({
         setActiveTab(index) {
 
             this.activeTab = index;
+            this.$nextTick(() => {
+                this.initializeQuillEditor(); // Reinitialize editor when returning to the relevant tab
+            });
 
         },
 
         initializeQuillEditor() {
-            const quill = new Quill('#editor', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline'],
-                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                        ['link']
-                    ]
+            this.$nextTick(() => { // Ensure the DOM is updated before initializing
+                const editorContainer = document.querySelector('.quill-editor'); // Target correct element
+                if (editorContainer) {
+                    if (this.quillInstance) {
+                        this.quillInstance = null; // Destroy previous instance
+                        editorContainer.innerHTML = ''; // Clear editor container
+                    }
+                    this.quillInstance = new Quill(editorContainer, {
+                        theme: 'snow',
+                        modules: {
+                            toolbar: [
+                                ['bold', 'italic', 'underline'],
+                                [{'list': 'ordered'}, {'list': 'bullet'}],
+                                ['link']
+                            ]
+                        }
+                    }); // Load selected goal metrics
                 }
-                
             });
-
-            this.quillMetric = new Quill('#editor-metric1', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link']],
-                },
-            });
-
-            this.quillMetric = new Quill('#editor-metric2', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link']],
-                },
-            });
-
-            this.quillMetric = new Quill('#editor-container', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link']],
-                },
-            });
-
-            this.quillMetric = new Quill('#editor-container2', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [['bold', 'italic', 'underline'], [{ list: 'ordered' }, { list: 'bullet' }], ['link']],
-                },
-            });
-
-
         },
-        submitGoal() {
+            submitGoal() {
             // Collect the data from Quill editors
             const newMetrics = this.quillMetric.root.innerHTML;
             const newDescription = this.quill.root.innerHTML;
