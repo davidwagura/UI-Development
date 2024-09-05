@@ -197,6 +197,12 @@ body {
     
 }
   
+.modal-content {
+
+    max-height: 100vh;
+
+}
+
 .modal-overlay.show {
 
     display: block;
