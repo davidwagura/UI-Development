@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/heroicons@2.0.18/dist/outline/heroicons-outline.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <style>
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 400px;
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .modal.show {
+            left: 0;
+        }
+
+        .modal-content {
+            padding: 1rem;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .modal-overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+<body id="app" class="m-4" style="background-color: #eef1f0;">
+<div class="flex flex-col sm:flex-row sm:space-x-4">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <nav class="w-full sm:w-1/4 pr-4">
+        <a href="#" @click="showModal = true" class="block rounded py-2 mb-4 text-center"
+           style="background-color: #40a8e1;color:#FFFFFF">+ New goal</a>
+    </nav>
+</div>
+<div v-if="showModal" class="modal-overlay show" @click="showModal = false"></div>
+<div :class="{ 'modal': true, 'show': showModal }">
+    <div class="modal-content">
+        <button @click="showModal = false" class="text-gray-500 hover:text-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.293 4.293a1 1 0 010 1.414L4.414 7.0005 6.293 8.8795a1 1 0 01-1.414 1.414L3 8.414 1.121 10.293a1 1 0 11-1.414-1.414L1.586 7.0005 0 5.414a1 1 0 011.414-1.414L3 5.586l1.879-1.879a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+        </button>
+        <h2 class="text-lg font-semibold">New Goal</h2>
+        <div class="h-32 mb-8">
+            <div id="editor" class="h-32 border border-gray-300 rounded p-2"></div>
+        </div>
+        <button @click="submitGoal" class="bg-blue-500 text-white px-4 py-2 rounded">Save Goal</button>
+    </div>
+</div>
+
+<script>
+    const { createApp } = Vue;
+    createApp({
+        data() {
+            return {
+                showModal: false,
+            };
+        },
+        mounted() {
+            this.initializeQuillEditor();
+        },
+        methods: {
+            initializeQuillEditor() {
+                const quill = new Quill('#editor', {
+                    theme: 'snow',
+                    modules: {
+                        toolbar: [
+                            ['bold', 'italic', 'underline'],
+                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                            ['link']
+                        ]
+                    }
+                });
+            },
+            submitGoal() {
+                // Implement your goal submission logic here
+                console.log('Goal submitted');
+                this.showModal = false;
+            }
+        },
+    }).mount('#app');
+</script>
+</body>
+</html>

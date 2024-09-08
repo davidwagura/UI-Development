@@ -1,0 +1,237 @@
+To implement a login and register functionality for users in a TypeScript-based Vue.js project, we need to handle user authentication. This involves creating a mock API for user registration and login, defining the necessary types, creating services, and building components for both registration and login functionalities.
+
+Here’s a step-by-step guide to setting up a Login and Register system using a mocked API:
+
+Step 1: Define User Types
+We will expand the User type definition to include fields needed for registration and authentication.
+
+// src/types/userTypes.ts
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: UserRole;
+}
+
+export interface RegisterUser {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface LoginUser {
+  email: string;
+  password: string;
+}
+
+export interface AuthResponse {
+  user: User;
+  token: string; // Simulated token for authentication
+}
+
+export type UserRole = 'admin' | 'user';
+Step 2: Mock the API for Login and Registration
+We need to extend the mock API to handle registration and login requests. This mock API will simulate the backend behavior.
+
+// src/api/apiClient.ts
+const mockUsers: User[] = [
+  { id: 1, name: 'Alice', email: 'alice@example.com', role: 'admin' },
+  { id: 2, name: 'Bob', email: 'bob@example.com', role: 'user' },
+];
+
+export const mockApi = {
+  get: (url: string) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (url === '/users') {
+          resolve(mockUsers);
+        }
+      }, 1000); // Simulate network delay
+    });
+  },
+
+  post: (url: string, data: any) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (url === '/register') {
+          const { name, email, password } = data;
+          const existingUser = mockUsers.find(user => user.email === email);
+          if (existingUser) {
+            reject('User already exists!');
+          } else {
+            const newUser: User = {
+              id: mockUsers.length + 1,
+              name,
+              email,
+              role: 'user', // Default role
+            };
+            mockUsers.push(newUser);
+            resolve({ user: newUser, token: 'mock-token-123' }); // Mock token
+          }
+        } else if (url === '/login') {
+          const { email, password } = data;
+          const user = mockUsers.find(user => user.email === email);
+          if (user) {
+            resolve({ user, token: 'mock-token-123' }); // Mock token
+          } else {
+            reject('Invalid email or password!');
+          }
+        }
+      }, 1000); // Simulate network delay
+    });
+  },
+};
+Step 3: Create User Service for Authentication
+We’ll create a service that interacts with the mock API to handle user registration and login.
+
+// src/api/services/authService.ts
+import { mockApi } from '@/api/apiClient';
+import { AuthResponse, LoginUser, RegisterUser } from '@/types/userTypes';
+
+export const authService = {
+  async registerUser(userData: RegisterUser): Promise<AuthResponse> {
+    return await mockApi.post('/register', userData) as AuthResponse;
+  },
+
+  async loginUser(userData: LoginUser): Promise<AuthResponse> {
+    return await mockApi.post('/login', userData) as AuthResponse;
+  },
+};
+Step 4: Create Vue Components for Registration and Login
+Registration Component
+vue
+Copy code
+<!-- src/components/Register.vue -->
+<template>
+  <div>
+    <h1>Register</h1>
+    <form @submit.prevent="register">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" v-model="name" required />
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" v-model="email" required />
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" v-model="password" required />
+      </div>
+      <button type="submit">Register</button>
+    </form>
+    <p v-if="error">{{ error }}</p>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import { authService } from '@/api/services/authService';
+import { RegisterUser } from '@/types/userTypes';
+
+export default defineComponent({
+  name: 'Register',
+  setup() {
+    const name = ref('');
+    const email = ref('');
+    const password = ref('');
+    const error = ref<string | null>(null);
+
+    const register = async () => {
+      const userData: RegisterUser = { name: name.value, email: email.value, password: password.value };
+      try {
+        const response = await authService.registerUser(userData);
+        console.log('Registered user:', response.user);
+      } catch (err) {
+        error.value = err as string;
+      }
+    };
+
+    return {
+      name,
+      email,
+      password,
+      error,
+      register,
+    };
+  },
+});
+</script>
+
+<style scoped>
+/* Add your styles here */
+</style>
+Login Component
+vue
+Copy code
+<!-- src/components/Login.vue
+<template>
+  <div>
+    <h1>Login</h1>
+    <form @submit.prevent="login">
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" v-model="email" required />
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" v-model="password" required />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p v-if="error">{{ error }}</p>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import { authService } from '@/api/services/authService';
+import { LoginUser } from '@/types/userTypes';
+
+export default defineComponent({
+  name: 'Login',
+  setup() {
+    const email = ref('');
+    const password = ref('');
+    const error = ref<string | null>(null);
+
+    const login = async () => {
+      const userData: LoginUser = { email: email.value, password: password.value };
+      try {
+        const response = await authService.loginUser(userData);
+        console.log('Logged in user:', response.user);
+        console.log('Token:', response.token);
+      } catch (err) {
+        error.value = err as string;
+      }
+    };
+
+    return {
+      email,
+      password,
+      error,
+      login,
+    };
+  },
+});
+</script>
+
+<style scoped>
+/* Add your styles here */
+</style>
+Explanation
+Type Definitions (userTypes.ts):
+
+Expanded with types for RegisterUser, LoginUser, and AuthResponse to cover authentication use cases.
+Mock API (apiClient.ts):
+
+post method simulates both registration and login endpoints.
+Handles basic error cases such as user already existing for registration and invalid email/password for login.
+Authentication Service (authService.ts):
+
+Provides registerUser and loginUser functions that interact with the mock API to handle user registration and login.
+Returns a simulated token upon successful authentication.
+Vue Components (Register.vue and Login.vue):
+
+Each component has its own form to capture user input for registration and login.
+The register and login methods call the respective functions in authService and handle the response or error.

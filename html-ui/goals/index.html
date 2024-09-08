@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Document</title>
+
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/heroicons@2.0.18/dist/outline/heroicons-outline.css">
+
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        
+        <link rel="stylesheet" href="./styles.css">
+
+    </head>
+
+    <body id="app" class="m-4">
+
+        <!-- Top Navigation -->
+        <div class="top-navigation font-medium border-b w-full md:w-full">
+
+            <ul class="flex flex-wrap -mb-px">
+                
+                <li class="me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Dashboard</a>
+
+                </li>
+
+                <li class=" active-tab me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 rounded-t-lg" style="color: #40a8e1; border-color: #40a8e1;">Goals</a>
+
+                </li>
+
+                <li class="me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Behavior</a>
+               
+                </li>
+
+                <li class="me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">IDP</a>
+                
+                </li>
+                
+                <li class="me-2">
+                  
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">PIP</a>
+               
+                </li>
+           
+            </ul>
+        
+        </div>
+
+        <!-- My Business Goals Section -->
+        <div class="business-goals flex-col flex sm:flex-row sm:justify-between sm:items-center my-4 ">
+
+            <div class="text-xl font-semibold">My business goals</div>
+
+            <nav class="space-x-4 text-sm flex mt-2 sm:mt-0">
+
+                <div class="flex">
+
+                    <a href="#" class="font-semibold text-gray-500">Performance</a>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        
+                    </svg>
+
+                </div>
+
+                <div class="flex">
+
+                    <a href="#" class="font-semibold text-gray-500">Self Assessment</a>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    
+                    </svg>
+
+                </div>
+
+                <div class="flex">
+
+                    <a href="#" class="font-semibold text-gray-500">Goals</a>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    
+                    </svg>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+        <div>
+
+            <div class="flex flex-col sm:flex-row sm:space-x-4">
+
+                <!-- Goals Tabs -->
+                <nav class="goal-tabs w-full sm:w-1/4 pr-4">
+
+                    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+                    <a href="#" @click="showModal = true" class="block rounded py-2 mb-4 text-center">+ New goal</a>
+
+                    <!-- modal -->
+                    <div v-if="showModal" class="modal-overlay show" @click="showModal = false"></div>
+
+                    <div>
+                        <!-- Overlay -->
+                        <div :class="{ 'modal-overlay': true, 'show': showModal }"></div>
+                    
+                        <!-- Modal -->
+                        <div :class="{ 'modal': true, 'show': showModal }">
+
+                            <!-- Close Button -->
+                            <button @click="showModal = false" class="absolute top-4 right-2 text-gray-500 hover:text-gray-700">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                
+                                </svg>
+
+                            </button>
+                        
+                            <!-- Title and Description -->
+                            <div class="modal-content overflow-y-auto">
+                                
+                                <div class="title p-4 border-b">
+
+                                    <h1 class="text-lg font-bold">Add business goal</h1>
+
+                                    <p class="text-sm text-gray-500">Create a Business goal and add relevant business metrics</p>
+
+                                </div>
+                    
+                                <!-- Content -->
+                                <div class="p-6 border rounded-lg shadow-lg mt-4 m-4">
+
+                                    <!-- Business Goal Section -->
+                                    <div>
+
+                                        <h3 class="font-medium">Business goal</h3>
+
+                                        <div v-model="newGoalTitle" class="quill-editor border rounded p-2 mt-2"></div>
+
+                                    </div>
+                            
+                                    <!-- Business Metric Section -->
+                                    <div class="metric mt-4 border rounded-lg p-4">
+
+                                        <h3 class="font-medium">Business metric</h3>
+
+                                        <div class="items-center">
+
+                                            <!-- <div v-model="newGoalMetrics" class="quill-editor h-16 w-full border border-gray-300 rounded p-2 mt-2"></div> -->
+                                            <div class="quill-editor"></div>
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mx-2 flex justify-end" viewBox="0 0 20 20" fill="red">
+
+                                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                            
+                                            </svg>
+
+                                        </div>
+                                          
+                                        <div class="items-center">
+
+                                            <!-- <div class="quill-editor p-2 mt-2" v-model="newGoalDescription"></div> -->
+
+                                            <div class="quill-editor"></div>
+
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mx-2" viewBox="0 0 20 20" fill="green">
+                                                
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                              
+                                            </svg>
+
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+
+                                <!-- Cascade Checkbox -->
+                                <div class="flex items-center m-3">
+
+                                    <input type="checkbox" id="cascade" class="mr-2">
+
+                                    <label for="cascade" class="text-sm">By checking here, you agree the goal to cascade to all repository</label>
+
+                                </div>
+
+                        
+                                <!-- Footer Buttons -->
+                                <div class="footer p-4 border-t flex justify-end space-x-6">
+
+                                    <button class="btn-1 px-4 py-2 border rounded-lg">Save Draft</button>
+
+                                    <button @click="submitGoal" class="btn2 px-4 py-2 border rounded-lg">Add Final</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="section overflow-y-auto space-y-2"> <!-- Set max-height -->
+
+                        <a v-for="(goal, index) in goals" :key="goal.id" href="#" @click.prevent="selectedGoal = index" class="block rounded" :style="{ backgroundColor: selectedGoal === index ? '#40a8e1' : '#d5d9db', color: selectedGoal === index ? '#ffffff' : '#324d74' }">
+
+                            <div class="ml-3 border h-20 mx-auto p-2 text-center rounded font-medium text-lg flex items-center justify-center flex-col" :style="{ backgroundColor: selectedGoal === index ? '#f2fcff' : '#ffffff', borderColor: selectedGoal === index ? '#40a8e1' : '#d4d9da', color:'#2d4870' }">
+
+                                {{ goal.title }}
+
+                                <span class="block text-sm">{{ goal.title }}</span>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </nav>
+
+                <!-- Goal Details -->
+                <div class="goal-details w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0">
+                    
+                    <div v-if="selectedGoal !== null" class="goal-content">
+                    
+                        <div class="flex flex-col sm:flex-row mb-4 items-start sm:items-center w-full">
+                                
+                            <h3 class="font-semibold text-lg">{{ goals[selectedGoal].description }}</h3>
+                        
+                            <span class="ml-2 rounded-full text-sm py-1 px-2 mt-2 sm:mt-0">{{ goals[selectedGoal].status }}</span>
+                        
+                            <div class="ml-auto">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+
+                                </svg>
+
+                            </div>
+
+                        </div>     
+                        
+                        <div class="p-4 rounded content">
+                        
+                            <div v-html="goals[selectedGoal].metrics" class="pl-4 space-y-2 text-sm"></div>
+                    
+                        </div>
+                    
+                    </div>
+                                            
+                </div>
+
+                <!-- Summary Section -->
+                <div class="summary-section border w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0">
+                
+                    <p class="title font-semibold text-center p-2">Goal Summary</p>
+                
+                    <p class="border-b py-2 flex justify-between">Goal Status:
+
+                        <span id="goal-status" class="text-xs">{{ goals[selectedGoal].status }}</span>
+                    
+                    </p>
+                
+                    <p class="border-b py-2 flex justify-between">Date Created:
+
+                        <span id="date-created" class="text-xs">{{ goals[selectedGoal].created }}</span>
+                    
+                    </p>
+
+                    <p class="border-b py-2 flex justify-between block">Mid-year Ends In:
+                    
+                        <span id="mid-year" class="text-xs">2 months</span>
+                    
+                    </p>
+                    
+                    <p class="border-b py-2 flex justify-between">End-year Date:
+                    
+                        <span id="end-year" class="text-xs">12/05/2024</span>
+                
+                    </p>
+            
+                </div>
+
+            </div>
+
+        </div>
+        
+        <!-- Comments Section -->
+        <div class="comment-section shadow-lg rounded-xl p-4 mt-12">
+
+            <!-- Tabs -->
+            <ul class="max-w-auto w-full sm:w-1/4 flex justify-start space-x-4 p-1 rounded">
+
+                <li v-for="(tab, index) in tabs" :key="index" class="pl-2">
+
+                    <a
+
+                        href="#"
+                        class="border mx-auto flex justify-start shadow-lg font-medium rounded p-1 items-center"
+                        :class="{ 'bg-white': activeTab === index }"
+                        @click.prevent="setActiveTab(index)"
+
+                    >
+
+                        {{ tab.label }}
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content mt-4">
+
+                <h2 class="font-semibold text-lg">{{ tabs[activeTab].label }} Comments</h2>
+
+                <div class="active-tab mt-4">
+
+                    <div v-if="activeTab === 0">
+
+                        <!-- Employee Comments with Quill Editor -->
+                        <h2 class="font-semibold text-sm">Employee's Comments</h2>
+
+                        <div class="quill-editor"></div>
+
+                        <!-- Supervisor Comments -->
+                        <h2 class="font-semibold text-sm">Supervisor's Comments</h2>
+
+                        <p class="border border-gray-300 shadow-lg p-4 rounded-xl text-sm" style="color: #738092;">
+
+                            [MID]The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
+
+                        </p>
+
+                    </div>
+
+                    <div v-if="activeTab === 1">
+
+                        <h2 class="font-semibold text-sm">Employee's Comments</h2>
+
+                        <div class="quill-editor"></div>
+
+                        <h2 class="font-semibold text-sm">Supervisor's Comments</h2>
+
+                        <p class="border border-gray-300 shadow-lg p-4 rounded text-sm" style="color: #738092;">
+
+                            [END]The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
+                        
+                        </p>
+
+                    </div>
+
+                    <div v-if="activeTab === 2">
+
+                        <!-- Ratings or other content -->
+                        <p class="text-sm">Rating information goes here.</p>
+
+                    </div>
+
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons flex justify-end space-x-4 mt-8">
+                    
+                    <button class="btn1 p-3 border rounded text-sm">Save Draft</button>
+
+                    <button class="btn2 p-3 rounded text-sm flex items-center space-x-2">
+
+                        <span>Submit Final</span>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 21l18-9-18-9v7l13.5 2-13.5 2v7z" />
+
+                        </svg>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="./script.js"></script>
+
+    </body>
+    
+</html>
+   
