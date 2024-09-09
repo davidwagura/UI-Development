@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Document</title>
+
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/heroicons@2.0.18/dist/outline/heroicons-outline.css">
+
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        
+        <link rel="stylesheet" href="./styles.css">
+
+    </head>
+
+    <body id="app" class="m-4">
+
+        <!-- Top Navigation -->
+        <div class="top-navigation font-medium border-b w-full md:w-full">
+
+            <ul class="flex flex-wrap -mb-px">
+                
+                <li class="me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 rounded-t-lg" style="color: #40a8e1; border-color: #40a8e1;">Dashboard</a>
+
+                </li>
+
+                <li class=" active-tab me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Goals</a>
+
+                </li>
+
+                <li class="me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Behaviour</a>
+               
+                </li>
+
+                <li class="me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">IDP</a>
+                
+                </li>
+                
+                <li class="me-2">
+                  
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">PIP</a>
+               
+                </li>
+           
+            </ul>
+        
+        </div>
+
+        <!-- My Business Goals Section -->
+        <div class="assessment flex-col flex sm:flex-row sm:justify-between sm:items-center my-4 ">
+
+            <h1 class="text-xl font-semibold">My Personal Assessment</h1>
+
+            <nav class="space-x-4 text-sm flex mt-2 sm:mt-0">
+
+                <div class="flex">
+
+                    <a href="#" class="font-semibold text-gray-500">Performance</a>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        
+                    </svg>
+
+                </div>
+
+                <div class="flex">
+
+                    <a href="#" class="font-semibold text-gray-500">Self Assessment</a>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    
+                    </svg>
+
+                </div>
+
+                <div class="flex">
+
+                    <a href="#" class="font-semibold text-gray-500">Dashboard</a>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    
+                    </svg>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+        <!-- Personal Assessment Section -->
+        <div class="flex flex-col lg:flex-row mt-6 space-y-6 lg:space-y-0 lg:space-x-8">
+
+            <!-- Left Section -->
+            <div class="left-section w-full lg:w-1/4 bg-white p-4 rounded-md shadow-md">
+
+                <div class="h-fit">
+
+                    <img class="rounded-full w-32 h-32 md:w-40 md:h-40 mx-auto" src="https://via.placeholder.com/100" alt="Profile Image">
+
+                    <h2 class="mt-4 text-lg md:text-xl font-bold">Christine Adolwa</h2>
+
+                    <span class="block text-sm md:text-base">Human Resource</span>
+
+                    <p class="font-semibold mt-2 text-sm md:text-base">Department</p>
+
+                    <span class="block text-sm mt-1 md:mt-2">HR & Corporate Sustainability</span>
+
+                    <p class="font-semibold mt-2 text-sm md:text-base">Email</p>
+
+                    <span class="block text-sm">christineadolwa@isuzu.co.ke</span>
+
+                    <button class="mt-6 py-2 px-4 w-full border font-semibold rounded-lg">Edit your profile</button>
+
+                </div>
+
+            </div>
+        
+            <!-- Right Section (Cards) -->
+            <div class="w-full lg:w-3/4 space-y-6">
+
+                <!-- Goals Analysis and IDP Analysis -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+                    <div class="goal-analysis rounded-xl">
+
+                        <div class="bg-white h-full p-4 rounded mt-2 shadow-md">
+
+                            <h3 class="font-semibold text-lg md:text-xl">Goals Analysis</h3>
+
+                            <ul class="mt-4 text-sm">
+
+                                <li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2"></span>Completed</li>
+
+                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>Incomplete</li>
+
+                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>Started</li>
+                                
+                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>Not Started</li>  
+                            
+                            </ul>
+
+                        </div>
+
+                    </div>
+        
+                    <div class="goal-analysis rounded-xl">
+
+                        <div class="bg-white h-full p-4 rounded mt-2 shadow-md">
+
+                            <h3 class="font-semibold text-lg md:text-xl">IDP Analysis</h3>
+
+                            <ul class="mt-4 text-sm">
+                                <li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2"></span>Started</li>
+
+                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>Not Started</li>
+
+                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>In Progress</li>
+
+                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>Deleted</li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+        
+                <!-- Supervisor Feedback and Updates -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+                    <div class="goal-analysis rounded-xl">
+
+                        <div class="bg-white h-full p-4 rounded mt-2 shadow-md">
+
+                            <h3 class="font-semibold text-lg md:text-xl">Supervisor Feedback</h3>
+
+                            <ul class="mt-4 text-sm">
+
+                                <li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2"></span>Completed</li>
+                                
+                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>Incomplete</li>
+                            
+                            </ul>
+
+                            <button class="mt-4 p-2 w-28 border-2 rounded-lg">Review</button>
+
+                        </div>
+
+                    </div>
+        
+                    <div class="goal-analysis rounded-xl">
+
+                        <div class="bg-white h-full p-4 rounded mt-2 shadow-md">
+
+                            <h3 class="font-semibold text-lg md:text-xl">Updates</h3>
+
+                            <ul class="mt-4 text-sm">
+
+                                <li class="flex items-center"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>Mid year behavior updates</li>
+                                
+                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>End year behavior updates</li>                        </ul>
+                            <button class="mt-6 p-2 border-2 w-28 rounded-lg">Review</button>
+
+                        </div>
+
+                    </div>
+
+                </div>   
+
+            </div>
+
+        </div>
+        
+        <div class="mt-6 border-t p-4 rounded-md w-full md:w-1/4 supervisor">
+
+            <div class="flex justify-between items-center">
+
+                <h3 class="font-semibold text-lg">My Supervisor</h3>
+
+                <a href="#" class="underline text-sm">Edit</a>
+
+            </div>
+        
+            <div class="flex items-center mt-4">
+
+                <img class="rounded-full w-14 h-14 md:w-16 md:h-16" src="https://via.placeholder.com/50" alt="Supervisor Image">
+
+                <div class="ml-4">
+
+                    <p class="font-bold text-base md:text-lg">Lorna Muthoni</p>
+
+                    <span class="text-sm">Human Resource</span>
+
+                </div>
+
+            </div>
+
+        </div>
+    
+        <script src="./script.js"></script>
+
+    </body>
+    
+</html>
+   

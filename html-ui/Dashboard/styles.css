@@ -1,0 +1,112 @@
+.goal-content:target {
+
+    display: block;
+
+}
+
+body {
+
+    background-color: #eef1f0;
+
+}
+
+.top-navigation {
+
+    color: #2f4870; 
+    
+    border-color: #bec7d3;
+
+}
+
+.top-navigation ul li a{
+
+    color: #2f4870;
+
+    border-color: transparent;
+
+    transition: color 0.3s ease, border-color 0.3s ease;
+
+}
+
+.top-navigation ul li a:hover {
+    
+    color: #40a8e1;
+
+    border-color: #40a8e1;
+
+}
+
+.active-tab {
+
+    color: #40a8e1;
+
+    border-color: #40a8e1;
+
+}
+
+.assessment h1, a {
+
+    color: #364c72;
+
+}
+
+.left-section {
+
+    color: #233b64;
+
+    background-color: #fefffe;
+
+    height: 30rem;
+
+}
+
+.left-section span {
+
+    color: #93a3b7;
+
+}
+
+.left-section button {
+
+    background-color: #fefffe;
+
+    border-color: #f1f0f0;
+
+    color: #7e93ac;
+
+}
+
+.supervisor {
+
+    background-color: #fefffe;
+
+}
+
+.supervisor h3, a, span {
+
+    color: #6e83a0;
+
+}
+
+.supervisor p {
+
+    color: #233b64;
+
+}
+
+.goal-analysis {
+
+    background-color: #476187;
+
+    color: #4f6282;
+
+}
+
+.goal-analysis button {
+
+    border-color: #c5ced8;
+    
+    background-color: #fefffe;
+
+    color: #8193ac;
+}

@@ -76,6 +76,12 @@ body {
 
 }
 
+.goal-details h3 {
+
+    color: #2f4870;
+
+}
+
 
 .goal-details span{
 
@@ -104,6 +110,12 @@ body {
 .summary-section span {
 
     color: #a0aec1;
+
+}
+
+.summary-section p {
+
+    color: #2f4870;
 
 }
 
