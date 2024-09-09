@@ -46,7 +46,7 @@ body {
 
 .business-goals {
 
-    color: #2d446a;
+    color: #2f4870;
 
 }
 
@@ -66,40 +66,33 @@ body {
 
 .goal-tabs .section span {
 
-    color: #889fb5;
+    color: #9dacc0;
 
 }
 
 .goal-details {
 
-    background-color: #ffffff;
+    background-color: #fefeff;
 
-}
+    color: #33496f;
 
-.goal-details h3 {
+    height: 24rem;
 
-    color: #1a335f;
-
-}
-
-.goal-details span{
-
-    background-color: #d5fdd9;
-
-    color: #5ca665;
-
-}
-
-.goal-details .content {
-
-    background-color: #d5fdd9;
 
 }
 
 .summary-section {
 
-    background-color: #ffffff;
-        
+    background-color: #fefeff;
+
+    height: 17rem;
+    
+}
+
+.summary-section p {
+
+    color: #284068;
+
 }
 
 .summary-section .title {
