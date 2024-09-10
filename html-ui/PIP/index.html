@@ -290,7 +290,7 @@
             </div>
             
             <div class="mt-4">
-                
+
                 <!-- Employee Comments Section -->
                 <div class="employee p-4 rounded-lg">
 
@@ -299,64 +299,53 @@
                         <h2 class="font-bold p-2 text-lg mb-4">Employee comments</h2>
 
                     </div>
+              
+                    <!-- Display added comment data with cancel button -->
+                    <div v-if="addedComment || addedDate" class="flex flex-col mt-2 sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
 
-                    <!-- Comment Input Row -->
+                        <div class="flex-grow w-full sm:w-auto">
+
+                            <div class="h-24" ref="displayQuillEditor"></div>
+
+                        </div>
+
+                        <div class="date flex items-center space-x-2 w-full sm:w-auto">
+
+                            <input v-model="dateInput" type="date" class="border p-2 rounded w-full sm:w-auto" />
+    
+                            <button type="button" @click="cancelComment" class="flex items-center justify-center w-9 h-9 bg-red-600 rounded-md hover:bg-red-700">
+    
+                                <div class="flex items-center justify-center w-5 h-5 border-2 border-white rounded-full">
+
+                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        
+                                    </svg>
+            
+                                </div>
+    
+                            </button>
+    
+                        </div>
+
+                    </div>
+                
                     <div class="flex flex-col mt-2 sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
 
                         <!-- Quill Editor Placeholder -->
                         <div class="flex-grow w-full sm:w-auto">
 
-                            <div>
-
-                                <div class="quill-editor h-24"></div>
-
-                            </div>
+                            <div class="h-24" ref="quillEditor"></div>
 
                         </div>
                 
                         <!-- Date Input -->
                         <div class="date flex items-center space-x-2 w-full sm:w-auto">
 
-                            <input type="text" class="border p-2 rounded w-full sm:w-auto" placeholder="DD/MM/YY" />
+                            <input v-model="dateInput" type="date" class="border p-2 rounded w-full sm:w-auto" />
 
-                            <button type="button" class="flex items-center justify-center w-9 h-9 bg-red-600 rounded-md hover:bg-red-700">
-
-                                <div class="flex items-center justify-center w-5 h-5 border-2 border-white rounded-full">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-
-                                    </svg>
-
-                                </div>
-
-                            </button>
-
-                        </div>
-
-                    </div>
-                
-                    <!-- Additional Comment Row (for another comment) -->
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">    
-
-                        <!-- Quill Editor Placeholder -->
-                        <div class="flex-grow w-full sm:w-auto">
-
-                            <div class="border border-gray-300 p-2 rounded">
-
-                                <div class="quill-editor h-24"></div>
-
-                            </div>
-
-                        </div>
-                
-                        <!-- Date Input -->
-                        <div class="date flex items-center space-x-2 w-full sm:w-auto">
-
-                            <input type="text" class="border p-2 rounded w-full sm:w-auto" placeholder="DD/MM/YY" />
-
-                            <button type="button" class="flex items-center justify-center w-9 h-9 bg-green-600 rounded-md hover:bg-green-700">
+                            <button @click="addComment" type="button" class="flex items-center justify-center w-9 h-9 bg-green-600 rounded-md hover:bg-green-700">
 
                                 <div class="flex items-center justify-center w-5 h-5 border-2 border-white rounded-full">
 
@@ -377,7 +366,7 @@
                 </div>
 
             </div>
-                            
+                                                        
         </div>
         
     </body>
@@ -389,146 +378,192 @@
     const { createApp } = Vue;
 
     createApp({
-    data() {
-        return {
-            accordions: [
-                {
-                    id: 1,
-                    title: "1: Quantity of Output",
-                    description: `The amount of work produced is below the rest of the work team and as a result [employee] has missed a number of goals. [provide example], The amount of work produced is below the rest of the work team and as a result [employee] has missed a number of goals. [provide example] The amount of work produced is below the rest of the work team and as a result [employee] has missed a number of goals. [provide example].`,
-                    behavior: `[Employee] needs to personally produce the acceptable amount of work to meet objectives.`,
-                    actions: [
-                    `[Employee] will set goals and checkpoints to measure personal progress.`,
-                    `[Manager] will clearly articulate priorities and provide constructive feedback.`,
-                    `[Employee] will monitor and review output regularly to ensure improvement.`,
-                    `[Manager] will assess and provide feedback based on employee's progress.`
-                    ],
-                    active: false
-                },
-                {
-                    id: 2,
-                    title: "2: Timeliness of Delivery of Output",
-                    description: `Delivering work on time is critical for meeting project deadlines and ensuring smooth operations. [Employee] has consistently struggled to meet deadlines, causing delays in project completion and team performance. Addressing this requires better prioritization and planning to improve delivery timelines. Examples include missed deadlines on key reports and slow responses to critical tasks.`,
-                    behavior: `[Employee] has not consistently met deadlines.`,
-                    actions: [
-                    `[Employee] will prioritize tasks and set personal deadlines.`,
-                    `[Manager] will provide support in managing workload to improve timeliness.`,
-                    `[Employee] will implement time management techniques to better handle tasks.`,
-                    `[Manager] will regularly check progress and give feedback on delivery timelines.`
-                    ],
-                    active: false
-                },
-                {
-                    id: 3,
-                    title: "3: Quality of Work Product",
-                    description: `The quality of [employee]’s work has not consistently met the expected standards. Accuracy, attention to detail, and completeness are essential for producing high-quality results. In several instances, [employee] has delivered work with errors or incomplete sections, which has led to rework and decreased overall team efficiency. Examples include incomplete reports, errors in calculations, and missed details in project documentation.`,
-                    behavior: `[Employee] has produced work that lacks accuracy or completeness in several instances.`,
-                    actions: [
-                    `[Employee] will double-check work for accuracy and completeness.`,
-                    `[Manager] will review and provide feedback to ensure quality standards are met.`,
-                    `[Employee] will maintain attention to detail in future work to meet the necessary standards.`
-                    ],
-                    active: false
-                },
-                {
-                    id: 4,
-                    title: "4: Customer Impact/Value Added",
-                    description: `The role of [employee] directly impacts customer satisfaction and value delivery. However, the recent performance has not contributed positively to the customer experience. It is vital to focus on understanding customer needs, responding to their feedback, and ensuring that the service or product delivers value. For instance, customer complaints about response times or unaddressed concerns highlight areas for improvement.`,
-                    behavior: `[Employee] has not effectively impacted the customer experience.`,
-                    actions: [
-                    `[Employee] will engage with customers to understand their needs and improve service.`,
-                    `[Manager] will guide [employee] in identifying key areas to enhance customer satisfaction.`,
-                    `[Employee] will make improvements based on customer feedback to increase value.`
-                    ],
-                    active: false
-                },
-                {
-                    id: 5,
-                    title: "5: Freedom from Unplanned Support",
-                    description: `Independent problem-solving and initiative are critical for efficiency. [Employee] has frequently required unplanned support from colleagues and managers, which interrupts the workflow and indicates a lack of confidence in handling responsibilities. Moving forward, [employee] needs to make use of resources and solve problems independently where possible. Examples include frequent requests for guidance on routine tasks or needing constant clarifications.`,
-                    behavior: `[Employee] frequently requires unplanned support.`,
-                    actions: [
-                    `[Employee] will work towards problem-solving independently before seeking help.`,
-                    `[Manager] will outline clear expectations and provide initial guidance.`,
-                    `[Employee] will make use of available resources to reduce reliance on support.`
-                    ],
-                    active: false
-                },
-                {
-                    id: 6,
-                    title: "6: Productive Work Habits",
-                    description: `Maintaining productive work habits such as focus, discipline, and effective time management is essential for continuous improvement. [Employee] has struggled with maintaining a consistent work rhythm, often becoming distracted or not managing time effectively. This has impacted both personal performance and team productivity. Key examples include a lack of progress on daily tasks and failure to complete work within expected timeframes.`,
-                    behavior: `[Employee] has struggled with maintaining productivity.`,
-                    actions: [
-                    `[Employee] will implement time management techniques to improve focus.`,
-                    `[Manager] will regularly check in and offer productivity tips.`,
-                    `[Employee] will create a personal productivity system to maintain consistent output.`
-                    ],
-                    active: false
-                },
-                {
-                    id: 7,
-                    title: "7: Adding Skills and Capabilities",
-                    description: `Continuous development is key to staying competitive and growing within the role. [Employee] has not taken proactive steps to enhance skills or develop new capabilities, which limits their effectiveness in the current role. It is important to identify areas for growth and actively seek out learning opportunities. Examples include not participating in training programs or failing to stay updated with industry trends.`,
-                    behavior: `[Employee] has not taken steps to acquire new skills.`,
-                    actions: [
-                    `[Employee] will identify and enroll in relevant professional development courses.`,
-                    `[Manager] will provide guidance and recommend learning opportunities.`,
-                    `[Employee] will regularly track progress and apply new skills in daily work.`
-                    ],
-                    active: false
-                },
-                {
-                    id: 8,
-                    title: "8: Alignment and Compliance: Walking the Talk",
-                    description: `Being aligned with the company's mission, goals, and values is crucial for long-term success. [Employee] has shown instances of misalignment with organizational expectations, particularly in following through on commitments and adhering to company values. Examples include failure to comply with company policies or not demonstrating the expected behavior towards collaboration and integrity.`,
-                    behavior: `[Employee] has not fully aligned with organizational expectations.`,
-                    actions: [
-                    `[Employee] will demonstrate alignment through behavior and work output.`,
-                    `[Manager] will regularly assess and provide feedback on alignment.`,
-                    `[Employee] will take steps to consistently align with the company’s core values and expectations.`
-                    ],
-                    active: false
-                }
-            ]
-        };
-    },
-
-    mounted() {
-
-        this.initializeQuillEditor();
-
-    },
-
-    methods: {
-        toggleAccordion(index) {
-        this.accordions[index].active = !this.accordions[index].active;
+        data() {
+            return {
+                addedComment: '', 
+                addedDate: '',  
+                dateInput: '',  
+                quill: null,
+                displayQuill: null,   
+                accordions: [
+                    {
+                        id: 1,
+                        title: "1: Quantity of Output",
+                        description: `The amount of work produced is below the rest of the work team and as a result [employee] has missed a number of goals. [provide example], The amount of work produced is below the rest of the work team and as a result [employee] has missed a number of goals. [provide example] The amount of work produced is below the rest of the work team and as a result [employee] has missed a number of goals. [provide example].`,
+                        behavior: `[Employee] needs to personally produce the acceptable amount of work to meet objectives.`,
+                        actions: [
+                        `[Employee] will set goals and checkpoints to measure personal progress.`,
+                        `[Manager] will clearly articulate priorities and provide constructive feedback.`,
+                        `[Employee] will monitor and review output regularly to ensure improvement.`,
+                        `[Manager] will assess and provide feedback based on employee's progress.`
+                        ],
+                        active: false
+                    },
+                    {
+                        id: 2,
+                        title: "2: Timeliness of Delivery of Output",
+                        description: `Delivering work on time is critical for meeting project deadlines and ensuring smooth operations. [Employee] has consistently struggled to meet deadlines, causing delays in project completion and team performance. Addressing this requires better prioritization and planning to improve delivery timelines. Examples include missed deadlines on key reports and slow responses to critical tasks.`,
+                        behavior: `[Employee] has not consistently met deadlines.`,
+                        actions: [
+                        `[Employee] will prioritize tasks and set personal deadlines.`,
+                        `[Manager] will provide support in managing workload to improve timeliness.`,
+                        `[Employee] will implement time management techniques to better handle tasks.`,
+                        `[Manager] will regularly check progress and give feedback on delivery timelines.`
+                        ],
+                        active: false
+                    },
+                    {
+                        id: 3,
+                        title: "3: Quality of Work Product",
+                        description: `The quality of [employee]’s work has not consistently met the expected standards. Accuracy, attention to detail, and completeness are essential for producing high-quality results. In several instances, [employee] has delivered work with errors or incomplete sections, which has led to rework and decreased overall team efficiency. Examples include incomplete reports, errors in calculations, and missed details in project documentation.`,
+                        behavior: `[Employee] has produced work that lacks accuracy or completeness in several instances.`,
+                        actions: [
+                        `[Employee] will double-check work for accuracy and completeness.`,
+                        `[Manager] will review and provide feedback to ensure quality standards are met.`,
+                        `[Employee] will maintain attention to detail in future work to meet the necessary standards.`
+                        ],
+                        active: false
+                    },
+                    {
+                        id: 4,
+                        title: "4: Customer Impact/Value Added",
+                        description: `The role of [employee] directly impacts customer satisfaction and value delivery. However, the recent performance has not contributed positively to the customer experience. It is vital to focus on understanding customer needs, responding to their feedback, and ensuring that the service or product delivers value. For instance, customer complaints about response times or unaddressed concerns highlight areas for improvement.`,
+                        behavior: `[Employee] has not effectively impacted the customer experience.`,
+                        actions: [
+                        `[Employee] will engage with customers to understand their needs and improve service.`,
+                        `[Manager] will guide [employee] in identifying key areas to enhance customer satisfaction.`,
+                        `[Employee] will make improvements based on customer feedback to increase value.`
+                        ],
+                        active: false
+                    },
+                    {
+                        id: 5,
+                        title: "5: Freedom from Unplanned Support",
+                        description: `Independent problem-solving and initiative are critical for efficiency. [Employee] has frequently required unplanned support from colleagues and managers, which interrupts the workflow and indicates a lack of confidence in handling responsibilities. Moving forward, [employee] needs to make use of resources and solve problems independently where possible. Examples include frequent requests for guidance on routine tasks or needing constant clarifications.`,
+                        behavior: `[Employee] frequently requires unplanned support.`,
+                        actions: [
+                        `[Employee] will work towards problem-solving independently before seeking help.`,
+                        `[Manager] will outline clear expectations and provide initial guidance.`,
+                        `[Employee] will make use of available resources to reduce reliance on support.`
+                        ],
+                        active: false
+                    },
+                    {
+                        id: 6,
+                        title: "6: Productive Work Habits",
+                        description: `Maintaining productive work habits such as focus, discipline, and effective time management is essential for continuous improvement. [Employee] has struggled with maintaining a consistent work rhythm, often becoming distracted or not managing time effectively. This has impacted both personal performance and team productivity. Key examples include a lack of progress on daily tasks and failure to complete work within expected timeframes.`,
+                        behavior: `[Employee] has struggled with maintaining productivity.`,
+                        actions: [
+                        `[Employee] will implement time management techniques to improve focus.`,
+                        `[Manager] will regularly check in and offer productivity tips.`,
+                        `[Employee] will create a personal productivity system to maintain consistent output.`
+                        ],
+                        active: false
+                    },
+                    {
+                        id: 7,
+                        title: "7: Adding Skills and Capabilities",
+                        description: `Continuous development is key to staying competitive and growing within the role. [Employee] has not taken proactive steps to enhance skills or develop new capabilities, which limits their effectiveness in the current role. It is important to identify areas for growth and actively seek out learning opportunities. Examples include not participating in training programs or failing to stay updated with industry trends.`,
+                        behavior: `[Employee] has not taken steps to acquire new skills.`,
+                        actions: [
+                        `[Employee] will identify and enroll in relevant professional development courses.`,
+                        `[Manager] will provide guidance and recommend learning opportunities.`,
+                        `[Employee] will regularly track progress and apply new skills in daily work.`
+                        ],
+                        active: false
+                    },
+                    {
+                        id: 8,
+                        title: "8: Alignment and Compliance: Walking the Talk",
+                        description: `Being aligned with the company's mission, goals, and values is crucial for long-term success. [Employee] has shown instances of misalignment with organizational expectations, particularly in following through on commitments and adhering to company values. Examples include failure to comply with company policies or not demonstrating the expected behavior towards collaboration and integrity.`,
+                        behavior: `[Employee] has not fully aligned with organizational expectations.`,
+                        actions: [
+                        `[Employee] will demonstrate alignment through behavior and work output.`,
+                        `[Manager] will regularly assess and provide feedback on alignment.`,
+                        `[Employee] will take steps to consistently align with the company’s core values and expectations.`
+                        ],
+                        active: false
+                    }
+                ]
+            };
         },
 
-        initializeQuillEditor() {
-        this.$nextTick(() => { // Ensure the DOM is updated before initializing
-            const editorContainer = document.querySelector('.quill-editor'); // Target correct element
-            if (editorContainer) {
-                if (this.quillInstance) {
-                    this.quillInstance = null; // Destroy previous instance
-                    editorContainer.innerHTML = ''; // Clear editor container
-                }
-                this.quillInstance = new Quill(editorContainer, {
-                    theme: 'snow',
-                    modules: {
-                        toolbar: [
-                            ['bold', 'italic', 'underline'],
-                            [{'list': 'ordered'}, {'list': 'bullet'}],
-                            ['link']
-                        ]
-                    }
-                }); // Load selected goal metrics
-            }
-        });
-    },
+        mounted() {
 
+            this.initializeQuillEditor();
+
+            this.quill = new Quill(this.$refs.quillEditor, {
+
+                theme: 'snow',
+                
+            });
+
+            this.displayQuill = new Quill(this.$refs.displayQuillEditor, {
+
+                theme: 'snow',
+
+                readOnly: true 
         
-    },
+            });
+
+        },
+
+        methods: {
+
+            toggleAccordion(index) {
+
+                this.accordions[index].active = !this.accordions[index].active;
+            },
+
+            addComment() {
+
+                const comment = this.quill.root.innerHTML.trim(); // Get content from the Quill editor
+                const date = this.dateInput.trim();
+
+                if (comment && date) {
+                    this.addedComment = comment;
+                    this.addedDate = date;
+                    this.displayQuill.root.innerHTML = comment;
+                    
+                    this.quill.root.innerHTML = '';
+                    this.dateInput = '';      
+                }
+
+            },
+
+            cancelComment() {
+
+                this.addedComment = '';
+                this.addedDate = '';
+                this.displayQuill.root.innerHTML = '';
+                this.dateInput = '';
+            },
+
+            initializeQuillEditor() {
+                this.$nextTick(() => { // Ensure the DOM is updated before initializing
+                    const editorContainer = document.querySelector('.quill-editor'); // Target correct element
+                    if (editorContainer) {
+                        if (this.quillInstance) {
+                            this.quillInstance = null; // Destroy previous instance
+                            editorContainer.innerHTML = ''; // Clear editor container
+                        }
+                        this.quillInstance = new Quill(editorContainer, {
+                            theme: 'snow',
+                            modules: {
+                                toolbar: [
+                                    ['bold', 'italic', 'underline'],
+                                    [{'list': 'ordered'}, {'list': 'bullet'}],
+                                    ['link']
+                                ]
+                            }
+                        }); // Load selected goal metrics
+                    }
+                });
+            },
+
+            
+        },
+
     }).mount('#app');
 
 </script>
