@@ -377,30 +377,26 @@
             <div class="flex flex-col sm:flex-row sm:space-x-4">
 
                 <!-- Goal Details -->
-                <div class="goal-details w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0 overflow-y-auto">
+                <div class="goal-details w-full sm:w-3/4 p-4 rounded shadow-lg h-auto mt-4 sm:mt-0 overflow-y-auto">
 
                     <h3 class="font-semibold text-lg">Behavior elements</h3>
+                  
+                    <span class="">Element Definition</span>
+                  
+                    <ol class="goal-content list-decimal list-inside ml-5 mt-1"> 
 
-                    <span>Element Definition</span>
-                    
-                    <ol v-for="(behavior, index) in behaviorElements" :key="behavior.id" class="goal-content list-disc ml-5">
+                        <li v-for="(behavior, index) in behaviorElements" :key="behavior.id" class="font-semibold text-lg mb-4">
 
-                        <div class="flex flex-col sm:flex-row mb-4 items-start sm:items-center w-full ml-2">
+                            <span class="mr-2">{{ behavior.title }}:</span>
 
-                            <li  class="font-semibold text-lg">
+                            <span v-html="behavior.details" class="font-normal text-sm"></span>
 
-                                {{ behavior.title }}: 
-
-                                <span v-html="behavior.details" class="font-normal space-y-2 text-sm"></span>
-
-                            </li>
-
-                        </div>   
+                        </li>
 
                     </ol>
-                      
+                  
                 </div>
-
+                  
                 <!-- Summary Section -->
                 <div class="summary-section border w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0">
                 
@@ -624,7 +620,7 @@
                             editorContainer.innerHTML = ''; // Clear editor container
                         }
                         this.quillInstance = new Quill(editorContainer, {
-                            theme: 'snow',
+                            theme: 'w',
                             modules: {
                                 toolbar: [
                                     ['bold', 'italic', 'underline'],
@@ -644,7 +640,7 @@
                 // Push the new goal to the goals array
                 this.goals.push({
                     id: this.goals.length + 1,
-                    title: this.newGoalTitle,
+                    title: t.newGoalTitle,
                     metrics: newMetrics,
                     description: newDescription,
                     status: "Not Started",
@@ -661,5 +657,5 @@
         },
 
     }).mount('#app');
-    
+
 </script>
