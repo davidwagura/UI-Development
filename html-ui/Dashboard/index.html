@@ -130,6 +130,12 @@
 
         }
 
+        .goal-analysis .icon {
+
+            color: #901ff8;
+
+        }
+
         .goal-analysis button {
 
             border-color: #c5ced8;
@@ -303,6 +309,7 @@
                             <h3 class="font-semibold text-lg md:text-xl relative card-heading">IDP Analysis</h3>
 
                             <ul class="mt-4 text-sm">
+
                                 <li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2"></span>Started</li>
 
                                 <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>Not Started</li>
@@ -346,13 +353,30 @@
 
                         <div class="bg-white h-full p-4 rounded mt-2 shadow-md">
 
-                            <h3 class="font-semibold text-lg md:text-xl relative card-heading">Updates</h3>
+                            <div class="flex justify-between">
+
+                                <h3 class="font-semibold text-lg md:text-xl relative card-heading">Updates</h3>
+
+                                <div class="icon">
+                                        
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-12 h-12">
+                                        
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                    
+                                    </svg>
+                                  
+                                </div>
+
+                            </div>
 
                             <ul class="mt-4 text-sm">
 
                                 <li class="flex items-center"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>Mid year behavior updates</li>
                                 
-                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>End year behavior updates</li>                        </ul>
+                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>End year behavior updates</li>      
+                            
+                            </ul>
+
                             <button class="mt-6 border-2 w-28 rounded-lg">Review</button>
 
                         </div>
@@ -391,8 +415,6 @@
 
         </div>
     
-        <script src="./script.js"></script>
-
     </body>
     
 </html>
