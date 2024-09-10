@@ -24,6 +24,285 @@
 
     </head>
 
+    <style>
+
+        .goal-content:target {
+
+            display: block;
+
+        }
+
+        body {
+
+            background-color: #eef1f0;
+
+        }
+
+        .top-navigation {
+
+            color: #2f4870; 
+            
+            border-color: #bec7d3;
+
+        }
+
+        .top-navigation ul li a{
+
+            color: #2f4870;
+
+            border-color: transparent;
+
+            transition: color 0.3s ease, border-color 0.3s ease;
+
+        }
+
+        .top-navigation ul li a:hover {
+            
+            color: #40a8e1;
+
+            border-color: #40a8e1;
+
+        }
+
+        .active-tab {
+
+            color: #40a8e1;
+
+            border-color: #40a8e1;
+
+        }
+
+        .business-goals {
+
+            color: #2d446a;
+
+        }
+
+        .goal-tabs a{
+
+            background-color: #40a8e1;
+
+            color:#FFFFFF; 
+
+        }
+
+        .goal-tabs .section{
+
+            max-height: 17rem;
+
+        }
+
+        .goal-tabs .section span {
+
+            color: #889fb5;
+
+        }
+
+        .goal-details {
+
+            background-color: #ffffff;
+
+        }
+
+        .goal-details h3 {
+
+            color: #2f4870;
+
+        }
+
+        .goal-details span{
+
+            background-color: #d5fdd9;
+
+            color: #5ca665;
+
+        }
+
+        .goal-details .content {
+
+            background-color: #d5fdd9;
+
+        }
+
+        .summary-section {
+
+            background-color: #ffffff;
+                
+        }
+
+        .summary-section p {
+
+            color: #2f4870;
+
+        }
+
+        .summary-section .title {
+
+            background-color: #f2f2f2;
+
+        }
+
+        .summary-section span {
+
+            color: #a0aec1;
+
+        }
+
+        .comment-section {
+            
+            background-color: #ffffff;
+
+        }
+
+        .comment-section ul {
+
+            background-color: #eef1f0; 
+
+            color: #364e74;
+
+        }
+
+        .tab-content h2 {
+
+            color: #4e6285;
+
+        }
+
+        .tab-content p {
+
+            color: #738092;
+
+        }
+
+        .tab-content .active-tab  h2{
+
+            color: #4e6285
+
+        }
+
+        .action-buttons .btn1 {
+
+            border-color: #95a5bb;
+
+            background-color: #ffffff;
+
+        }
+
+        .action-buttons .btn2 {
+
+            background-color: #3cb047;
+
+            color: #ffffff;
+
+        }
+
+        .modal {
+
+            position: fixed;
+
+            top: 0;
+
+            left: -100%;
+
+            width: 400px;
+
+            height: 100%;
+
+            background-color: #fefeff;
+
+            box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+
+            transition: left 0.3s ease;
+
+            z-index: 1000;
+
+        }
+        
+        .modal.show {
+
+            left: 0;
+
+        }
+        
+        .modal-overlay {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background-color: rgba(0, 0, 0, 0.5);
+
+            display: none;
+
+            z-index: 999;
+            
+        }
+        
+        .modal-content {
+
+            max-height: 100vh;
+
+        }
+
+        .modal-overlay.show {
+
+            display: block;
+
+        }
+        
+        .modal-content .title {
+
+            background-color: #eff1f1;
+
+        }
+
+        
+        .modal-content h1,
+
+        .modal-content h3 {
+
+            color: #344b70;
+
+        }
+        
+        .modal-content p {
+
+            color: #768aa5;
+            
+        }
+        
+        .modal-content .metric {
+
+            background-color: #f2f2f2;
+
+        }
+
+        .footer .btn1 {
+
+            border-color: #92a3b6;
+
+            background-color: #fefeff;
+                
+            color: #647b99;
+
+        }
+
+        .footer .btn2 {
+
+            background-color: #43a6e1;
+
+            color: #FFFFFF;
+
+        }
+
+    </style>
+
     <body id="app" class="m-4">
 
         <!-- Top Navigation -->
@@ -400,9 +679,203 @@
 
         </div>
 
-        <script src="./script.js"></script>
-
     </body>
     
 </html>
    
+
+<script>
+
+    const { createApp } = Vue;
+
+    createApp({
+
+        data() {
+
+            return {
+
+                showModal: false,
+
+                selectedGoal: 0,
+
+                newGoalTitle: "",
+
+                newGoalMetrics: "",
+
+                newGoalDescription: "",
+
+                goals: [
+
+                    {
+                        id: 1,
+                        title: "IDP 001",
+                        about: "Career Development",
+                        metrics: `<p>
+                            I'm planning to take part-time classes in search engine optimization (SEO), 
+                            social media marketing, and email marketing to help me in my marketing strategies in the company.
+                        </p>`,
+                        description: "Take part-time classes in Marketing",
+                        status: "Completed",
+                        created: '12/08/2023'
+                    },
+
+                    {
+                        id: 2,
+                        title: "IDP 002",
+                        about: "Skill Enhancement",
+                        metrics: `<p>
+                            One of my primary goals for this year is to improve customer engagement metrics, 
+                            particularly by enhancing the way we interact with clients across various touchpoints. 
+                            I'll be reviewing our current client outreach programs and finding areas where we can 
+                            increase engagement and satisfaction.
+                        </p>`,
+                        description: "Improve our client base through social media",
+                        status: "In Progress",
+                        created: '08/08/2024'
+                    },
+
+                    {
+                        id: 3,
+                        title: "IDP 003",
+                        about: "Personal Growth",
+                        metrics: `<p>
+                            I am focused on optimizing the company workflows by identifying inefficiencies and proposing 
+                            streamlined solutions that will enhance productivity. This includes analyzing the workflow 
+                            process, identifying bottlenecks, and implementing tools or practices that can save time 
+                            and effort for the entire team.
+                        </p>`,
+                        description: "Optimizing company workflows",
+                        status: "Completed",
+                        created: '03/08/2024'
+                    },
+
+                    {
+                        id: 4,
+                        title: "IDP 004",
+                        about: "Custom Goal",
+                        metrics: `<p>
+                            My goal is to develop and showcase improved company workflows. This will be achieved by 
+                            implementing process improvements based on feedback from key stakeholders and conducting 
+                            internal audits to ensure smooth operations across all departments.
+                        </p>`,
+                        description: "Develop improved company workflows",
+                        status: "Completed",
+                        created: '12/02/2024'
+                    },
+
+                    {
+                        id: 5,
+                        title: "IDP 005",
+                        about: "Custom Goal",
+                        metrics: `<p>
+                            My objective is to place a strong focus on enhancing our company's workflow processes by 
+                            identifying opportunities for automation and more effective communication across teams. 
+                            The goal is to foster a collaborative environment where everyone can contribute to 
+                            improving operational efficiency.
+                        </p>`,
+                        description: "Enhance workflow processes and focus on cost reduction",
+                        status: "Completed",
+                        created: '04/02/2024'
+                    },
+
+                    {
+                        id: 6,
+                        title: "IDP 006",
+                        about: "Custom Goal",
+                        metrics: `<p>
+                            I will focus on showcasing the improvements made to the company’s workflows by presenting 
+                            them to the leadership team and collecting their feedback. These improvements aim to 
+                            enhance cross-departmental collaboration and reduce project timelines.
+                        </p>`,
+                        description: "Showcase workflow improvements and cost-saving measures",
+                        status: "Completed",
+                        created: '05/02/2024'
+                    }
+                ],
+
+                activeTab: 0,
+
+                tabs: [
+
+                    { label: 'Mid Year' },
+                    { label: 'End Year' },
+
+                ],
+
+            };
+
+        },
+
+        mounted() {
+
+            this.initializeQuillEditor();
+
+        },
+
+
+        methods: {
+
+            selectGoal(index) {
+
+                this.selectedGoal = index;
+
+            },
+
+            setActiveTab(index) {
+
+                this.activeTab = index;
+                this.$nextTick(() => {
+                    this.initializeQuillEditor(); // Reinitialize editor when returning to the relevant tab
+                });
+
+            },
+
+            initializeQuillEditor() {
+                this.$nextTick(() => { // Ensure the DOM is updated before initializing
+                    const editorContainer = document.querySelector('.quill-editor'); // Target correct element
+                    if (editorContainer) {
+                        if (this.quillInstance) {
+                            this.quillInstance = null; // Destroy previous instance
+                            editorContainer.innerHTML = ''; // Clear editor container
+                        }
+                        this.quillInstance = new Quill(editorContainer, {
+                            theme: 'snow',
+                            modules: {
+                                toolbar: [
+                                    ['bold', 'italic', 'underline'],
+                                    [{'list': 'ordered'}, {'list': 'bullet'}],
+                                    ['link']
+                                ]
+                            }
+                        }); // Load selected goal metrics
+                    }
+                });
+            },
+
+            submitGoal() {
+                // Collect the data from Quill editors
+                const newMetrics = this.quillMetric.root.innerHTML;
+                const newDescription = this.quill.root.innerHTML;
+
+                // Push the new goal to the goals array
+                this.goals.push({
+                    id: this.goals.length + 1,
+                    title: this.newGoalTitle,
+                    metrics: newMetrics,
+                    description: newDescription,
+                    status: "Not Started",
+                });
+
+                // Reset the input fields
+                this.newGoalTitle = "";
+                this.quill.setText('');
+                this.quillMetric.setText('');
+
+                // Close the modal
+                this.showModal = false;
+            },    
+        },
+
+    }).mount('#app');
+
+</script>
