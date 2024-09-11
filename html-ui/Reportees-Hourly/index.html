@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Reportees Page</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        
+        <script src="https://unpkg.com/vue@3"></script>
+
+    </head>
+
+    <style>
+            
+        .goal-content:target {
+
+            display: block;
+
+        }
+
+        body {
+
+            background-color: #eef1f0;
+
+        }
+
+        .top-navigation {
+
+            color: #2f4870; 
+            
+            border-color: #b5b4b6;
+
+        }
+
+        .top-navigation ul li a{
+
+            color: #2f4870;
+
+            border-color: transparent;
+
+            transition: color 0.3s ease, border-color 0.3s ease;
+
+        }
+
+        .top-navigation ul li a:hover {
+            
+            color: #40a8e1;
+
+            border-color: #40a8e1;
+
+        }
+
+        .active-tab {
+
+            color: #40a8e1;
+
+            border-color: #40a8e1;
+
+        }
+
+        .assessment h1, a {
+
+            color: #364c72;
+
+        }
+
+        .icon {
+
+            color: #8291a6;
+
+        }
+        .breadcrumb a {
+
+            color: #8391a6;
+
+        }
+
+        .breadcrumb .heading {
+
+            color: #384e72;
+
+        }
+        .left-section {
+
+            color: #233b64;
+
+            background-color: #fefffe;
+
+            height: 30rem;
+
+        }
+
+        .left-section span {
+
+            color: #93a3b7;
+
+        }
+
+        .left-section button {
+
+            background-color: #fefffe;
+
+            border-color: #e9e9e9;
+
+            color: #7b8ea8;
+
+        }
+
+        .hourly-employees {
+
+            color: #45597a;
+
+        }
+
+        .employee-card {
+
+            background-color: #fefffe;
+
+        }
+
+        .employee-card h2 {
+
+            color: #233b64;
+
+        }
+
+        .employee-card p {
+
+            color: #a3b1c2;
+
+        }
+
+        .employee-card .icon {
+
+            color: #808ea6;
+
+        }
+
+    </style>
+
+
+    <body class="m-6" id="app">
+
+        <div class="breadcrumb flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 sm:p-0 space-y-2 sm:space-y-0">
+        
+            <!-- Heading Section -->
+            <div class="heading text-xl font-semibold">Reportees</div>
+        
+            <!-- Navigation Section -->
+            <nav class="space-x-4 text-sm flex items-center">
+        
+                <div class="flex items-center">
+
+                    <a href="#" class="font-semibold text-gray-500">Performance</a>
+        
+                    <button class="icon ml-2">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                           
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        
+                        </svg>
+
+                    </button>
+                
+                </div>
+        
+                <a href="#" class="font-semibold text-gray-500">Reportees</a>
+        
+            </nav>
+        
+        </div>
+        
+        <div class="flex flex-col lg:flex-row mt-4 space-y-6 lg:space-y-0 lg:space-x-8">
+
+            <!-- Left Section - Profile Card -->
+            <div class="left-section w-full lg:w-1/4 bg-white p-8 rounded-md shadow-md flex flex-col items-center">
+
+                <!-- Centered Profile Image -->
+                <img class="rounded-full w-32 h-32 md:w-40 md:h-40 mx-auto" src="https://via.placeholder.com/100" alt="Profile Image">
+
+                <!-- Left Aligned Content -->
+                <div class="mt-4 w-full text-left">
+
+                    <h2 class="text-lg md:text-xl font-bold">Christine Adolwa</h2>
+
+                    <span class="block text-sm md:text-base">Human Resource</span>
+
+                    <p class="font-semibold mt-2 text-sm md:text-base">Department</p>
+
+                    <span class="block text-sm mt-1 md:mt-2">HR & Corporate Sustainability</span>
+
+                    <p class="font-semibold mt-2 text-sm md:text-base">Email</p>
+
+                    <span class="block text-sm">christineadolwa@isuzu.co.ke</span>
+
+                </div>
+
+                <!-- Centered Button -->
+                <button class="mt-6 py-1 px-4 w-full border font-semibold rounded-lg">Edit your profile</button>
+
+            </div>
+
+            <!-- Right Section - Tabs and Reportees -->
+            <div class="w-full lg:w-3/4">
+
+                <!-- Tabs -->
+                <div class="top-navigation font-medium border-b w-full">
+
+                    <ul class="flex flex-wrap -mb-px">
+
+                        <li class="active-tab me-2">
+
+                            <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Dashboard</a>
+
+                        </li>
+        
+                        <li class="me-2">
+
+                            <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Salaried</a>
+
+                        </li>
+        
+                        <li class="me-2">
+
+                            <a href="#" class="inline-block p-4 border-b-2 rounded-t-lg" style="color: #40a8e1; border-color: #40a8e1;">Hourly</a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="hourly-employees p-2">
+
+                    <h1 class="font-semibold">Hourly Employees</h1>
+
+                </div>
+        
+                <!-- Hourly Employees Section -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    
+                    <!-- Employee Card -->
+                    <div v-for="user in users" :key="user.id" class="employee-card p-4 rounded-lg shadow-md flex items-center">
+
+                        <div class="flex items-center space-x-4 w-full">
+
+                            <img :src="user.image" :alt="user.name" class="w-12 h-12 rounded-full">
+
+                            <div class="w-full">
+
+                                <div class="flex justify-between items-center w-full">
+
+                                    <h2 class="font-semibold">{{ user.name }}</h2>
+
+                                    <div class="icon">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                        
+                                        </svg>
+
+                                    </div>
+
+                                </div>
+
+                                <p class="text-gray-500 text-sm">{{ user.department }}</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
+
+<script>
+    const { createApp } = Vue;
+
+    createApp({
+        data() {
+            return {
+                users: [
+                    {
+                        id: 1,
+                        name: "Christine Adolwa",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 2,
+                        name: "Linda Njiru",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 3,
+                        name: "Paul Owuor",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 4,
+                        name: "Collins Maritim",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 5,
+                        name: "Margaret Ndungu",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 6,
+                        name: "Michael Musyoka",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                ]
+            };
+        }
+    }).mount('#app');
+
+</script>
+
