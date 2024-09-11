@@ -8,7 +8,7 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Reportees Page</title>
+        <title>Salaried Page</title>
 
         <script src="https://cdn.tailwindcss.com"></script>
 
@@ -112,7 +112,7 @@
 
         }
 
-        .hourly-employees {
+        .salaried-employees {
 
             color: #45597a;
 
@@ -144,7 +144,7 @@
 
         .card {
 
-            height: 12rem;
+            max-height: 12rem;
 
         }
 
@@ -210,7 +210,7 @@
 
                         <p class="font-semibold mt-2 text-sm md:text-base">Email</p>
 
-                        <span class="block">christineadolwa@isuzu.co.ke</span>
+                        <span class="block">margretlorna@isuzu.co.ke</span>
 
                     </div>
 
@@ -236,13 +236,13 @@
         
                         <li class="me-2">
 
-                            <a href="#" class="inline-block pt-0 pb-2 py-2 px-4 border-b-2 border-transparent rounded-t-lg">Salaried</a>
+                            <a href="#" class="inline-block pt-0 pb-2 py-4 px-4 border-b-2 rounded-t-lg" style="color: #40a8e1; border-color: #40a8e1;">Salaried</a>
 
                         </li>
         
                         <li class="me-2">
 
-                            <a href="#" class="inline-block pt-0 pb-2 py-4 px-4 border-b-2 rounded-t-lg" style="color: #40a8e1; border-color: #40a8e1;">Hourly</a>
+                            <a href="#" class="inline-block pt-0 pb-2 py-2 px-4 border-b-2 border-transparent rounded-t-lg">Hourly</a>
 
                         </li>
 
@@ -250,9 +250,9 @@
 
                 </div>
 
-                <div class="hourly-employees p-2">
+                <div class="salaried-employees p-2">
 
-                    <h1 class="font-semibold">Hourly Employees</h1>
+                    <h1 class="font-semibold">My Reportees</h1>
 
                 </div>
         
@@ -293,6 +293,94 @@
                     </div>
                     
                 </div>
+
+
+                <div class="salaried-employees p-2">
+
+                    <h1 class="font-semibold">Reportees Under PIP</h1>
+
+                </div>
+        
+                <div class="card overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    
+                    <!-- Employee Card -->
+                    <div v-for="user in pipUsers" :key="user.id" class="employee-card p-4 rounded-lg shadow-md flex items-center">
+
+                        <div class="flex items-center space-x-4 w-full">
+
+                            <img :src="user.image" :alt="user.name" class="w-12 h-12 rounded-full">
+
+                            <div class="w-full">
+
+                                <div class="flex justify-between items-center w-full">
+
+                                    <h2 class="font-semibold">{{ user.name }}</h2>
+
+                                    <div class="icon">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                        
+                                        </svg>
+
+                                    </div>
+
+                                </div>
+
+                                <p class="text-gray-500 text-sm">{{ user.department }}</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+
+                <div class="salaried-employees p-2">
+
+                    <h1 class="font-semibold">Reportees on probation</h1>
+
+                </div>
+        
+                <div class="card overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    
+                    <!-- Employee Card -->
+                    <div v-for="user in probationUsers" :key="user.id" class="employee-card p-4 rounded-lg shadow-md flex items-center">
+
+                        <div class="flex items-center space-x-4 w-full">
+
+                            <img :src="user.image" :alt="user.name" class="w-12 h-12 rounded-full">
+
+                            <div class="w-full">
+
+                                <div class="flex justify-between items-center w-full">
+
+                                    <h2 class="font-semibold">{{ user.name }}</h2>
+
+                                    <div class="icon">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                        
+                                        </svg>
+
+                                    </div>
+
+                                </div>
+
+                                <p class="text-gray-500 text-sm">{{ user.department }}</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+
 
             </div>
 
@@ -364,7 +452,97 @@
                         image: "https://via.placeholder.com/50",
                     },
 
-                ]
+                ],
+
+                probationUsers: [
+                    {
+                        id: 1,
+                        name: "Christine Adolwa",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 2,
+                        name: "Linda Njiru",
+                        department: "Finance",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 3,
+                        name: "George Otieno",
+                        department: "IT",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 4,
+                        name: "Daniel Mwenda",
+                        department: "Marketing",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 5,
+                        name: "Rose Achieng",
+                        department: "Procurement",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 6,
+                        name: "Grace Wambui",
+                        department: "Customer Service",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 7,
+                        name: "Victor Karanja",
+                        department: "Engineering",
+                        image: "https://via.placeholder.com/50",
+                    }
+                ],
+
+                pipUsers: [
+                    {
+                        id: 1,
+                        name: "Paul Owuor",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 2,
+                        name: "Margaret Ndungu",
+                        department: "Operations",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 3,
+                        name: "Brian Mwangi",
+                        department: "Sales",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 4,
+                        name: "Mary Njoki",
+                        department: "Accounting",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 5,
+                        name: "James Kimani",
+                        department: "Legal",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 6,
+                        name: "Alice Mumo",
+                        department: "Research & Development",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 7,
+                        name: "Stephen Otieno",
+                        department: "Production",
+                        image: "https://via.placeholder.com/50",
+                    }
+                ]            
             };
         }
     }).mount('#app');
