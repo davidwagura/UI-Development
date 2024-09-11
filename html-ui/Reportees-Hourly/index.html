@@ -11,7 +11,7 @@
         <title>Reportees Page</title>
 
         <script src="https://cdn.tailwindcss.com"></script>
-        
+
         <script src="https://unpkg.com/vue@3"></script>
 
     </head>
@@ -142,6 +142,12 @@
 
         }
 
+        .card {
+
+            height: 12rem;
+
+        }
+
     </style>
 
 
@@ -244,7 +250,7 @@
                 </div>
         
                 <!-- Hourly Employees Section -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="card overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     
                     <!-- Employee Card -->
                     <div v-for="user in users" :key="user.id" class="employee-card p-4 rounded-lg shadow-md flex items-center">
@@ -328,10 +334,29 @@
                     },
                     {
                         id: 6,
-                        name: "Michael Musyoka",
+                        name: "John Mwangi",
                         department: "Human Resource",
                         image: "https://via.placeholder.com/50",
                     },
+                    {
+                        id: 7,
+                        name: "Kennedy kamau",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 8,
+                        name: "Jane Njeri",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 9,
+                        name: "Lucy Mwangi",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+
                 ]
             };
         }
