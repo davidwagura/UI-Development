@@ -11,7 +11,7 @@
         <title>Reportees Page</title>
 
         <script src="https://cdn.tailwindcss.com"></script>
-        
+
         <script src="https://unpkg.com/vue@3"></script>
 
     </head>
@@ -142,6 +142,12 @@
 
         }
 
+        .card {
+
+            max-height: 12rem;
+
+        }
+
     </style>
 
 
@@ -180,32 +186,39 @@
         <div class="flex flex-col lg:flex-row mt-4 space-y-6 lg:space-y-0 lg:space-x-8">
 
             <!-- Left Section - Profile Card -->
-            <div class="left-section w-full lg:w-1/4 bg-white p-8 rounded-md shadow-md flex flex-col items-center">
+            <div class="left-section w-full lg:w-1/4 bg-white p-4 rounded-md shadow-md flex flex-col items-center">
 
-                <!-- Centered Profile Image -->
-                <img class="rounded-full w-32 h-32 md:w-40 md:h-40 mx-auto" src="https://via.placeholder.com/100" alt="Profile Image">
+                <div class="h-fit flex flex-col items-center">
 
-                <!-- Left Aligned Content -->
-                <div class="mt-4 w-full text-left">
+                    <!-- Centered Profile Image -->
+                    <img class="rounded-full w-32 h-32 md:w-40 md:h-40 mx-auto" src="https://via.placeholder.com/100" alt="Profile Image">
 
-                    <h2 class="text-lg md:text-xl font-bold">Christine Adolwa</h2>
+                    <!-- Left Aligned Content -->
+                    <div class="mt-4 w-full text-left">
 
-                    <span class="block text-sm md:text-base">Human Resource</span>
+                        <h2 class="text-lg md:text-xl font-bold">Lorna Muthoni</h2>
 
-                    <p class="font-semibold mt-2 text-sm md:text-base">Department</p>
+                        <span class="block md:text-base">Supervisor</span>
 
-                    <span class="block text-sm mt-1 md:mt-2">HR & Corporate Sustainability</span>
+                        <p class="font-semibold mt-2 md:text-base">Department</p>
 
-                    <p class="font-semibold mt-2 text-sm md:text-base">Email</p>
+                        <span class="block ">Human Resources</span>
 
-                    <span class="block text-sm">christineadolwa@isuzu.co.ke</span>
+                        <p class="font-semibold mt-2 text-sm md:text-base">Division</p>
+
+                        <span class="block">HR & Corporate Sustainability</span>
+
+                        <p class="font-semibold mt-2 text-sm md:text-base">Email</p>
+
+                        <span class="block">margretlorna@isuzu.co.ke</span>
+
+                    </div>
+
+                    <!-- Centered Button -->
+                    <button class="mt-4 py-1 px-4 w-full border font-semibold rounded-lg">Edit your profile</button>
 
                 </div>
-
-                <!-- Centered Button -->
-                <button class="mt-6 py-1 px-4 w-full border font-semibold rounded-lg">Edit your profile</button>
-
-            </div>
+            </div>            
 
             <!-- Right Section - Tabs and Reportees -->
             <div class="w-full lg:w-3/4">
@@ -217,19 +230,19 @@
 
                         <li class="active-tab me-2">
 
-                            <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Dashboard</a>
+                            <a href="#" class="inline-block pt-0 pb-2 py-2 px-4 border-b-2 border-transparent rounded-t-lg">Dashboard</a>
 
                         </li>
         
                         <li class="me-2">
 
-                            <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Salaried</a>
+                            <a href="#" class="inline-block pt-0 pb-2 py-2 px-4 border-b-2 border-transparent rounded-t-lg">Salaried</a>
 
                         </li>
         
                         <li class="me-2">
 
-                            <a href="#" class="inline-block p-4 border-b-2 rounded-t-lg" style="color: #40a8e1; border-color: #40a8e1;">Hourly</a>
+                            <a href="#" class="inline-block pt-0 pb-2 py-4 px-4 border-b-2 rounded-t-lg" style="color: #40a8e1; border-color: #40a8e1;">Hourly</a>
 
                         </li>
 
@@ -244,7 +257,7 @@
                 </div>
         
                 <!-- Hourly Employees Section -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="card overflow-y-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     
                     <!-- Employee Card -->
                     <div v-for="user in users" :key="user.id" class="employee-card p-4 rounded-lg shadow-md flex items-center">
@@ -328,10 +341,29 @@
                     },
                     {
                         id: 6,
-                        name: "Michael Musyoka",
+                        name: "John Mwangi",
                         department: "Human Resource",
                         image: "https://via.placeholder.com/50",
                     },
+                    {
+                        id: 7,
+                        name: "Kennedy kamau",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 8,
+                        name: "Jane Njeri",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+                    {
+                        id: 9,
+                        name: "Lucy Mwangi",
+                        department: "Human Resource",
+                        image: "https://via.placeholder.com/50",
+                    },
+
                 ]
             };
         }
