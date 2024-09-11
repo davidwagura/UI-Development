@@ -281,47 +281,40 @@
                 <div class="card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
                     <div v-for="card in dashboardData" :key="card.id" class="dashboard-card p-4 border rounded-lg bg-white space-y-4">
-
                         <h2 class="font-semibold card-heading">{{ card.title }}</h2>
 
-                        <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <p class="block flex-1 pr-4">{{ card.description }}</p>
 
-                            <p class="block">{{ card.description }}</p>
-
-                            <div class="relative w-16 h-16">
-
+                            <div class="relative w-20 h-20">
                                 <svg class="w-full h-full" viewBox="0 0 36 36">
                                     <path
-                                        class="circle-bg"
-                                        d="M18 2.0845
-                                           a 15.9155 15.9155 0 0 1 0 31.831
-                                           a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        fill="none"
-                                        stroke="#e6e6e6"
-                                        stroke-width="3.8"
+                                            class="circle-bg"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none"
+                                            stroke="#e6e6e6"
+                                            stroke-width="1.2"
                                     />
                                     <path
-                                        class="circle"
-                                        :stroke="card.color"
-                                        d="M18 2.0845
-                                           a 15.9155 15.9155 0 0 1 0 31.831
-                                           a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        fill="none"
-                                        stroke-width="3.8"
-                                        :stroke-dasharray="card.value + ', 100'"
+                                            class="circle"
+                                            :stroke="card.color"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none"
+                                            stroke-width="1.2"
+                                            :stroke-dasharray="card.value + ', 100'"
                                     />
                                 </svg>
 
-                                <span class="absolute inset-0 flex items-center justify-center text-sm font-semibold">{{ card.value }}%</span>
-                            
+                                <div class="absolute inset-0 flex flex-col items-center justify-center space-y-1">
+                                    <span class="text-sm font-semibold" :style="{ color: card.color }">{{ card.value }}%</span>
+                                    <span class="text-xs text-gray-600" :style="{ color: card.color }">{{ card.description_tag }}</span>
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
 
                 </div>
-            
+
 
                 <div class="hourly-employees p-2">
 
@@ -331,48 +324,33 @@
 
                 <!-- Dashboard Cards Section -->
                 <div class="card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
                     <div v-for="card in midYear" :key="card.id" class="dashboard-card p-4 border rounded-lg bg-white space-y-4">
-
                         <h2 class="font-semibold card-heading">{{ card.title }}</h2>
 
                         <div class="flex justify-between items-center">
+                            <!-- Fixed Width for Description -->
+                            <p class="block flex-1 pr-4" >{{ card.description }}</p>
 
-                            <p class="block">{{ card.description }}</p>
-
-                            <div class="relative w-16 h-16">
-
-                                <svg class="w-full h-full" viewBox="0 0 36 36">
-                                    <path
-                                        class="circle-bg"
-                                        d="M18 2.0845
-                                           a 15.9155 15.9155 0 0 1 0 31.831
-                                           a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        fill="none"
-                                        stroke="#e6e6e6"
-                                        stroke-width="3.8"
-                                    />
-                                    <path
-                                        class="circle"
-                                        :stroke="card.color"
-                                        d="M18 2.0845
-                                           a 15.9155 15.9155 0 0 1 0 31.831
-                                           a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        fill="none"
-                                        stroke-width="3.8"
-                                        :stroke-dasharray="card.value + ', 100'"
-                                    />
-                                </svg>
-
-                                <span class="absolute inset-0 flex items-center justify-center text-sm font-semibold">{{ card.value }}%</span>
-                            
+                            <!-- Circular Element Implementation -->
+                            <div
+                                    class="flex items-center justify-center flex-shrink-0 w-20 h-20 rounded-full"
+                                    :style="{ borderColor: card.borderColor, borderWidth: '2px', borderStyle: 'solid' }"
+                            >
+                                <!-- Inner Circle with Dynamic Background -->
+                                <div
+                                        class="flex items-center justify-center w-16 h-16 rounded-full"
+                                        :style="{ backgroundColor: card.backgroundColor }"
+                                >
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-base font-semibold" :style="{ color: card.textColor }">{{ card.value }}%</span>
+                                        <span class="text-xs" :style="{ color: card.textColor }">Employees</span>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
+
 
 
                 <div class="hourly-employees p-2">
@@ -383,47 +361,28 @@
 
                 <!-- Dashboard Cards Section -->
                 <div class="card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
                     <div v-for="card in endYear" :key="card.id" class="dashboard-card p-4 border rounded-lg bg-white space-y-4">
-
                         <h2 class="font-semibold card-heading">{{ card.title }}</h2>
 
                         <div class="flex justify-between items-center">
+                            <p class="block flex-1 pr-4">{{ card.description }}</p>
 
-                            <p class="block">{{ card.description }}</p>
-
-                            <div class="relative w-16 h-16">
-
-                                <svg class="w-full h-full" viewBox="0 0 36 36">
-                                    <path
-                                        class="circle-bg"
-                                        d="M18 2.0845
-                                           a 15.9155 15.9155 0 0 1 0 31.831
-                                           a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        fill="none"
-                                        stroke="#e6e6e6"
-                                        stroke-width="3.8"
-                                    />
-                                    <path
-                                        class="circle"
-                                        :stroke="card.color"
-                                        d="M18 2.0845
-                                           a 15.9155 15.9155 0 0 1 0 31.831
-                                           a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        fill="none"
-                                        stroke-width="3.8"
-                                        :stroke-dasharray="card.value + ', 100'"
-                                    />
-                                </svg>
-
-                                <span class="absolute inset-0 flex items-center justify-center text-sm font-semibold">{{ card.value }}%</span>
-                            
+                            <div
+                                    class="flex items-center justify-center flex-shrink-0 w-20 h-20 rounded-full"
+                                    :style="{ borderColor: card.borderColor, borderWidth: '2px', borderStyle: 'solid' }"
+                            >
+                                <div
+                                        class="flex items-center justify-center w-16 h-16 rounded-full"
+                                        :style="{ backgroundColor: card.backgroundColor }"
+                                >
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-base font-semibold" :style="{ color: card.textColor }">{{ card.value }}%</span>
+                                        <span class="text-xs" :style="{ color: card.textColor }">Feedback</span>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
 
                 <div class="hourly-employees p-2">
@@ -434,48 +393,31 @@
 
                 <!-- Dashboard Cards Section -->
                 <div class="card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
+                    <!-- NineBox Cards -->
                     <div v-for="card in nineBox" :key="card.id" class="dashboard-card p-4 border rounded-lg bg-white space-y-4">
-
                         <h2 class="font-semibold card-heading">{{ card.title }}</h2>
 
                         <div class="flex justify-between items-center">
+                            <p class="block flex-1 pr-4">{{ card.description }}</p>
 
-                            <p class="block">{{ card.description }}</p>
-
-                            <div class="relative w-16 h-16">
-
-                                <svg class="w-full h-full" viewBox="0 0 36 36">
-                                    <path
-                                        class="circle-bg"
-                                        d="M18 2.0845
-                                           a 15.9155 15.9155 0 0 1 0 31.831
-                                           a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        fill="none"
-                                        stroke="#e6e6e6"
-                                        stroke-width="3.8"
-                                    />
-                                    <path
-                                        class="circle"
-                                        :stroke="card.color"
-                                        d="M18 2.0845
-                                           a 15.9155 15.9155 0 0 1 0 31.831
-                                           a 15.9155 15.9155 0 0 1 0 -31.831"
-                                        fill="none"
-                                        stroke-width="3.8"
-                                        :stroke-dasharray="card.value + ', 100'"
-                                    />
-                                </svg>
-
-                                <span class="absolute inset-0 flex items-center justify-center text-sm font-semibold">{{ card.value }}%</span>
-                            
+                            <div
+                                    class="flex items-center justify-center flex-shrink-0 w-20 h-20 rounded-full"
+                                    :style="{ borderColor: card.borderColor, borderWidth: '2px', borderStyle: 'solid' }"
+                            >
+                                <div
+                                        class="flex items-center justify-center w-16 h-16 rounded-full"
+                                        :style="{ backgroundColor: card.backgroundColor }"
+                                >
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-base font-semibold" :style="{ color: card.textColor }">{{ card.value }}%</span>
+                                        <span class="text-xs" :style="{ color: card.textColor }">Employees</span>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
+
 
 
             </div>
@@ -497,6 +439,7 @@
                         id: 1,
                         title: "Goals Set",
                         description: "Employees who have set goals",
+                        description_tag: "Employees",
                         value: 65, // percentage
                         color: "#4CAF50" // green
                     },
@@ -504,6 +447,7 @@
                         id: 3,
                         title: "Timeline",
                         description: "Goals set on time",
+                        description_tag: "In Progress",
                         value: 50, // percentage
                         color: "#FF9800" // orange
                     },
@@ -512,32 +456,38 @@
                         id: 2,
                         title: "Goals Amended",
                         description: "Goals amended after submission",
+                        description_tag: "Amended",
                         value: 60, // percentage
                         color: "#9C27B0" // purple
                     },
                 ],
 
-                midYear: [
-                {
+                midYear: [{
                         id: 1,
                         title: "Status of Review",
                         description: "Status of review",
                         value: 70, // percentage
-                        color: "#4CAF50" // green
-                    },
+                        textColor: "#2F855A",
+                        borderColor: "#38A169", // Dynamic border color
+                        backgroundColor: "#C6F6D5",
+                },
                     {
                         id: 2,
                         title: "Pending Reviews",
                         description: "Employees with mid-year pending reviews",
                         value: 30, // percentage
-                        color: "#FFEB3B" // yellow
+                        textColor: "#2F855A",
+                        borderColor: "#38A169", // Dynamic border color
+                        backgroundColor: "#C6F6D5",
                     },
                     {
                         id: 3,
                         title: "Goal Completion",
                         description: "Number of goals completed at mid-year",
                         value: 60, // percentage
-                        color: "#4CAF50" // green
+                        textColor: "#2F855A",
+                        borderColor: "#38A169", // Dynamic border color
+                        backgroundColor: "#C6F6D5",
                     },
 
                 ],
@@ -548,21 +498,27 @@
                         title: "Employee Feedback",
                         description: "Employees who gave feedback at end-year",
                         value: 75, // percentage
-                        color: "#4CAF50" // green
+                        textColor: "#2F855A",
+                        borderColor: "#38A169", // Dynamic border color
+                        backgroundColor: "#C6F6D5",
                     },
                     {
                         id: 2,
                         title: "Goal Completion",
                         description: "Goals completed by end of year",
                         value: 85, // percentage
-                        color: "#9C27B0" // purple
+                        textColor: "#2F855A",
+                        borderColor: "#38A169", // Dynamic border color
+                        backgroundColor: "#C6F6D5",
                     },
                     {
                         id: 3,
                         title: "PIP Status",
                         description: "Employees remaining on PIP",
                         value: 40, // percentage
-                        color: "#FF9800" // orange
+                        textColor: "#2F855A",
+                        borderColor: "#38A169", // Dynamic border color
+                        backgroundColor: "#C6F6D5",
                     }
                 ],
 
@@ -572,21 +528,27 @@
                         title: "Top Performers",
                         description: "Employees rated as top performers",
                         value: 20, // percentage
-                        color: "#4CAF50" // green
+                        textColor: "#2F855A",
+                        borderColor: "#38A169", // Dynamic border color
+                        backgroundColor: "#C6F6D5",
                     },
                     {
                         id: 2,
                         title: "Mid Performers",
                         description: "Employees rated as mid performers",
                         value: 50, // percentage
-                        color: "#FFEB3B" // yellow
+                        textColor: "#2F855A",
+                        borderColor: "#38A169", // Dynamic border color
+                        backgroundColor: "#C6F6D5",
                     },
                     {
                         id: 3,
                         title: "Low Performers",
                         description: "Employees rated as low performers",
                         value: 30, // percentage
-                        color: "#F44336" // red
+                        textColor: "#2F855A",
+                        borderColor: "#38A169", // Dynamic border color
+                        backgroundColor: "#C6F6D5",
                     }
                 ]
             };
