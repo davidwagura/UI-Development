@@ -141,13 +141,16 @@
             color: #901ff8;
 
         }
+        .circle-bg {
+            stroke: #e6e6e6;
+        }
 
+        .circle {
+            transition: stroke-dasharray 0.3s ease;
+        }
         .goal-analysis button {
-
             border-color: #c5ced8;
-            
             background-color: #fefffe;
-
             color: #8193ac;
         }
 
@@ -162,6 +165,9 @@
             height: 2px; /* Height of the line */
             background-color: #b0b0b0; /* Grey color; adjust as needed */
             margin-top: 4px; /* Space between the text and the line */
+        }
+        .dashboard-cards{
+            border-top: solid 5px #476187;
         }
     </style>
 
@@ -281,53 +287,137 @@
             <div class="w-full lg:w-3/4 space-y-6">
 
                 <!-- Goals Analysis and IDP Analysis -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
 
-                    <div class="goal-analysis rounded-xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Goals Analysis Card -->
+                        <div class="dashboard-cards rounded-xl p-4 bg-white mt-2 shadow-md">
+                            <!-- Header -->
+                            <h3 class="font-semibold text-lg md:text-xl mb-4">Goals Analysis</h3>
 
-                        <div class="bg-white h-full p-4 rounded mt-2 shadow-md">
+                            <!-- Flex Container for List and Circular Chart -->
+                            <div class="flex items-start space-x-6">
+                                <!-- List of Legend Items -->
+                                <ul class="flex-1 text-sm">
+                                    <li
+                                            v-for="item in goalAnalysisData"
+                                            :key="item.id"
+                                            class="flex items-center mb-2"
+                                    >
+            <span
+                    class="inline-block w-3 h-3 rounded-full mr-2"
+                    :style="{ backgroundColor: item.color }"
+            ></span>
+                                        {{ item.label }}
+                                    </li>
+                                </ul>
 
-                            <h3 class="font-semibold text-lg md:text-xl relative card-heading">Goals Analysis</h3>
+                                <!-- Circular Progress Chart -->
+                                <div class="relative w-28 h-28">
+                                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                                        <!-- Background Circle -->
+                                        <circle
+                                                class="text-gray-200"
+                                                cx="18"
+                                                cy="18"
+                                                r="15.9155"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2.5"
+                                        />
 
-                            <ul class="mt-4 text-sm">
+                                        <!-- Data-Driven Segments -->
+                                        <circle
+                                                v-for="(item, index) in goalAnalysisData"
+                                                :key="item.id"
+                                                cx="18"
+                                                cy="18"
+                                                r="15.9155"
+                                                fill="none"
+                                                :stroke="item.color"
+                                                stroke-width="2.5"
+                                                :stroke-dasharray="getDashArray(item.percentage)"
+                                                :stroke-dashoffset="getDashOffset(index, goalAnalysisData)"
+                                        />
+                                    </svg>
 
-                                <li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2"></span>Completed</li>
-
-                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>Incomplete</li>
-
-                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>Started</li>
-                                
-                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>Not Started</li>  
-                            
-                            </ul>
-
+                                    <!-- Center Text -->
+                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center space-y-1">
+            <span class="text-lg font-bold text-gray-800">
+              {{ goalAnalysisData[0].percentage }}%
+            </span>
+                                        <span class="text-sm text-gray-600">
+              {{ goalAnalysisData[0].label }}
+            </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                    </div>
-        
-                    <div class="goal-analysis rounded-xl">
+                        <!-- IDP Analysis Card -->
+                        <div class="dashboard-cards rounded-xl p-4 bg-white mt-2 shadow-md">
+                            <!-- Header -->
+                            <h3 class="font-semibold text-lg md:text-xl mb-4">IDP Analysis</h3>
 
-                        <div class="bg-white h-full p-4 rounded mt-2 shadow-md">
+                            <!-- Flex Container for List and Circular Chart -->
+                            <div class="flex items-start space-x-6">
+                                <!-- List of Legend Items -->
+                                <ul class="flex-1 text-sm">
+                                    <li
+                                            v-for="item in idpAnalysisData"
+                                            :key="item.id"
+                                            class="flex items-center mb-2"
+                                    >
+            <span
+                    class="inline-block w-3 h-3 rounded-full mr-2"
+                    :style="{ backgroundColor: item.color }"
+            ></span>
+                                        {{ item.label }}
+                                    </li>
+                                </ul>
 
-                            <h3 class="font-semibold text-lg md:text-xl relative card-heading">IDP Analysis</h3>
+                                <!-- Circular Progress Chart -->
+                                <div class="relative w-28 h-28">
+                                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                                        <!-- Background Circle -->
+                                        <circle
+                                                class="text-gray-200"
+                                                cx="18"
+                                                cy="18"
+                                                r="15.9155"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2.5"
+                                        />
 
-                            <ul class="mt-4 text-sm">
+                                        <!-- Data-Driven Segments -->
+                                        <circle
+                                                v-for="(item, index) in idpAnalysisData"
+                                                :key="item.id"
+                                                cx="18"
+                                                cy="18"
+                                                r="15.9155"
+                                                fill="none"
+                                                :stroke="item.color"
+                                                stroke-width="2.5"
+                                                :stroke-dasharray="getDashArray(item.percentage)"
+                                                :stroke-dashoffset="getDashOffset(index, idpAnalysisData)"
+                                        />
+                                    </svg>
 
-                                <li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2"></span>Started</li>
-
-                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>Not Started</li>
-
-                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>In Progress</li>
-
-                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>Deleted</li>
-
-                            </ul>
-
+                                    <!-- Center Text -->
+                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center space-y-1">
+            <span class="text-lg font-bold text-gray-800">
+              {{ idpAnalysisData[0].percentage }}%
+            </span>
+                                        <span class="text-sm text-gray-600">
+              {{ idpAnalysisData[0].label }}
+            </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
 
-                </div>
         
                 <!-- Supervisor Feedback and Updates -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
@@ -341,9 +431,9 @@
                             <ul class="mt-4 text-sm">
 
                                 <li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2"></span>Completed</li>
-                                
+
                                 <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>Incomplete</li>
-                            
+
                             </ul>
 
                             <button class="mt-4 w-28 border-2 rounded-lg">Review</button>
@@ -418,6 +508,82 @@
         </div>
     
     </body>
-    
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    // Goals Analysis Data
+                    goalAnalysisData: [
+                        {
+                            id: 1,
+                            label: "Completed",
+                            percentage: 40,
+                            color: "#4CAF50", // Green
+                        },
+                        {
+                            id: 2,
+                            label: "Incomplete",
+                            percentage: 25,
+                            color: "#F44336", // Red
+                        },
+                        {
+                            id: 3,
+                            label: "Started",
+                            percentage: 20,
+                            color: "#9C27B0", // Purple
+                        },
+                        {
+                            id: 4,
+                            label: "Not Started",
+                            percentage: 15,
+                            color: "#FFEB3B", // Yellow
+                        },
+                    ],
+                    // IDP Analysis Data
+                    idpAnalysisData: [
+                        {
+                            id: 1,
+                            label: "Completed",
+                            percentage: 30,
+                            color: "#4CAF50", // Green
+                        },
+                        {
+                            id: 2,
+                            label: "In Progress",
+                            percentage: 45,
+                            color: "#3F51B5", // Blue
+                        },
+                        {
+                            id: 3,
+                            label: "Not Started",
+                            percentage: 20,
+                            color: "#FF9800", // Orange
+                        },
+                        {
+                            id: 3,
+                            label: "Deleted",
+                            percentage: 5,
+                            color: "#F44336", // Orange
+                        },
+                    ],
+                };
+            },
+            methods: {
+                getDashArray(percentage) {
+                    const circumference = 100; // Circle's total circumference as a percentage
+                    return `${(percentage / 100) * circumference} ${circumference - (percentage / 100) * circumference}`;
+                },
+                getDashOffset(index, data) {
+                    let offset = 0;
+                    for (let i = 0; i < index; i++) {
+                        offset += data[i].percentage;
+                    }
+                    return ((100 - offset) / 100) * 100; // Adjust for total circle circumference
+                },
+            },
+        }).mount('#app');
+    </script>
 </html>
    
