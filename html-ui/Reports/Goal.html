@@ -417,22 +417,22 @@
                                 </td>
 
                                 <td class="py-4 px-4 w-">
-                                    <div class="grid grid-cols-2 gap-8 p-4 rounded-lg" style="background-color: rgb(212, 252, 217);">
-                                        <div>
-                                            <div v-for="goal in staff.goals" :key="goal.id" class="mb-6">
-                                                <h3 class="font-semibold text-lg mb-2" v-html="goal.title"></h3>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div v-for="goal in staff.goals" :key="goal.id" class="mb-6">
-                                                <ul class="ml-4 list-disc">
-                                                    <li
-                                                            v-for="metric in goal.metrics"
-                                                            :key="metric.id"
-                                                            class="mb-1"
-                                                            v-html="metric.title"
-                                                    ></li>
-                                                </ul>
+                                    <div class="p-2 rounded-lg" style="background-color: rgb(212, 252, 217);">
+                                        <div v-for="goal in staff.goals" :key="goal.id" class="mb-1 pb-4 border-b border-gray-300">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <h3 class="font-semibold text-lg mb-2" v-html="goal.title"></h3>
+                                                </div>
+                                                <div>
+                                                    <ul class="ml-4 list-disc">
+                                                        <li
+                                                                v-for="metric in goal.metrics"
+                                                                :key="metric.id"
+                                                                class="mb-1"
+                                                                v-html="metric.title"
+                                                        ></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -522,7 +522,22 @@
                                         title: "<i>Average Transaction Value</i>", // Rich text formatted content
                                     },
                                 ],
+                            },
+                            {
+                                id: 2,
+                                title: "<strong>Increase Revenue</strong>", // Rich text formatted content
+                                metrics: [
+                                    {
+                                        id: 1,
+                                        title: "<em>Quarterly Revenue Growth</em>", // Rich text formatted content
+                                    },
+                                    {
+                                        id: 2,
+                                        title: "<u>New Customer Acquisition</u>", // Rich text formatted content
+                                    },
+                                ],
                             }
+
                         ],
                         status:'Approved',
                         color: '#d4fcd9',
