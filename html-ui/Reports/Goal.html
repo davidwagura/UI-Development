@@ -109,7 +109,7 @@
 
         }
 
-        .title {
+        .color {
 
             color: #394e72;
 
@@ -231,7 +231,7 @@
 
         <div>
 
-            <div class="progress title flex flex-col lg:flex-row justify-between space-y-4 lg:space-y-0 mb-4 lg:space-x-4 p-6 rounded-lg shadow-md">
+            <div class="progress color flex flex-col lg:flex-row justify-between space-y-4 lg:space-y-0 mb-4 lg:space-x-4 p-6 rounded-lg shadow-md">
 
                 <!-- Goal Complete -->
                 <div class="one flex flex-1 items-center space-x-4 p-4 rounded-lg bg-white shadow-sm">
@@ -347,127 +347,83 @@
                 </div>
 
                 <div class="overflow-x-auto">
-                    
                     <table class="min-w-full table-auto">
-
                         <thead class="text-left bg-gray-100">
-
                             <tr>
-
                                 <th class="py-2 px-4">Staff</th>
-
                                 <th class="py-2 px-4">Supervisor</th>
 
-                                <th class="py-2 px-4">Goal</th>
-
-<!--                                <th class="py-2 px-4">Metrics</th>-->
-
+                                <div class="flex">
+                                    <th class="py-2 px-4">Goal</th>
+                                    <th class="py-2 px-4">Metrics</th>
+    
+                                </div>
+                                
                                 <th class="py-2 px-4">Status</th>
-
                             </tr>
-
                         </thead>
                         
                         <tbody>
-
-                            <!-- First Row -->
                             <tr v-for="staff in staffList" :key="staff.id" class="details border-b">
-
                                 <td class="py-4 px-4">
-                                    
-                                    <div class="flex items-center space-x-4 mr-4 flex-wrap sm:flex-nowrap">
-
+                                    <div class="flex items-center space-x-4 flex-wrap sm:flex-nowrap">
                                         <div class="h-24 w-28">
-
                                             <img src="https://via.placeholder.com/100" class="h-24 w-28 rounded-full" alt="Profile">
-
                                         </div>
-                                        
                                         <div>
-                                            <span class="font-semibold text-sm title">{{ staff.name }}</span>
-                                            
+                                            <span class="font-semibold text-sm color">{{ staff.name }}</span>
                                             <div class="description text-sm">
-
                                                 <div>{{ staff.id }}</div>
-
                                                 <div>{{ staff.department }}</div>
-
                                                 <div>{{ staff.responsibility }}</div>
-
                                             </div>
-
                                         </div>
-
                                     </div>
-                                                                                                        
                                 </td>
-
+                
                                 <td class="py-4 px-4">
-
                                     <div>
-
-                                        <div class="font-semibold text-sm title">{{ staff.supervisor.name }}</div>
-
+                                        <div class="font-semibold text-sm color">{{ staff.supervisor.name }}</div>
                                         <div class="description text-sm">
-
                                             <div>{{ staff.supervisor.id }}</div>
-
                                             <div>{{ staff.supervisor.department }}</div>
-
-                                            <div>{{ staff.supervisor.responsibility }}</div>  
-
+                                            <div>{{ staff.supervisor.responsibility }}</div>
                                         </div>
-
                                     </div>
-
                                 </td>
-
-                                <td class="py-4 px-4 w-">
-                                    <div class="grid grid-cols-2 gap-8 p-4 rounded-lg" style="background-color: rgb(212, 252, 217);">
+                
+                                <td class="py-4 px-4">
+                                    <div class="grid grid-cols-2 gap-4 p-4 rounded-lg" :style="{ backgroundColor: staff.color }">
                                         <div>
-                                            <div v-for="goal in staff.goals" :key="goal.id" class="mb-6">
-                                                <h3 class="font-semibold text-lg mb-2" v-html="goal.title"></h3>
-                                            </div>
+                                            <ol v-for="goal in staff.goals" :key="goal.id" class="mb-6 list-decimal p-2 font-medium">
+                                                <li class="mb-2" v-html="goal.title"></li>
+                                            </ol>
                                         </div>
                                         <div>
-                                            <div v-for="goal in staff.goals" :key="goal.id" class="mb-6">
+                                            <div v-for="goal in staff.goals" :key="goal.id" class="text-sm">
                                                 <ul class="ml-4 list-disc">
-                                                    <li
-                                                            v-for="metric in goal.metrics"
-                                                            :key="metric.id"
-                                                            class="mb-1"
-                                                            v-html="metric.title"
-                                                    ></li>
+                                                    <li v-for="metric in goal.metrics" :key="metric.id" class="mb-1" v-html="metric.title"></li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
+                                                
                                 <td class="py-4 px-4">
-
                                     <span class="flex items-center">
-
                                         <span :class="statusClass(staff.status)" class="h-2 w-2 rounded-full mr-2"></span>
-
-                                        <span class="title">{{ staff.status }}</span>           
-
+                                        <span class="color">{{ staff.status }}</span>
                                     </span>
-
                                 </td>
-
                             </tr>
-
                         </tbody>
-                        
-
                     </table>
-
                 </div>
-
+                
                 <!-- Pagination -->
                 <div class="flex flex-col lg:flex-row justify-between items-center mt-4 space-y-4 lg:space-y-0 lg:space-x-4">
 
-                    <span class="title">Page 1 of 10</span>
+                    <span class="color">Page 1 of 10</span>
 
                     <div class="space-x-4">
 
@@ -485,68 +441,152 @@
                 
     </body>
 
-</html>
+    <script>
 
-<script>
-    const { createApp } = Vue;
+       const { createApp } = Vue;
 
-    createApp({
-        data() {
-            return {
-                staffList: [
-                    {
-                        id: '#09456-F',
-                        name: 'Christine Adolwa',
-                        profile: 'profile1.jpg',
-                        department: 'Human Resource',
-                        responsibility: 'Corporate Responsibility',
-                        supervisor: {
-                            name: 'Lorna Muthoni',
-                            id: '#95400-G',
+        createApp({
+            data() {
+                return {
+                    staffList: [
+                        {
+                            id: '#09456-F',
+                            name: 'Christine Adolwa',
+                            profile: 'profile1.jpg',
                             department: 'Human Resource',
-                            responsibility: 'Corporate Responsibility'
+                            responsibility: 'Corporate Responsibility',
+                            supervisor: {
+                                name: 'Lorna Muthoni',
+                                id: '#95400-G',
+                                department: 'Human Resource',
+                                responsibility: 'Corporate Responsibility'
+                            },
+                            goals: [
+                                {
+                                    id: 1,
+                                    title: "<p>Improve marketing sales by 10%</p>",
+                                    metrics: [
+                                        {
+                                            id: 1,
+                                            title: "Engage Customers on social media platform",
+                                        },
+                                        {
+                                            id: 2,
+                                            title: "Boost google adverts",
+                                        },
+                                        {
+                                            id: 3,
+                                            title: "Engage Customers on social media",
+                                        }
+                                    ]
+                                },
+
+                                {
+                                    id: 2,
+                                    title: "<p>Increase product awareness by 20%</p>",
+                                    metrics: [
+                                        {
+                                            id: 1,
+                                            title: "Host webinars for product promotion",
+                                        },
+                                        {
+                                            id: 2,
+                                            title: "Engage influencers",
+                                        }
+                                    ]
+                                },
+
+                                {
+                                    id: 3,
+                                    title: "<p>Increase product awareness by 20%</p>",
+                                    metrics: [
+                                        {
+                                            id: 1,
+                                            title: "Host webinars for product promotion",
+                                        },
+                                        {
+                                            id: 2,
+                                            title: "Engage influencers",
+                                        }
+                                    ]
+                                }
+
+                            ],
+                            status: 'Approved',
+                            color: '#d4fcd9',
                         },
-                        goals: [
-                            {
-                                id: 1,
-                                title: "<strong>Increase Sales</strong>", // Rich text formatted content
-                                metrics: [
-                                    {
-                                        id: 1,
-                                        title: "<em>Quarterly Sales Growth</em>", // Rich text formatted content
-                                    },
-                                    {
-                                        id: 2,
-                                        title: "<u>New Customer Acquisition</u>", // Rich text formatted content
-                                    },
-                                    {
-                                        id: 3,
-                                        title: "<strong>Customer Retention Rate</strong>", // Rich text formatted content
-                                    },
-                                    {
-                                        id: 4,
-                                        title: "<i>Average Transaction Value</i>", // Rich text formatted content
-                                    },
-                                ],
-                            }
-                        ],
-                        status:'Approved',
-                        color: '#d4fcd9',
-                    },
-                ]
-            }
-        },
-        methods: {
-            statusClass(status) {
-                switch (status) {
-                    case 'Approved':
-                        return 'bg-green-500';
-                    case 'Pending':
-                        return 'bg-yellow-500';
-                    default:
-                        return 'bg-gray-500';
+                        {
+                            id: '#09456-F',
+                            name: 'Collins Maritim',
+                            profile: 'profile2.jpg',
+                            department: 'Human Resource',
+                            responsibility: 'Corporate Responsibility',
+                            supervisor: {
+                                name: 'Lorna Muthoni',
+                                id: '#95400-G',
+                                department: 'Human Resource',
+                                responsibility: 'Corporate Responsibility'
+                            },
+                            goals: [
+                                {
+                                    id: 1,
+                                    title: "<p>Improve marketing sales by 15%</p>",
+                                    metrics: [
+                                        {
+                                            id: 1,
+                                            title: "Engage Customers on social media platform",
+                                        },
+                                        {
+                                            id: 2,
+                                            title: "Boost google adverts",
+                                        },
+                                        {
+                                            id: 3,
+                                            title: "Engage Customers on social media",
+                                        }
+                                    ]
+                                },
+
+                                {
+                                    id: 2,
+                                    title: "<p>Enhance team collaboration by 30%</p>",
+                                    metrics: [
+                                        {
+                                            id: 1,
+                                            title: "Engage Customers on social media platform",
+                                        },
+                                        {
+                                            id: 2,
+                                            title: "Boost google adverts",
+                                        },
+                                        {
+                                            id: 3,
+                                            title: "Engage Customers on social media",
+                                        }
+                                    ]
+                                }
+                            ],
+                            status: 'Pending',
+                            color: '#fcf4d4',
+                        }
+                    ]
+                };
+            },
+            methods: {
+                statusClass(status) {
+                    switch (status) {
+                        case 'Approved':
+                            return 'bg-green-500';
+                        case 'Pending':
+                            return 'bg-yellow-500';
+                        default:
+                            return 'bg-gray-500';
+                    }
                 }
             }
-        }
-    }).mount('#app');
-</script>
+        }).mount('#app');
+ 
+    </script>
+
+</html>
+
