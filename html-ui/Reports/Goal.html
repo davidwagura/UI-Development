@@ -360,7 +360,7 @@
 
                                 <th class="py-2 px-4">Goal</th>
 
-                                <th class="py-2 px-4">Metrics</th>
+<!--                                <th class="py-2 px-4">Metrics</th>-->
 
                                 <th class="py-2 px-4">Status</th>
 
@@ -417,30 +417,26 @@
                                 </td>
 
                                 <td class="py-4 px-4 w-">
-
-                                    <div class="p-4 rounded-lg" :style="{ backgroundColor: staff.color }">
-
-                                        <ol class="list-decimal pl-2 space-y-12">
-
-                                            <li v-for="(plan, index) in staff.plans" :key="index" class="font-medium title text-sm sm:text-base">
-
-                                                {{ plan.title }}
-
-                                            </li>
-
-                                            <p v-for="(plan, index) in staff.plans" :key="index" class="block title text-xs sm:text-sm">
-
-                                                {{ plan.description }}
-
-                                            </p>
-
-                                        </ol>
-
+                                    <div class="grid grid-cols-2 gap-8 p-4 rounded-lg" style="background-color: rgb(212, 252, 217);">
+                                        <div>
+                                            <div v-for="goal in staff.goals" :key="goal.id" class="mb-6">
+                                                <h3 class="font-semibold text-lg mb-2" v-html="goal.title"></h3>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div v-for="goal in staff.goals" :key="goal.id" class="mb-6">
+                                                <ul class="ml-4 list-disc">
+                                                    <li
+                                                            v-for="metric in goal.metrics"
+                                                            :key="metric.id"
+                                                            class="mb-1"
+                                                            v-html="metric.title"
+                                                    ></li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </td>
-
-
                                 <td class="py-4 px-4">
 
                                     <span class="flex items-center">
@@ -504,53 +500,35 @@
                             department: 'Human Resource',
                             responsibility: 'Corporate Responsibility'
                         },
-
+                        goals: [
+                            {
+                                id: 1,
+                                title: "<strong>Increase Sales</strong>", // Rich text formatted content
+                                metrics: [
+                                    {
+                                        id: 1,
+                                        title: "<em>Quarterly Sales Growth</em>", // Rich text formatted content
+                                    },
+                                    {
+                                        id: 2,
+                                        title: "<u>New Customer Acquisition</u>", // Rich text formatted content
+                                    },
+                                    {
+                                        id: 3,
+                                        title: "<strong>Customer Retention Rate</strong>", // Rich text formatted content
+                                    },
+                                    {
+                                        id: 4,
+                                        title: "<i>Average Transaction Value</i>", // Rich text formatted content
+                                    },
+                                ],
+                            }
+                        ],
+                        status:'Approved',
                         color: '#d4fcd9',
-
-                        plans: [
-                            {
-                                title: 'Take part-time classes in Marketing',
-
-                                description: "I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company"
-                            },
-                            {
-                                title: 'Take part-time classes in Marketing',
-                                description: "I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company"
-                            }
-                        ],
-
-                        status: 'Approved',
                     },
-
-                    {
-                        id: '#09456-F',
-                        name: 'Collins Maritim',
-                        profile: 'profile2.jpg',
-                        department: 'Human Resource',
-                        responsibility: 'Corporate Responsibility',
-                        supervisor: {
-                            name: 'Fredrick O. Wasike',
-                            id: '#95400-G',
-                            department: 'Human Resource',
-                            responsibility: 'Corporate Responsibility'
-                        },
-
-                        color: '#fcf9d3',
-
-                        plans: [
-                            {
-                                title: 'Take part-time classes in Marketing',
-                                description: "I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company"
-                            },
-                            {
-                                title: 'Take part-time classes in Marketing',
-                                description: "I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company"
-                            }
-                        ],
-                        status: 'Pending'
-                    }
                 ]
-            };
+            }
         },
         methods: {
             statusClass(status) {
