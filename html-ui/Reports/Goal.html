@@ -366,16 +366,9 @@
                         <tbody>
                             <tr v-for="staff in staffList" :key="staff.id" class="details border-b">
                                 <td class="py-4 px-4">
-<<<<<<< HEAD
-                                    <div class="flex items-center space-x-4 flex-wrap sm:flex-nowrap">
-                                        <div class="h-24 w-28">
-                                            <img src="https://via.placeholder.com/100" class="h-24 w-28 rounded-full" alt="Profile">
-                                        </div>
-=======
                                     <div class="flex items-center space-x-4 mr-4 flex-wrap sm:flex-nowrap">
                                         <img src="https://via.placeholder.com/100" class="h-24 w-24 rounded-full" alt="Profile">
                                         
->>>>>>> af5641f41bffa1cbbc9d5149a0df531a22331c2f
                                         <div>
                                             <span class="font-semibold text-sm color">{{ staff.name }}</span>
                                             <div class="description text-sm">
@@ -397,29 +390,17 @@
                                         </div>
                                     </div>
                                 </td>
-<<<<<<< HEAD
-                
-                                <td class="py-4 px-4">
-                                    <div class="grid grid-cols-2 gap-4 p-4 rounded-lg" :style="{ backgroundColor: staff.color }">
-                                        <div>
-                                            <ol v-for="goal in staff.goals" :key="goal.id" class="mb-6 list-decimal p-2 font-medium">
-                                                <li class="mb-2" v-html="goal.title"></li>
-                                            </ol>
-                                        </div>
-                                        <div>
-                                            <div v-for="goal in staff.goals" :key="goal.id" class="text-sm">
-                                                <ul class="ml-4 list-disc">
-                                                    <li v-for="metric in goal.metrics" :key="metric.id" class="mb-1" v-html="metric.title"></li>
-                                                </ul>
-=======
 
-                                <td class="py-4 px-4 w-">
-                                    <div class="p-4 rounded-lg" style="background-color: rgb(212, 252, 217);">
+
+
+                                <td class="py-4 px-4">
+                                    <div class="p-4 rounded-lg" :style="{ backgroundColor: staff.color }">
                                         <div v-for="goal in staff.goals" :key="goal.id" class="mb-1 pb-4 border-b border-gray-300">
-                                            <div class="grid grid-cols-2 gap-8">
-                                                <div>
-                                                    <h3 class="font-semibold text-lg mb-2" v-html="goal.title"></h3>
-                                                </div>
+                                            <div class="grid grid-cols-2 gap-8 p-2 color">
+                                                <ol class="list-decimal">
+                                                    <li class="mb-2" v-html="goal.title"></li>
+                                                </ol>
+
                                                 <div>
                                                     <ul class="ml-4 list-disc">
                                                         <li
@@ -430,7 +411,6 @@
                                                         ></li>
                                                     </ul>
                                                 </div>
->>>>>>> af5641f41bffa1cbbc9d5149a0df531a22331c2f
                                             </div>
                                         </div>
                                     </div>
@@ -542,7 +522,6 @@
                             status: 'Approved',
                             color: '#d4fcd9',
                         },
-<<<<<<< HEAD
                         {
                             id: '#09456-F',
                             name: 'Collins Maritim',
@@ -610,76 +589,6 @@
                         default:
                             return 'bg-gray-500';
                     }
-=======
-                        goals: [
-                            {
-                                id: 1,
-                                title: "<strong>Increase Sales</strong>", // Rich text formatted content
-                                metrics: [
-                                    {
-                                        id: 1,
-                                        title: "<em>Quarterly Sales Growth</em>", // Rich text formatted content
-                                    },
-                                    {
-                                        id: 2,
-                                        title: "<u>New Customer Acquisition</u>", // Rich text formatted content
-                                    },
-                                    {
-                                        id: 3,
-                                        title: "<strong>Customer Retention Rate</strong>", // Rich text formatted content
-                                    },
-                                    {
-                                        id: 4,
-                                        title: "<i>Average Transaction Value</i>", // Rich text formatted content
-                                    },
-                                ],
-                            },
-                            {
-                                id: 2,
-                                title: "<strong>Increase Revenue</strong>", // Rich text formatted content
-                                metrics: [
-                                    {
-                                        id: 1,
-                                        title: "<em>Quarterly Revenue Growth</em>", // Rich text formatted content
-                                    },
-                                    {
-                                        id: 2,
-                                        title: "<u>New Customer Acquisition</u>", // Rich text formatted content
-                                    },
-                                ],
-                            },
-                            {
-                                id: 3,
-                                title: "<strong>Increase Ratio</strong>", // Rich text formatted content
-                                metrics: [
-                                    {
-                                        id: 1,
-                                        title: "<em>Quarterly Ratio Growth</em>", // Rich text formatted content
-                                    },
-                                    {
-                                        id: 2,
-                                        title: "<u>New Folder Acquisition</u>", // Rich text formatted content
-                                    },
-                                ],
-                            }
-
-                        ],
-                        status:'Approved',
-                        color: '#d4fcd9',
-                    },
-                ]
-            }
-        },
-        methods: {
-            statusClass(status) {
-                switch (status) {
-                    case 'Approved':
-                        return 'bg-green-500';
-                    case 'Pending':
-                        return 'bg-yellow-500';
-                    default:
-                        return 'bg-gray-500';
->>>>>>> af5641f41bffa1cbbc9d5149a0df531a22331c2f
                 }
             }
         }).mount('#app');
