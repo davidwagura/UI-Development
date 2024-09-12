@@ -153,11 +153,18 @@
 
         }
 
+        .border-color {
+
+            border-color: #bec7d3;
+
+        }
+
         .details {
 
             border-color: #bec7d3;
 
         }
+
 
     </style>
 
@@ -389,13 +396,17 @@
                         <tbody>
 
                             <!-- First Row -->
-                            <tr v-for="staff in staffList" :key="staff.id" class="details border-b">
+                            <tr v-for="staff in staffList" :key="staff.id" class="border-color border-b">
 
                                 <td class="py-4 px-4">
 
                                     <div class="flex items-center space-x-3">
 
-                                        <img :src="staff.profile" class="h-10 w-10 rounded-full" alt="Profile">
+                                        <div class="h-24 w-28">
+
+                                            <img src="https://via.placeholder.com/100" class="h-24 w-28 rounded-full" alt="Profile">
+
+                                        </div>
 
                                         <div>
 
@@ -441,21 +452,11 @@
 
                                     <div class="p-4 rounded-lg" :style="{ backgroundColor: staff.color }">
 
-                                        <ol class="list-decimal pl-2 space-y-12">
+                                        <div v-for="(plan, index) in staff.plans" :key="index">
 
-                                            <li v-for="(plan, index) in staff.plans" :key="index" class="font-medium title text-sm sm:text-base">
+                                            <div v-html="plan.title"></div>
 
-                                                {{ plan.title }}
-
-                                            </li>
-
-                                            <p v-for="(plan, index) in staff.plans" :key="index" class="block title text-xs sm:text-sm">
-
-                                                {{ plan.description }}
-
-                                            </p>
-
-                                        </ol>
+                                        </div>
 
                                     </div>
 
@@ -528,13 +529,39 @@
 
                         plans: [
                             {
-                                title: 'Take part-time classes in Marketing',
-                                description: "I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company"
+                                title: ` <ol class="list-decimal p-4">
+
+                                            <div class="border-b border-color pb-2">
+
+                                                <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
+
+                                                <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
+
+
+                                            </div>
+
+                                            <div class="border-b border-color p-2">
+
+                                                <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
+
+                                                <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
+
+
+                                            </div>
+
+                                            <div class="p-2">
+
+                                                <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
+
+                                                <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
+
+
+                                            </div>
+
+
+                                            </ol>`
                             },
-                            {
-                                title: 'Take part-time classes in Marketing',
-                                description: "I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company"
-                            }
+
                         ],
                         status: 'Approved'
                     },
@@ -556,14 +583,32 @@
 
                         plans: [
                             {
-                                title: 'Take part-time classes in Marketing',
-                                description: "I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company"
+                                title: ` <ol class="list-decimal p-4">
+
+                                            <div class="border-b border-color pb-2">
+
+                                                <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
+
+                                                <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
+
+
+                                            </div>
+
+                                            <div class="p-2">
+
+                                                <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
+
+                                                <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
+
+
+                                            </div>
+
+
+                                            </ol>`
                             },
-                            {
-                                title: 'Take part-time classes in Marketing',
-                                description: "I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company"
-                            }
+
                         ],
+                        
                         status: 'Pending'
                     }
                 ]
