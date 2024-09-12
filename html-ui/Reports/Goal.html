@@ -374,8 +374,14 @@
                             <tr v-for="staff in staffList" :key="staff.id" class="details border-b">
 
                                 <td class="py-4 px-4">
+                                    
                                     <div class="flex items-center space-x-4 mr-4 flex-wrap sm:flex-nowrap">
-                                        <img src="https://via.placeholder.com/100" class="h-24 w-24 rounded-full" alt="Profile">
+
+                                        <div class="h-24 w-28">
+
+                                            <img src="https://via.placeholder.com/100" class="h-24 w-28 rounded-full" alt="Profile">
+
+                                        </div>
                                         
                                         <div>
                                             <span class="font-semibold text-sm title">{{ staff.name }}</span>
