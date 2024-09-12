@@ -374,14 +374,8 @@
                             <tr v-for="staff in staffList" :key="staff.id" class="details border-b">
 
                                 <td class="py-4 px-4">
-                                    
                                     <div class="flex items-center space-x-4 mr-4 flex-wrap sm:flex-nowrap">
-
-                                        <div class="h-24 w-28">
-
-                                            <img src="https://via.placeholder.com/100" class="h-24 w-28 rounded-full" alt="Profile">
-
-                                        </div>
+                                        <img src="https://via.placeholder.com/100" class="h-24 w-24 rounded-full" alt="Profile">
                                         
                                         <div>
                                             <span class="font-semibold text-sm title">{{ staff.name }}</span>
@@ -423,7 +417,7 @@
                                 </td>
 
                                 <td class="py-4 px-4 w-">
-                                    <div class="p-2 rounded-lg" style="background-color: rgb(212, 252, 217);">
+                                    <div class="p-4 rounded-lg" style="background-color: rgb(212, 252, 217);">
                                         <div v-for="goal in staff.goals" :key="goal.id" class="mb-1 pb-4 border-b border-gray-300">
                                             <div class="grid grid-cols-2 gap-8">
                                                 <div>
