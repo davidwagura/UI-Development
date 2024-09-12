@@ -290,9 +290,9 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Goals Analysis Card -->
-                        <div class="dashboard-cards rounded-xl p-4 bg-white mt-2 shadow-md">
+                        <div class="dashboard-cards rounded-xl p-4 bg-white mt-2 ">
                             <!-- Header -->
-                            <h3 class="font-semibold text-lg md:text-xl mb-4">Goals Analysis</h3>
+                            <h3 class="font-semibold text-lg md:text-xl mb-4 card-heading">Goals Analysis</h3>
 
                             <!-- Flex Container for List and Circular Chart -->
                             <div class="flex items-start space-x-6">
@@ -354,9 +354,9 @@
                         </div>
 
                         <!-- IDP Analysis Card -->
-                        <div class="dashboard-cards rounded-xl p-4 bg-white mt-2 shadow-md">
+                        <div class="dashboard-cards rounded-xl p-4 bg-white mt-2 ">
                             <!-- Header -->
-                            <h3 class="font-semibold text-lg md:text-xl mb-4">IDP Analysis</h3>
+                            <h3 class="font-semibold text-lg md:text-xl mb-4 card-heading">IDP Analysis</h3>
 
                             <!-- Flex Container for List and Circular Chart -->
                             <div class="flex items-start space-x-6">
@@ -367,10 +367,10 @@
                                             :key="item.id"
                                             class="flex items-center mb-2"
                                     >
-            <span
-                    class="inline-block w-3 h-3 rounded-full mr-2"
-                    :style="{ backgroundColor: item.color }"
-            ></span>
+                                    <span
+                                            class="inline-block w-3 h-3 rounded-full mr-2"
+                                            :style="{ backgroundColor: item.color }"
+                                    ></span>
                                         {{ item.label }}
                                     </li>
                                 </ul>
@@ -418,46 +418,94 @@
                         </div>
                     </div>
 
-        
+
                 <!-- Supervisor Feedback and Updates -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <div class="goal-analysis rounded-xl">
 
-                        <div class="bg-white h-full p-4 rounded mt-2 shadow-md">
+                    <!-- Supervisor Feedback Card -->
+                    <!-- Supervisor Feedback Card -->
+                    <div class="dashboard-cards rounded-xl p-4 bg-white mt-2">
+                        <!-- Header -->
+                        <h3 class="font-semibold text-lg md:text-xl mb-4 card-heading">Supervisor Feedback</h3>
 
-                            <h3 class="font-semibold text-lg md:text-xl relative card-heading">Supervisor Feedback</h3>
-
-                            <ul class="mt-4 text-sm">
-
-                                <li class="flex items-center"><span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2"></span>Completed</li>
-
-                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-red-500 rounded-full mr-2"></span>Incomplete</li>
-
+                        <!-- Flex Container for List and Circular Chart -->
+                        <div class="flex items-start space-x-6">
+                            <!-- List of Legend Items -->
+                            <ul class="flex-1 text-sm">
+                                <li
+                                        v-for="item in feedbackAnalysisData"
+                                        :key="item.id"
+                                        class="flex items-center mb-2"
+                                >
+                <span
+                        class="inline-block w-3 h-3 rounded-full mr-2"
+                        :style="{ backgroundColor: item.color }"
+                ></span>
+                                    {{ item.label }}
+                                </li>
                             </ul>
 
-                            <button class="mt-4 w-28 border-2 rounded-lg">Review</button>
+                            <!-- Circular Progress Chart -->
+                            <div class="relative w-28 h-28">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                                    <!-- Background Circle -->
+                                    <circle
+                                            class="text-gray-200"
+                                            cx="18"
+                                            cy="18"
+                                            r="15.9155"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2.5"
+                                    />
 
+                                    <!-- Data-Driven Segments -->
+                                    <circle
+                                            v-for="(item, index) in feedbackAnalysisData"
+                                            :key="item.id"
+                                            cx="18"
+                                            cy="18"
+                                            r="15.9155"
+                                            fill="none"
+                                            :stroke="item.color"
+                                            stroke-width="2.5"
+                                            :stroke-dasharray="getDashArray(item.percentage)"
+                                            :stroke-dashoffset="getDashOffset(index, feedbackAnalysisData)"
+                                    />
+                                </svg>
+
+                                <!-- Center Text -->
+                                <div class="absolute inset-0 flex flex-col items-center justify-center text-center space-y-1">
+                <span class="text-lg font-bold text-gray-800">
+                    {{ feedbackAnalysisData[0].percentage }}%
+                </span>
+                                    <span class="text-sm text-gray-600">
+                    {{ feedbackAnalysisData[0].label }}
+                </span>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
-        
-                    <div class="goal-analysis rounded-xl">
 
-                        <div class="bg-white h-full p-4 rounded mt-2 shadow-md">
+
+
+                    <div class="dashboard-cards rounded-xl p-4 bg-white mt-2">
+
+                        <div class="bg-white h-full p-4 rounded mt-2">
 
                             <div class="flex justify-between">
 
                                 <h3 class="font-semibold text-lg md:text-xl relative card-heading">Updates</h3>
 
                                 <div class="icon">
-                                        
+
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-12 h-12">
-                                        
+
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-                                    
+
                                     </svg>
-                                  
+
                                 </div>
 
                             </div>
@@ -465,9 +513,9 @@
                             <ul class="mt-4 text-sm">
 
                                 <li class="flex items-center"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>Mid year behavior updates</li>
-                                
-                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>End year behavior updates</li>      
-                            
+
+                                <li class="flex items-center mt-2"><span class="inline-block w-3 h-3 bg-purple-500 rounded-full mr-2"></span>End year behavior updates</li>
+
                             </ul>
 
                             <button class="mt-6 border-2 w-28 rounded-lg">Review</button>
@@ -476,7 +524,7 @@
 
                     </div>
 
-                </div>   
+                </div>
 
             </div>
 
@@ -568,6 +616,20 @@
                             color: "#F44336", // Orange
                         },
                     ],
+                    feedbackAnalysisData: [
+                        {
+                            id: 1,
+                            label: "Completed",
+                            percentage: 55,
+                            color: "#4CAF50", // Green
+                        },
+                        {
+                            id: 2,
+                            label: "Incomplete",
+                            percentage: 45,
+                            color: "#F44336", // Blue
+                        },
+                    ],
                 };
             },
             methods: {
@@ -582,6 +644,14 @@
                     }
                     return ((100 - offset) / 100) * 100; // Adjust for total circle circumference
                 },
+                getTotalPercentage() {
+                    // Total percentage is always 100%
+                    return 100;
+                },
+                getTotalLabel() {
+                    // Always display the label of the completed item
+                    return this.feedbackAnalysisData.find(item => item.label === "Completed").label;
+                }
             },
         }).mount('#app');
     </script>
