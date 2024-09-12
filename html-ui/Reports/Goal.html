@@ -391,12 +391,10 @@
                                     </div>
                                 </td>
 
-
-
                                 <td class="py-4 px-4">
                                     <div class="p-4 rounded-lg" :style="{ backgroundColor: staff.color }">
                                         <div v-for="goal in staff.goals" :key="goal.id" class="mb-1 pb-4 border-b border-gray-300">
-                                            <div class="grid grid-cols-2 gap-8 p-2 color">
+                                            <div class="grid grid-cols-2 gap-8 p-2 color w-screen sm:w-auto">
                                                 <ol class="list-decimal">
                                                     <li class="mb-2" v-html="goal.title"></li>
                                                 </ol>
