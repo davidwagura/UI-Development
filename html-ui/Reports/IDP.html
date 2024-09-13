@@ -8,7 +8,7 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Staff Table</title>
+        <title>IDP page</title>
 
         <script src="https://cdn.tailwindcss.com"></script>
 
@@ -17,12 +17,6 @@
     </head>
 
     <style>
-
-        .goal-content:target {
-
-            display: block;
-
-        }
 
         body {
 
@@ -64,12 +58,11 @@
 
         }
 
-        .business-goals {
+        .idp-title {
 
             color: #2d446a;
 
         }
-
 
         .icon {
 
@@ -203,7 +196,7 @@
             
         </div>
 
-        <div class="business-goals flex-col flex sm:flex-row sm:justify-between sm:items-center my-4 ">
+        <div class="idp-title flex-col flex sm:flex-row sm:justify-between sm:items-center my-4 ">
 
             <div class="text-xl font-semibold">IDP report</div>
 
@@ -245,12 +238,11 @@
 
                     <div class="flex items-center justify-center bg-green-500 text-white rounded-full h-8 w-8">
 
-                        <!-- SVG for checkmark -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                        <div class="flex items-center justify-center text-white rounded-full h-8 w-8">
 
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-
-                        </svg>
+                            <img src="https://via.placeholder.com/100" class="h-8 w-8 rounded-full" alt="Profile">
+    
+                        </div>
 
                     </div>
 
@@ -269,12 +261,11 @@
 
                     <div class="flex items-center justify-center bg-yellow-500 text-white rounded-full h-8 w-8">
 
-                        <!-- SVG for in-progress icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                        <div class="flex items-center justify-center text-white rounded-full h-8 w-8">
 
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8m-4 4v5" />
-
-                        </svg>
+                            <img src="https://via.placeholder.com/100" class="h-8 w-8 rounded-full" alt="Profile">
+    
+                        </div>
 
                     </div>
 
@@ -293,13 +284,12 @@
 
                     <div class="flex items-center justify-center bg-pink-500 text-white rounded-full h-8 w-8">
 
-                        <!-- SVG for not started icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                        <div class="flex items-center justify-center text-white rounded-full h-8 w-8">
 
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-.011-4a8.015 8.015 0 00-3.684 7.172M15.411 15A8.015 8.015 0 0012 9z" />
-
-                        </svg>
-
+                            <img src="https://via.placeholder.com/100" class="h-8 w-8 rounded-full" alt="Profile">
+    
+                        </div>
+    
                     </div>
 
                     <div>
@@ -317,13 +307,12 @@
 
                     <div class="flex items-center justify-center bg-purple-500 text-white rounded-full h-8 w-8">
 
-                        <!-- SVG for incomplete icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                        <div class="flex items-center justify-center text-white rounded-full h-8 w-8">
 
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M19.56 15A8.001 8.001 0 0012 3a8.001 8.001 0 00-7.56 12" />
-
-                        </svg>
-
+                            <img src="https://via.placeholder.com/100" class="h-8 w-8 rounded-full" alt="Profile">
+    
+                        </div>
+    
                     </div>
 
                     <div>
@@ -500,131 +489,132 @@
             </div>
 
         </div>
+
+        <script>
+            const { createApp } = Vue;
+        
+            createApp({
+                data() {
+                    return {
+                        staffList: [
+                            {
+                                id: '#09456-F',
+                                name: 'Christine Adolwa',
+                                profile: 'profile1.jpg',
+                                department: 'Human Resource',
+                                responsibility: 'Corporate Responsibility',
+                                supervisor: {
+                                    name: 'Lorna Muthoni',
+                                    id: '#95400-G',
+                                    department: 'Human Resource',
+                                    responsibility: 'Corporate Responsibility'
+                                },
+        
+                                color: '#d4fcd9',
+        
+                                plans: [
+                                    {
+                                        title: ` <ol class="list-decimal p-4">
+        
+                                                    <div class="border-b border-color pb-2">
+        
+                                                        <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
+        
+                                                        <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
+        
+        
+                                                    </div>
+        
+                                                    <div class="border-b border-color p-2">
+        
+                                                        <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
+        
+                                                        <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
+        
+        
+                                                    </div>
+        
+                                                    <div class="p-2">
+        
+                                                        <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
+        
+                                                        <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
+        
+        
+                                                    </div>
+        
+        
+                                                    </ol>`
+                                    },
+        
+                                ],
+                                status: 'Approved'
+                            },
+        
+                            {
+                                id: '#09456-F',
+                                name: 'Collins Maritim',
+                                profile: 'profile2.jpg',
+                                department: 'Human Resource',
+                                responsibility: 'Corporate Responsibility',
+                                supervisor: {
+                                    name: 'Fredrick O. Wasike',
+                                    id: '#95400-G',
+                                    department: 'Human Resource',
+                                    responsibility: 'Corporate Responsibility'
+                                },
+        
+                                color: '#fcf9d3',
+        
+                                plans: [
+                                    {
+                                        title: ` <ol class="list-decimal p-4">
+        
+                                                    <div class="border-b border-color pb-2">
+        
+                                                        <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
+        
+                                                        <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
+        
+        
+                                                    </div>
+        
+                                                    <div class="p-2">
+        
+                                                        <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
+        
+                                                        <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
+        
+        
+                                                    </div>
+        
+        
+                                                    </ol>`
+                                    },
+        
+                                ],
+                                
+                                status: 'Pending'
+                            }
+                        ]
+                    };
+                },
+                methods: {
+                    statusClass(status) {
+                        switch (status) {
+                            case 'Approved':
+                                return 'bg-green-500';
+                            case 'Pending':
+                                return 'bg-yellow-500';
+                            default:
+                                return 'bg-gray-500';
+                        }
+                    }
+                }
+            }).mount('#app');
+        </script>
                 
     </body>
 
 </html>
 
-<script>
-    const { createApp } = Vue;
-
-    createApp({
-        data() {
-            return {
-                staffList: [
-                    {
-                        id: '#09456-F',
-                        name: 'Christine Adolwa',
-                        profile: 'profile1.jpg',
-                        department: 'Human Resource',
-                        responsibility: 'Corporate Responsibility',
-                        supervisor: {
-                            name: 'Lorna Muthoni',
-                            id: '#95400-G',
-                            department: 'Human Resource',
-                            responsibility: 'Corporate Responsibility'
-                        },
-
-                        color: '#d4fcd9',
-
-                        plans: [
-                            {
-                                title: ` <ol class="list-decimal p-4">
-
-                                            <div class="border-b border-color pb-2">
-
-                                                <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
-
-                                                <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
-
-
-                                            </div>
-
-                                            <div class="border-b border-color p-2">
-
-                                                <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
-
-                                                <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
-
-
-                                            </div>
-
-                                            <div class="p-2">
-
-                                                <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
-
-                                                <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
-
-
-                                            </div>
-
-
-                                            </ol>`
-                            },
-
-                        ],
-                        status: 'Approved'
-                    },
-
-                    {
-                        id: '#09456-F',
-                        name: 'Collins Maritim',
-                        profile: 'profile2.jpg',
-                        department: 'Human Resource',
-                        responsibility: 'Corporate Responsibility',
-                        supervisor: {
-                            name: 'Fredrick O. Wasike',
-                            id: '#95400-G',
-                            department: 'Human Resource',
-                            responsibility: 'Corporate Responsibility'
-                        },
-
-                        color: '#fcf9d3',
-
-                        plans: [
-                            {
-                                title: ` <ol class="list-decimal p-4">
-
-                                            <div class="border-b border-color pb-2">
-
-                                                <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
-
-                                                <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
-
-
-                                            </div>
-
-                                            <div class="p-2">
-
-                                                <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
-
-                                                <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
-
-
-                                            </div>
-
-
-                                            </ol>`
-                            },
-
-                        ],
-                        
-                        status: 'Pending'
-                    }
-                ]
-            };
-        },
-        methods: {
-            statusClass(status) {
-                switch (status) {
-                    case 'Approved':
-                        return 'bg-green-500';
-                    case 'Pending':
-                        return 'bg-yellow-500';
-                    default:
-                        return 'bg-gray-500';
-                }
-            }
-        }
-    }).mount('#app');
-</script>

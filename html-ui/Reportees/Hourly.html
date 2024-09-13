@@ -8,7 +8,7 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Reportees Page</title>
+        <title>Hourly Page</title>
 
         <script src="https://cdn.tailwindcss.com"></script>
 
@@ -18,12 +18,6 @@
 
     <style>
             
-        .goal-content:target {
-
-            display: block;
-
-        }
-
         body {
 
             background-color: #eef1f0;
@@ -64,11 +58,6 @@
 
         }
 
-        .assessment h1, a {
-
-            color: #364c72;
-
-        }
 
         .icon {
 
@@ -284,76 +273,76 @@
 
         </div>
 
+        <script>
+            const { createApp } = Vue;
+        
+            createApp({
+                data() {
+                    return {
+                        users: [
+                            {
+                                id: 1,
+                                name: "Christine Adolwa",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 2,
+                                name: "Linda Njiru",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 3,
+                                name: "Paul Owuor",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 4,
+                                name: "Collins Maritim",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 5,
+                                name: "Margaret Ndungu",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 6,
+                                name: "John Mwangi",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 7,
+                                name: "Kennedy kamau",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 8,
+                                name: "Jane Njeri",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 9,
+                                name: "Lucy Mwangi",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+        
+                        ]
+                    };
+                }
+            }).mount('#app');
+        
+        </script>        
+
     </body>
 
 </html>
-
-<script>
-    const { createApp } = Vue;
-
-    createApp({
-        data() {
-            return {
-                users: [
-                    {
-                        id: 1,
-                        name: "Christine Adolwa",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 2,
-                        name: "Linda Njiru",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 3,
-                        name: "Paul Owuor",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 4,
-                        name: "Collins Maritim",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 5,
-                        name: "Margaret Ndungu",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 6,
-                        name: "John Mwangi",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 7,
-                        name: "Kennedy kamau",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 8,
-                        name: "Jane Njeri",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 9,
-                        name: "Lucy Mwangi",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-
-                ]
-            };
-        }
-    }).mount('#app');
-
-</script>
 

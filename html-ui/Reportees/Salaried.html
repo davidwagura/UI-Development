@@ -18,12 +18,6 @@
 
     <style>
             
-        .goal-content:target {
-
-            display: block;
-
-        }
-
         body {
 
             background-color: #eef1f0;
@@ -372,166 +366,166 @@
 
         </div>
 
+        <script>
+            const { createApp } = Vue;
+        
+            createApp({
+                data() {
+                    return {
+                        users: [
+                            {
+                                id: 1,
+                                name: "Christine Adolwa",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 2,
+                                name: "Linda Njiru",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 3,
+                                name: "Paul Owuor",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 4,
+                                name: "Collins Maritim",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 5,
+                                name: "Margaret Ndungu",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 6,
+                                name: "John Mwangi",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 7,
+                                name: "Kennedy kamau",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 8,
+                                name: "Jane Njeri",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 9,
+                                name: "Lucy Mwangi",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+        
+                        ],
+        
+                        probationUsers: [
+                            {
+                                id: 1,
+                                name: "Christine Adolwa",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 2,
+                                name: "Linda Njiru",
+                                department: "Finance",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 3,
+                                name: "George Otieno",
+                                department: "IT",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 4,
+                                name: "Daniel Mwenda",
+                                department: "Marketing",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 5,
+                                name: "Rose Achieng",
+                                department: "Procurement",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 6,
+                                name: "Grace Wambui",
+                                department: "Customer Service",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 7,
+                                name: "Victor Karanja",
+                                department: "Engineering",
+                                image: "https://via.placeholder.com/50",
+                            }
+                        ],
+        
+                        pipUsers: [
+                            {
+                                id: 1,
+                                name: "Paul Owuor",
+                                department: "Human Resource",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 2,
+                                name: "Margaret Ndungu",
+                                department: "Operations",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 3,
+                                name: "Brian Mwangi",
+                                department: "Sales",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 4,
+                                name: "Mary Njoki",
+                                department: "Accounting",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 5,
+                                name: "James Kimani",
+                                department: "Legal",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 6,
+                                name: "Alice Mumo",
+                                department: "Research & Development",
+                                image: "https://via.placeholder.com/50",
+                            },
+                            {
+                                id: 7,
+                                name: "Stephen Otieno",
+                                department: "Production",
+                                image: "https://via.placeholder.com/50",
+                            }
+                        ]            
+                    };
+                }
+            }).mount('#app');
+        
+        </script>        
+
     </body>
 
 </html>
-
-<script>
-    const { createApp } = Vue;
-
-    createApp({
-        data() {
-            return {
-                users: [
-                    {
-                        id: 1,
-                        name: "Christine Adolwa",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 2,
-                        name: "Linda Njiru",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 3,
-                        name: "Paul Owuor",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 4,
-                        name: "Collins Maritim",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 5,
-                        name: "Margaret Ndungu",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 6,
-                        name: "John Mwangi",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 7,
-                        name: "Kennedy kamau",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 8,
-                        name: "Jane Njeri",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 9,
-                        name: "Lucy Mwangi",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-
-                ],
-
-                probationUsers: [
-                    {
-                        id: 1,
-                        name: "Christine Adolwa",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 2,
-                        name: "Linda Njiru",
-                        department: "Finance",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 3,
-                        name: "George Otieno",
-                        department: "IT",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 4,
-                        name: "Daniel Mwenda",
-                        department: "Marketing",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 5,
-                        name: "Rose Achieng",
-                        department: "Procurement",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 6,
-                        name: "Grace Wambui",
-                        department: "Customer Service",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 7,
-                        name: "Victor Karanja",
-                        department: "Engineering",
-                        image: "https://via.placeholder.com/50",
-                    }
-                ],
-
-                pipUsers: [
-                    {
-                        id: 1,
-                        name: "Paul Owuor",
-                        department: "Human Resource",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 2,
-                        name: "Margaret Ndungu",
-                        department: "Operations",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 3,
-                        name: "Brian Mwangi",
-                        department: "Sales",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 4,
-                        name: "Mary Njoki",
-                        department: "Accounting",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 5,
-                        name: "James Kimani",
-                        department: "Legal",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 6,
-                        name: "Alice Mumo",
-                        department: "Research & Development",
-                        image: "https://via.placeholder.com/50",
-                    },
-                    {
-                        id: 7,
-                        name: "Stephen Otieno",
-                        department: "Production",
-                        image: "https://via.placeholder.com/50",
-                    }
-                ]            
-            };
-        }
-    }).mount('#app');
-
-</script>
 
