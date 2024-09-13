@@ -109,7 +109,13 @@
 
         }
 
-        .description {
+        .border-color {
+
+            border-color: #bec7d3;
+
+        }
+
+        .item-description {
 
             color: #899bb1;
 
@@ -354,46 +360,45 @@
                         <tbody>
                             <tr v-for="staff in staffList" :key="staff.id" class="details border-b">
                                 <td class="py-4 px-4">
-                                    <div class="flex items-center space-x-4 mr-4 flex-wrap sm:flex-nowrap">
+                                    <div class="flex items-center space-x-4 mr-4 flex-wrap sm:flex-nowrap w-screen sm:w-auto">
                                         <img src="https://via.placeholder.com/100" class="h-24 w-24 rounded-full" alt="Profile">
                                         
                                         <div>
                                             <span class="font-semibold text-sm color">{{ staff.name }}</span>
-                                            <div class="description text-sm">
+                                            <div class="item-description text-sm">
                                                 <div>{{ staff.id }}</div>
                                                 <div>{{ staff.department }}</div>
-                                                <div>{{ staff.responsibility }}</div>
+                                                <div>{{ staff.division }}</div>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                 
                                 <td class="py-4 px-4">
-                                    <div>
+                                    <div class="w-screen sm:w-auto">
                                         <div class="font-semibold text-sm color">{{ staff.supervisor.name }}</div>
-                                        <div class="description text-sm">
+                                        <div class="item-description text-sm">
                                             <div>{{ staff.supervisor.id }}</div>
                                             <div>{{ staff.supervisor.department }}</div>
-                                            <div>{{ staff.supervisor.responsibility }}</div>
+                                            <div>{{ staff.supervisor.division }}</div>
                                         </div>
                                     </div>
                                 </td>
 
                                 <td class="py-4 px-4">
-                                    <div class="p-4 rounded-lg" :style="{ backgroundColor: staff.color }">
-                                        <div v-for="goal in staff.goals" :key="goal.id" class="mb-1 pb-4 border-b border-gray-300">
-                                            <div class="grid grid-cols-2 gap-8 p-2 color w-screen sm:w-auto">
-                                                <ol class="list-decimal">
-                                                    <li class="mb-2" v-html="goal.title"></li>
+                                    <div class="p-4 rounded-lg" :style="{ backgroundColor: randomBackground() }">
+                                        <div v-for="goal in staff.goals" :key="goal.id" class="border-b border-color">
+                                            <div class="grid grid-cols-2 gap-4 p-1 color w-screen sm:w-auto">
+                                                <ol class="list-decimal text-sm">
+                                                    <li v-html="goal.goal_title"></li>
                                                 </ol>
-
                                                 <div>
-                                                    <ul class="ml-4 list-disc">
+                                                    <ul class="list-disc">
                                                         <li
-                                                                v-for="metric in goal.metrics"
-                                                                :key="metric.id"
-                                                                class="mb-1"
-                                                                v-html="metric.title"
+                                                            v-for="details in goal.goal_details"
+                                                            :key="details.id"
+                                                            class="text-sm"
+                                                            v-html="details.item"  
                                                         ></li>
                                                     </ul>
                                                 </div>
@@ -401,10 +406,10 @@
                                         </div>
                                     </div>
                                 </td>
-                                                
+                                                                                
                                 <td class="py-4 px-4">
                                     <span class="flex items-center">
-                                        <span :class="statusClass(staff.status)" class="h-2 w-2 rounded-full mr-2"></span>
+                                        <span :class="goalStatus(staff.status)" class="h-2 w-2 rounded-full mr-2"></span>
                                         <span class="color">{{ staff.status }}</span>
                                     </span>
                                 </td>
@@ -447,126 +452,169 @@
                             name: 'Christine Adolwa',
                             profile: 'profile1.jpg',
                             department: 'Human Resource',
-                            responsibility: 'Corporate Responsibility',
+                            division: 'Corporate Responsibility',
                             supervisor: {
                                 name: 'Lorna Muthoni',
                                 id: '#95400-G',
                                 department: 'Human Resource',
-                                responsibility: 'Corporate Responsibility'
+                                division: 'Corporate Responsibility'
                             },
+
                             goals: [
                                 {
                                     id: 1,
-                                    title: "<p>Improve marketing sales by 10%</p>",
-                                    metrics: [
+                                    goal_title: "Improve marketing sales by 10%",
+                                    goal_details: [
                                         {
                                             id: 1,
-                                            title: "Engage Customers on social media platform",
+                                            item: "Engage Customers on social media platform",
                                         },
                                         {
                                             id: 2,
-                                            title: "Boost google adverts",
+                                            item: "Boost google adverts",
                                         },
                                         {
                                             id: 3,
-                                            title: "Engage Customers on social media",
-                                        }
+                                            item: "Engage Customers on social media",
+                                        },
+                                        {
+                                            id: 4,
+                                            item: "Engage Customers on social media platform",
+                                        },
+
                                     ]
                                 },
 
                                 {
                                     id: 2,
-                                    title: "<p>Increase product awareness by 20%</p>",
-                                    metrics: [
+                                    goal_title: "Increase product awareness by 10%",
+                                    goal_details: [
                                         {
                                             id: 1,
-                                            title: "Host webinars for product promotion",
+                                            item: "Engage Customers on social media platform",
                                         },
                                         {
                                             id: 2,
-                                            title: "Engage influencers",
-                                        }
+                                            item: "Boost google adverts",
+                                        },
+                                        {
+                                            id: 3,
+                                            item: "Engage Customers on social media",
+                                        },
                                     ]
                                 },
 
                                 {
                                     id: 3,
-                                    title: "<p>Increase product awareness by 20%</p>",
-                                    metrics: [
+                                    goal_title: "Increase product awareness by 10%",
+                                    goal_details: [
                                         {
                                             id: 1,
-                                            title: "Host webinars for product promotion",
+                                            item: "Engage Customers on social media platform",
                                         },
                                         {
                                             id: 2,
-                                            title: "Engage influencers",
-                                        }
+                                            item: "Boost google adverts",
+                                        },
+                                        {
+                                            id: 3,
+                                            item: "Engage Customers on social media",
+                                        },
                                     ]
                                 }
 
                             ],
                             status: 'Approved',
-                            color: '#d4fcd9',
                         },
                         {
                             id: '#09456-F',
                             name: 'Collins Maritim',
                             profile: 'profile2.jpg',
                             department: 'Human Resource',
-                            responsibility: 'Corporate Responsibility',
+                            division: 'Corporate Responsibility',
                             supervisor: {
                                 name: 'Lorna Muthoni',
                                 id: '#95400-G',
                                 department: 'Human Resource',
-                                responsibility: 'Corporate Responsibility'
+                                division: 'Corporate Responsibility'
                             },
                             goals: [
                                 {
                                     id: 1,
-                                    title: "<p>Improve marketing sales by 15%</p>",
-                                    metrics: [
+                                    goal_title: "Improve marketing sales by 15%",
+                                    goal_details: [
                                         {
                                             id: 1,
-                                            title: "Engage Customers on social media platform",
+                                            item: "Engage Customers on social media platform",
                                         },
                                         {
                                             id: 2,
-                                            title: "Boost google adverts",
+                                            item: "Boost google adverts",
                                         },
                                         {
                                             id: 3,
-                                            title: "Engage Customers on social media",
-                                        }
+                                            item: "Engage Customers on social media",
+                                        },
+                                        {
+                                            id: 4,
+                                            item: "Engage Customers on social media platform",
+                                        },
                                     ]
                                 },
 
                                 {
                                     id: 2,
-                                    title: "<p>Enhance team collaboration by 30%</p>",
-                                    metrics: [
+                                    goal_title: "Enhance team collaboration by 30%",
+                                    goal_details: [
                                         {
                                             id: 1,
-                                            title: "Engage Customers on social media platform",
+                                            item: "Engage Customers on social media platform",
                                         },
                                         {
                                             id: 2,
-                                            title: "Boost google adverts",
+                                            item: "Boost google adverts",
                                         },
                                         {
                                             id: 3,
-                                            title: "Engage Customers on social media",
-                                        }
+                                            item: "Engage Customers on social media",
+                                        },
+                                    ]
+                                },
+
+                                {
+                                    id: 3,
+                                    goal_title: "Increase product awareness by 10%",
+                                    goal_details: [
+                                        {
+                                            id: 1,
+                                            item: "Engage Customers on social media platform",
+                                        },
+                                        {
+                                            id: 2,
+                                            item: "Boost google adverts",
+                                        },
+                                        {
+                                            id: 3,
+                                            item: "Engage Customers on social media",
+                                        },
                                     ]
                                 }
+
                             ],
                             status: 'Pending',
-                            color: '#fcf4d4',
                         }
                     ]
                 };
             },
             methods: {
-                statusClass(status) {
+
+                randomBackground() {
+                    const colors = ['#fcf4d4', '#d4fcd9'];
+                    const randomIndex = Math.floor(Math.random() * colors.length);
+                    return colors[randomIndex];
+                },
+
+                goalStatus(status) {
                     switch (status) {
                         case 'Approved':
                             return 'bg-green-500';
