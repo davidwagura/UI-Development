@@ -22,7 +22,9 @@
             background-color: #eef1f0;
 
         }
-
+        .active-box {
+            border-left: 7px solid rgb(64, 168, 225) !important;
+        }
         .top-navigation {
 
             color: #2f4870; 
@@ -246,14 +248,18 @@
             <!-- Sidebar for Tabs -->
             <div class="w-full md:w-1/4 h-screen p-4 border-r sidebar overflow-x-auto mr-4 rounded-md text-sm color">
                 <div v-for="box in boxes" :key="box.id" class="mb-4 box border border-color rounded-lg">
-                    <button class="w-full p-2 text-left" @click="selectBox(box.id)">
+                    <button
+                            class="w-full p-2 text-left"
+                            @click="selectBox(box.id)"
+                            :class="{ 'active-box': box.id === activeBoxId }"
+                    >
                         <p class="font-bold">{{ box.name }}</p>
-                        
+
                         <div class="box-cards m-2 w-full pl-2 text-xs" :style="{ borderLeft: '5px solid ' + box.color }">
                             <p class="text-xs">{{ box.business_result }}</p>
                             <p class="text-xs">{{ box.sustainability_behaviour }}</p>
                         </div>
-        
+
                         <div class="flex items-center space-x-1">
                             <p class="font-semibold text-xl">{{ getStaffCount(box.id) }}</p>
                             <p>{{ getStaffPercentage(box.id) }}% of person</p>
@@ -353,6 +359,7 @@
         createApp({
             data() {
                 return {
+                    activeBoxId: null,
                     selectedBoxId: null,
                     selectedYear: 2024,
                     years: [2021, 2022, 2023, 2024],
@@ -615,6 +622,7 @@
             methods: {
                 selectBox(boxId) {
                     this.selectedBoxId = boxId;
+                    this.activeBoxId = boxId;
                 },
                 getStaffCount(boxId) {
                 return this.staffCount[boxId] || 0;
