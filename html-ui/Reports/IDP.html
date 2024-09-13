@@ -102,7 +102,7 @@
 
         }
 
-        .title {
+        .text-color {
 
             color: #394e72;
 
@@ -231,7 +231,7 @@
 
         <div>
 
-            <div class="progress title flex flex-col lg:flex-row justify-between space-y-4 lg:space-y-0 mb-4 lg:space-x-4 p-6 rounded-lg shadow-md">
+            <div class="progress text-color flex flex-col lg:flex-row justify-between space-y-4 lg:space-y-0 mb-4 lg:space-x-4 p-6 rounded-lg shadow-md">
 
                 <!-- Goal Complete -->
                 <div class="one flex flex-1 items-center space-x-4 p-4 rounded-lg bg-white shadow-sm">
@@ -399,7 +399,7 @@
 
                                         <div>
 
-                                            <div class="title font-semibold text-sm">{{ staff.name }}</div>
+                                            <div class="text-color font-semibold text-sm">{{ staff.name }}</div>
 
                                             <div class="description text-sm">
 
@@ -421,7 +421,7 @@
 
                                     <div>
 
-                                        <div class="font-semibold text-sm title">{{ staff.supervisor.name }}</div>
+                                        <div class="font-semibold text-sm text-color">{{ staff.supervisor.name }}</div>
 
                                         <div class="description text-sm">
 
@@ -439,11 +439,13 @@
 
                                 <td class="py-4 px-4">
 
-                                    <div class="p-4 rounded-lg w-screen sm:w-auto" :style="{ backgroundColor: staff.color }">
+                                    <div class="p-4 rounded-lg w-screen sm:w-auto text-color" :style="{ backgroundColor: staff.color }">
 
                                         <div v-for="(plan, index) in staff.plans" :key="index">
 
-                                            <div v-html="plan.title"></div>
+                                            <div class="font-medium" v-html="plan.title"></div>
+
+                                            <div class="ml-4" v-html="plan.description"></div>
 
                                         </div>
 
@@ -457,7 +459,7 @@
 
                                         <span :class="statusClass(staff.status)" class="h-2 w-2 rounded-full mr-2"></span>
 
-                                        <span class="title">{{ staff.status }}</span>           
+                                        <span class="text-color">{{ staff.status }}</span>           
 
                                     </span>
 
@@ -474,7 +476,7 @@
                 <!-- Pagination -->
                 <div class="flex flex-col lg:flex-row justify-between items-center mt-4 space-y-4 lg:space-y-0 lg:space-x-4">
 
-                    <span class="title">Page 1 of 10</span>
+                    <span class="text-color">Page 1 of 10</span>
 
                     <div class="space-x-4">
 
@@ -509,48 +511,27 @@
                                     department: 'Human Resource',
                                     responsibility: 'Corporate Responsibility'
                                 },
-        
                                 color: '#d4fcd9',
-        
                                 plans: [
                                     {
-                                        title: ` <ol class="list-decimal p-4">
-        
-                                                    <div class="border-b border-color pb-2">
-        
-                                                        <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
-        
-                                                        <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
-        
-        
-                                                    </div>
-        
-                                                    <div class="border-b border-color p-2">
-        
-                                                        <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
-        
-                                                        <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
-        
-        
-                                                    </div>
-        
-                                                    <div class="p-2">
-        
-                                                        <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
-        
-                                                        <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
-        
-        
-                                                    </div>
-        
-        
-                                                    </ol>`
+                                        id: 1,
+                                        title: "<h1>1. Take part-time classes in Marketing</h1>",
+                                        description: "<p>I'm planning to take a part-time class in search engine optimization (SEO), social media marketing, and email marketing to help me in my marketing strategies in the company.</p>"
                                     },
-        
+                                    {
+                                        id: 2,
+                                        title: "<h1>2. Attend marketing workshops</h1>",
+                                        description: "<p>Participate in industry seminars and network with marketing professionals to gain insights and establish connections.</p>"
+                                    },
+                                    {
+                                        id: 3,
+                                        title: "<h1>3. Implement new marketing strategies</h1>",
+                                        description: "<p>Develop and test new marketing campaigns, and monitor their performance to optimize future strategies.</p>"
+                                    }
                                 ],
                                 status: 'Approved'
                             },
-        
+
                             {
                                 id: '#09456-F',
                                 name: 'Collins Maritim',
@@ -563,37 +544,19 @@
                                     department: 'Human Resource',
                                     responsibility: 'Corporate Responsibility'
                                 },
-        
                                 color: '#fcf9d3',
-        
                                 plans: [
                                     {
-                                        title: ` <ol class="list-decimal p-4">
-        
-                                                    <div class="border-b border-color pb-2">
-        
-                                                        <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
-        
-                                                        <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
-        
-        
-                                                    </div>
-        
-                                                    <div class="p-2">
-        
-                                                        <li class="font-medium title text-sm sm:text-base">Take part-time classes in Marketing</li>
-        
-                                                        <p class="block title text-xs sm:text-sm">I'm planning to take a part-time class in search engine optimization (SEO), social media marketing and email marketing to help me in my marketing strategies in the company</p>
-        
-        
-                                                    </div>
-        
-        
-                                                    </ol>`
+                                        id: 1,
+                                        title: "<h1>1. Improve marketing sales by 15%</h1>",
+                                        description: "<p>Engage customers on social media platforms, boost Google adverts, and enhance email marketing strategies to achieve a 15% increase in sales.</p>"
                                     },
-        
+                                    {
+                                        id: 2,
+                                        title: "<h1>2. Enhance team collaboration by 30%</h1>",
+                                        description: "<p>Organize team-building activities and implement collaborative tools to improve team synergy and productivity.</p>"
+                                    }
                                 ],
-                                
                                 status: 'Pending'
                             }
                         ]
@@ -613,7 +576,7 @@
                 }
             }).mount('#app');
         </script>
-                
+                        
     </body>
 
 </html>
