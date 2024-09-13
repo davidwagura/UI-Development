@@ -513,12 +513,6 @@
         
                 methods: {
         
-                    selectGoal(index) {
-        
-                        this.selectedGoal = index;
-        
-                    },
-        
                     setActiveTab(index) {
         
                         this.activeTab = index;
@@ -549,28 +543,6 @@
                             }
                         });
                     },
-                        submitGoal() {
-                        // Collect the data from Quill editors
-                        const newMetrics = this.quillMetric.root.innerHTML;
-                        const newDescription = this.quill.root.innerHTML;
-        
-                        // Push the new goal to the goals array
-                        this.goals.push({
-                            id: this.goals.length + 1,
-                            title: t.newGoalTitle,
-                            metrics: newMetrics,
-                            description: newDescription,
-                            status: "Not Started",
-                        });
-        
-                        // Reset the input fields
-                        this.newGoalTitle = "";
-                        this.quill.setText('');
-                        this.quillMetric.setText('');
-        
-                        // Close the modal
-                        this.showModal = false;
-                    },    
                 },
         
             }).mount('#app');
