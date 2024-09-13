@@ -387,8 +387,8 @@
 
                                 <td class="py-4 px-4">
                                     <div class="p-4 rounded-lg" :style="{ backgroundColor: staff.goals_approved === 1 ? '#d4fcd9' : '#fcf4d4' }">
-                                        <div v-for="(goal, index) in staff.goals" :key="goal.id" class="border-b border-color">
-                                            <div class="grid grid-cols-2 gap-4 p-1 color w-screen sm:w-auto">
+                                        <div v-for="(goal, index) in staff.goals" :key="goal.id">
+                                            <div class="grid grid-cols-2 gap-4 p-1 color w-screen sm:w-auto" :class="{ 'border-b border-color': index < staff.goals.length - 1 }">
                                                 <div class="flex items-start">
                                                     <span v-html="goal.title"></span>
                                                 </div>
