@@ -595,6 +595,12 @@
                     ]
                 };
             },
+            mounted(){
+                if (this.boxes.length > 0) {
+                    this.activeBoxId = this.boxes[0].id;
+                }
+                this.selectBox(this.boxes[0].id);
+            },
             computed: {
                 filteredStaff() {
                     return this.staff_calibrations
