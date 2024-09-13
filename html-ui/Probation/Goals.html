@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Goal Page </title>
+
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/heroicons@2.0.18/dist/outline/heroicons-outline.css">
+
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        
+    </head>
+
+    <style>
+
+        .goal-content:target {
+
+            display: block;
+
+        }
+
+        body {
+
+            background-color: #eef1f0;
+
+        }
+
+        .top-navigation {
+
+            color: #2f4870; 
+            
+            border-color: #bec7d3;
+
+        }
+
+        .top-navigation ul li a{
+
+            color: #2f4870;
+
+            border-color: transparent;
+
+            transition: color 0.3s ease, border-color 0.3s ease;
+
+        }
+
+        .top-navigation ul li a:hover {
+            
+            color: #40a8e1;
+
+            border-color: #40a8e1;
+
+        }
+
+        .icon {
+
+            color: #8291a6;
+
+        }
+
+        .active-tab {
+
+            color: #40a8e1;
+
+            border-color: #40a8e1;
+
+        }
+
+        .text-color {
+
+            color: #2f4870;
+
+        }
+
+        .goal-tabs a{
+
+            background-color: #40a8e1;
+
+            color:#FFFFFF; 
+
+        }
+
+        .goal-tabs .section{
+
+            max-height: 17rem;
+
+        }
+
+        .goal-tabs .section span {
+
+            color: #9dacc0;
+
+        }
+
+        .goal-details {
+
+            background-color: #ffffff;
+
+        }
+
+        .goal-details h3 {
+
+            color: #2f4870;
+
+        }
+
+
+        .goal-details span{
+
+            background-color: #e8e097;
+
+        }
+
+        .goal-details .content {
+
+            background-color: #fdf9d3;
+
+        }
+
+        .summary-section {
+
+            background-color: #ffffff;
+            
+        }
+
+        .summary-section .title {
+
+            background-color: #f2f2f2;
+
+        }
+
+        .summary-section span {
+
+            color: #a0aec1;
+
+        }
+
+        .summary-section p {
+
+            color: #2f4870;
+
+        }
+
+        .comment-section {
+            
+            background-color: #ffffff;
+
+        }
+
+        .comment-section ul {
+
+            background-color: #eef1f0; 
+
+            color: #364e74;
+
+        }
+
+        .action-buttons .btn1 {
+
+            border-color: #95a5bb;
+
+            background-color: #ffffff;
+
+        }
+
+        .action-buttons .btn2 {
+
+            background-color: #3cb047;
+
+            color: #ffffff;
+
+        }
+
+        .modal {
+
+            position: fixed;
+
+            top: 0;
+
+            left: -100%;
+
+            width: 400px;
+
+            height: 100%;
+
+            background-color: #fefeff;
+
+            box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+
+            transition: left 0.3s ease;
+
+            z-index: 1000;
+
+        }
+        
+        .modal.show {
+
+            left: 0;
+
+        }
+        
+        .modal-overlay {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background-color: rgba(0, 0, 0, 0.5);
+
+            display: none;
+
+            z-index: 999;
+            
+        }
+        
+        .modal-content {
+
+            max-height: 100vh;
+
+        }
+
+        .modal-overlay.show {
+
+            display: block;
+
+        }
+        
+        .modal-content .title {
+
+            background-color: #eff1f1;
+
+        }
+
+        
+        .modal-content h1,
+
+        .modal-content h3 {
+
+            color: #344b70;
+
+        }
+        
+        .modal-content p {
+
+            color: #768aa5;
+            
+        }
+        
+        .modal-content .metric {
+
+            background-color: #f2f2f2;
+
+        }
+
+        .footer .btn1 {
+
+            border-color: #92a3b6;
+
+            background-color: #fefeff;
+                
+            color: #647b99;
+
+        }
+
+        .footer .btn2 {
+
+            background-color: #43a6e1;
+
+            color: #FFFFFF;
+
+        }
+
+        .tab-content input{
+
+            background-color: #3a5075;
+
+        }
+
+        .tab-content span {
+
+            color: #c5b02b;
+
+        }
+
+        .background-color {
+
+            background-color: #eef1f0;
+
+        }
+        
+    </style>
+
+    <body id="app" class="m-4">
+
+        <!-- Top Navigation -->
+        <div class="top-navigation font-medium border-b w-full md:w-full">
+
+            <ul class="flex flex-wrap -mb-px">
+                
+                <li class="active-tab me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 rounded-t-lg" style="color: #40a8e1; border-color: #40a8e1;">Goals</a>
+
+                </li>
+
+                <li class="me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Behavior</a>
+               
+                </li>
+
+            </ul>
+        
+        </div>
+
+        <!-- My Business Goals Section -->
+        <div class="business-goals flex-col flex sm:flex-row sm:justify-between sm:items-center my-4 ">
+
+            <div class="text-xl font-semibold">My business goals</div>
+
+            <nav class="space-x-4 text-sm flex mt-2 sm:mt-0">
+
+                <div class="flex">
+
+                    <a href="#" class="font-semibold text-gray-500">Performance</a>
+
+                    <button class="icon">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        
+                        </svg>
+    
+                    </button>
+
+                </div>
+
+                <div class="flex">
+
+                    <a href="#" class="font-semibold text-gray-500">Probation</a>
+
+                    <button class="icon">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        
+                        </svg>
+    
+                    </button>
+
+                </div>
+
+                <a href="#" class="font-semibold text-gray-500">Goals</a>
+
+            </nav>
+
+        </div>
+
+        <div>
+
+            <div class="flex flex-col sm:flex-row sm:space-x-4">
+
+                <!-- Goals Tabs -->
+                <nav class="goal-tabs w-full sm:w-1/4 pr-4">
+
+                    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+                    <a href="#" @click="showModal = true" class="block rounded py-2 mb-4 text-center">+ New goal</a>
+
+                    <!-- modal -->
+                    <div v-if="showModal" class="modal-overlay show" @click="showModal = false"></div>
+
+                    <div>
+                        <!-- Overlay -->
+                        <div :class="{ 'modal-overlay': true, 'show': showModal }"></div>
+                    
+                        <!-- Modal -->
+                        <div :class="{ 'modal': true, 'show': showModal }">
+
+                            <!-- Close Button -->
+                            <button @click="showModal = false" class="absolute top-4 right-2 text-gray-500 hover:text-gray-700">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                
+                                </svg>
+
+                            </button>
+                        
+                            <!-- Title and Description -->
+                            <div class="modal-content overflow-y-auto">
+                                
+                                <div class="title p-4 border-b">
+
+                                    <h1 class="text-lg font-bold">Add business goal</h1>
+
+                                    <p class="text-sm text-gray-500">Create a Business goal and add relevant business metrics</p>
+
+                                </div>
+                    
+                                <!-- Content -->
+                                <div class="p-6 border rounded-lg shadow-lg mt-4 m-4">
+
+                                    <!-- Business Goal Section -->
+                                    <div>
+
+                                        <h3 class="font-medium">Business goal</h3>
+
+                                        <div v-model="newGoalTitle" class="quill-editor border rounded p-2 mt-2"></div>
+
+                                    </div>
+                            
+                                    <!-- Business Metric Section -->
+                                    <div class="metric mt-4 border rounded-lg p-4">
+
+                                        <h3 class="font-medium">Business metric</h3>
+
+                                        <div class="items-center">
+
+                                            <!-- <div v-model="newGoalMetrics" class="quill-editor h-16 w-full border border-gray-300 rounded p-2 mt-2"></div> -->
+                                            <div class="quill-editor"></div>
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mx-2 flex justify-end" viewBox="0 0 20 20" fill="red">
+
+                                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                            
+                                            </svg>
+
+                                        </div>
+                                          
+                                        <div class="items-center">
+
+                                            <!-- <div class="quill-editor p-2 mt-2" v-model="newGoalDescription"></div> -->
+
+                                            <div class="quill-editor"></div>
+
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mx-2" viewBox="0 0 20 20" fill="green">
+                                                
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                              
+                                            </svg>
+
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+
+                                <!-- Cascade Checkbox -->
+                                <div class="flex items-center m-3">
+
+                                    <input type="checkbox" id="cascade" class="mr-2">
+
+                                    <label for="cascade" class="text-sm">By checking here, you agree the goal to cascade to all repository</label>
+
+                                </div>
+
+                        
+                                <!-- Footer Buttons -->
+                                <div class="footer p-4 border-t flex justify-end space-x-6">
+
+                                    <button class="btn-1 px-4 py-2 border rounded-lg">Save Draft</button>
+
+                                    <button @click="submitGoal" class="btn2 px-4 py-2 border rounded-lg">Add Final</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="section overflow-y-auto space-y-2"> <!-- Set max-height -->
+
+                        <a v-for="(goal, index) in goals" :key="goal.id" href="#" @click.prevent="selectedGoal = index" class="block rounded" :style="{ backgroundColor: selectedGoal === index ? '#40a8e1' : '#d5d9db', color: selectedGoal === index ? '#ffffff' : '#324d74' }">
+
+                            <div class="ml-3 border h-20 mx-auto p-2 text-center rounded font-medium text-lg flex items-center justify-center flex-col" :style="{ backgroundColor: selectedGoal === index ? '#f2fcff' : '#ffffff', borderColor: selectedGoal === index ? '#40a8e1' : '#d4d9da', color:'#2d4870' }">
+
+                                {{ goal.title }}
+
+                                <span class="block text-sm">{{ goal.title }}</span>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </nav>
+
+                <!-- Goal Details -->
+                <div class="goal-details w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0">
+                    
+                    <div v-if="selectedGoal !== null" class="goal-content">
+                    
+                        <div class="flex flex-col sm:flex-row mb-4 items-start sm:items-center w-full">
+                                
+                            <h3 class="font-semibold text-lg">{{ goals[selectedGoal].description }}</h3>
+                        
+                            <span class="ml-2 rounded-full text-sm py-1 px-2 mt-2 sm:mt-0">{{ goals[selectedGoal].status }}</span>
+                        
+                            <div class="ml-auto">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+
+                                </svg>
+
+                            </div>
+
+                        </div>     
+                        
+                        <div class="p-4 rounded content">
+                        
+                            <div v-html="goals[selectedGoal].metrics" class="pl-4 space-y-2 text-sm"></div>
+                    
+                        </div>
+                    
+                    </div>
+                                            
+                </div>
+
+                <!-- Summary Section -->
+                <div class="summary-section border w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0">
+                
+                    <h2 class="title font-semibold text-center p-2">Goal Summary</h2>
+                
+                    <p class="border-b py-2 flex font-medium justify-between">Goal Status:
+
+                        <span id="goal-status" class="text-xs">{{ goals[selectedGoal].status }}</span>
+                    
+                    </p>
+                
+                    <p class="border-b py-2 font-medium flex justify-between">Date Created:
+
+                        <span id="date-created" class="text-xs">{{ goals[selectedGoal].created }}</span>
+                    
+                    </p>
+
+                    <p class="border-b py-2 flex font-medium justify-between block">Mid-year Ends In:
+                    
+                        <span id="mid-year" class="text-xs">2 months</span>
+                    
+                    </p>
+                    
+                    <p class="border-b py-2 flex font-medium justify-between">End-year Date:
+                    
+                        <span id="end-year" class="text-xs">12/05/2024</span>
+                
+                    </p>
+            
+                </div>
+
+            </div>
+
+        </div>
+        
+        <!-- Comments Section -->
+        <div class="comment-section shadow-lg rounded-xl p-4 mt-12">
+
+            <div class="text-color">
+
+                <div class="flex tab-content border-b border-color p-4">
+
+                    <input type="checkbox" class=" color">
+
+                    <p class="ml-2">By checking you confirm that the discussion between you and supervisor happened on <span>{{ currentDate }}</span></p>
+
+                </div>
+
+                <div class="text-color mt-4">
+
+                    <div>
+
+                        <!-- Employee Comments with Quill Editor -->
+                        <h2 class="font-semibold">Supervisor assessment</h2>
+
+                        <div class="background-color rounded-md p-2" v-html="supervisor_assessment"></div>
+
+                        <!-- Supervisor Comments -->
+                        <h2 class="font-semibold">Development opportunities</h2>
+
+                        <p class="text-sm">
+
+                            <div class="background-color rounded-md p-2" v-html="development_opportunities"></div>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons flex justify-end space-x-4 mt-8">
+                    
+                    <button class="btn1 p-3 border rounded text-sm">Save Draft</button>
+
+                    <button class="btn2 p-3 rounded text-sm flex items-center space-x-2">
+
+                        <span>Submit Final</span>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 21l18-9-18-9v7l13.5 2-13.5 2v7z" />
+
+                        </svg>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <script>
+
+            const { createApp } = Vue;
+        
+            createApp({
+        
+                data() {
+        
+                    return {
+        
+                        showModal: false,
+        
+                        selectedGoal: 0,
+        
+                        newGoalTitle: "",
+        
+                        newGoalMetrics: "",
+        
+                        newGoalDescription: "",
+
+                        currentDate: '',
+        
+                        goals: [
+        
+                            {
+                                id: 1,
+                                title: "Business Goal 001",
+                                metrics: `<ul>
+                                                    <li>Engage Customers on social media Customers on social media</li>
+                                                    <li>Boost google adverts Engage Customers on social media</li>
+                                                    <li>Engage Customers on social media</li>
+                                                    <li>Boost google adverts Engage Customers on social media</li>
+                                                    <li>Boost google adverts Engage Customers on social media</li>
+                                                    <li>Engage Customers on social media</li>
+                                                    <li>Boost google adverts Engage Customers on social media</li>
+                                                </ul>`,
+                                description: "1. Grow business revenue",
+                                status: "Not Started",
+                                created:'15/02/2024'
+                            },
+        
+                            {
+                                id: 2,
+                                title: "Business Goal 002",
+                                metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
+                                                    <li>Improve customer engagement metrics</li>
+                                                    <li>Increase social media outreach by 50%</li>
+                                                </ul>`,
+                                description: "2. Improve our client base",
+                                status: "In Progress",
+                                created:'08/08/2024'
+                            },
+        
+                            {
+                                id: 3,
+                                title: "Business Goal 003",
+                                metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
+                                                    <li>Optimize company workflows</li>
+                                                    <li>Reduce overhead costs by 10%</li>
+                                                </ul>`,
+                                description: "3. Optimizing company workflows",
+                                status: "Completed",
+                                created:'03/08/2024'
+                            },
+        
+                            {
+                                id: 4,
+                                title: "Business Goal 004",
+                                metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
+                                                    <li>Show company workflows</li>
+                                                    <li>Introduce overhead costs by 10%</li>
+                                                </ul>`,
+                                description: "4. Custom Goal",
+                                status: "Completed",
+                                created:'12/02/2024'
+                            },
+        
+                            {
+                                id: 5,
+                                title: "Business Goal 005",
+                                metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
+                                                    <li>Place company workflows</li>
+                                                    <li>Place overhead costs by 10%</li>
+                                                </ul>`,
+                                description: "5. Custom Goal",
+                                status: "Completed",
+                                created:'04/02/2024'
+                            },
+        
+                            {
+                                id: 6,
+                                title: "Business Goal 006",
+                                metrics: `<ul class="list-disc pl-4 space-y-2 text-sm">
+                                                    <li>Show company workflows</li>
+                                                    <li>Show overhead costs by 10%</li>
+                                                </ul>`,
+                                description: "6. Custom Goal",
+                                status: "Completed",
+                                created:'05/02/2024'
+                            }
+                        ],
+
+                        supervisor_assessment: `While you've shown enthusiasm and a willingness to learn, I've noticed some areas where you could improve to meet our expectations. For example, attention to detail and time management are critical aspects of your role that need further development. I encourage you to focus on these areas over the coming weeks, and I'm confident that with dedication, you'll see significant improvement. We're here to support your growth during this probation period.`,
+
+                        development_opportunities: `While you've shown enthusiasm and a willingness to learn, I've noticed some areas where you could improve to meet our expectations. For example, attention to detail and time management are critical aspects of your role that need further development.`                    };
+        
+                },
+                
+                methods: {
+                        
+                    submitGoal() {
+                        // Collect the data from Quill editors
+                        const newMetrics = this.quillMetric.root.innerHTML;
+                        const newDescription = this.quill.root.innerHTML;
+        
+                        // Push the new goal to the goals array
+                        this.goals.push({
+                            id: this.goals.length + 1,
+                            title: this.newGoalTitle,
+                            metrics: newMetrics,
+                            description: newDescription,
+                            status: "Not Started",
+                        });
+        
+                        // Reset the input fields
+                        this.newGoalTitle = "";
+                        this.quill.setText('');
+                        this.quillMetric.setText('');
+        
+                        // Close the modal
+                        this.showModal = false;
+                    },  
+                    
+                    getCurrentDate() {
+                        const today = new Date();
+                        const dd = String(today.getDate()).padStart(2, '0');
+                        const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+                        const yyyy = today.getFullYear();
+
+                        return dd + '/' + mm + '/' + yyyy; // Format: DD/MM/YYYY
+                    }
+
+                },
+
+                mounted() {
+
+                    this.currentDate = this.getCurrentDate();
+
+                }
+        
+            }).mount('#app');
+        </script>
+    </body>
+    
+</html>
+   

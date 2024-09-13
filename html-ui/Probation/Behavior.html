@@ -261,22 +261,6 @@
 
                     <a href="#" class="font-semibold text-gray-500">Self Assessment</a>
 
-                    <button class="icon">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                        
-                        </svg>
-    
-                    </button>
-
-                </div>
-
-                <div class="flex">
-
-                    <a href="#" class="font-semibold text-gray-500">Behavior assessment</a>
-
                 </div>
 
             </nav>
@@ -353,8 +337,8 @@
 
                         <p class="border supervisor-comment shadow-lg p-4 rounded">
 
-                            The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I've actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year.
-                        
+                            {{ supervisor_comment }}
+
                         </p>
 
                     </div>
@@ -426,6 +410,8 @@
                             details: "Placing the customer at the center of all decisions by actively listening to their needs and providing solutions that exceed expectations. This includes maintaining a high level of service quality, responding to inquiries promptly, and ensuring that customer issues are resolved efficiently. Employees should seek feedback from customers regularly and use this information to improve products and services. Delivering value and maintaining long-term relationships with customers is key to ensuring their continued loyalty and satisfaction."
                             }
                         ],
+
+                        supervisor_comment: 'The employee has diligently pursued my business goals and individual development plans, consistently meeting business goals. I have actively demonstrated behaviors conducive to teamwork, innovation, and continuous improvement throughout the first half of the year'
                                             
                     };
         
@@ -449,7 +435,7 @@
                                     editorContainer.innerHTML = ''; // Clear editor container
                                 }
                                 this.quillInstance = new Quill(editorContainer, {
-                                    theme: 'w',
+                                    theme: 'snow',
                                     modules: {
                                         toolbar: [
                                             ['bold', 'italic', 'underline'],
