@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Calibrations Page</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <script src="https://unpkg.com/vue@3"></script>
+
+    </head>
+
+    <style>
+        body {
+
+            background-color: #eef1f0;
+
+        }
+
+        .top-navigation {
+
+            color: #2f4870; 
+            
+            border-color: #bec7d3;
+
+        }
+
+        .top-navigation ul li a{
+
+            color: #2f4870;
+
+            border-color: transparent;
+
+            transition: color 0.3s ease, border-color 0.3s ease;
+
+        }
+
+        .top-navigation ul li a:hover {
+            
+            color: #40a8e1;
+
+            border-color: #40a8e1;
+
+        }
+
+        .active-tab {
+
+            color: #40a8e1;
+
+            border-color: #40a8e1;
+
+        }
+
+        .breadcrumb {
+
+            color: #70809a;
+
+        }
+
+
+        .icon {
+
+            color: #8291a6;
+
+        }
+
+
+        .calibration-title {
+
+            color: #2d446a;
+
+        }
+
+
+        .icon {
+
+            color: #8291a6;
+
+        }
+
+        .person-table button,input {
+
+            color: #9faec1;
+
+            border-color: #eceeef;
+
+        }
+
+        .person-table {
+
+            background-color: #fefffe;
+
+            max-height: 32rem;
+
+
+        }
+
+        .person-table th {
+
+            color: #4f6283;
+            
+        }
+
+        .person-table thead {
+
+            background-color: #eef1f0;
+
+        }
+
+        .color {
+
+            color: #394e72;
+
+        }
+
+        .low-contrast-color {
+
+            color: #899bb1;
+
+        }
+
+        .button {
+
+            background-color: #fefffe;
+
+            color: #7086a3;
+
+        }
+
+
+        .details {
+
+            border-color: #bec7d3;
+
+        }
+
+        .select-year {
+
+            background-color: #fefffe;
+
+        }
+
+        .color {
+
+            color: #394e72;
+
+        }
+
+        .border-color {
+
+            border-color: #bec7d3;
+
+        }
+
+        .sidebar {
+
+            background-color: #fefffe;
+
+            max-height: 32rem;
+             
+        }
+
+        .sidebar .box {
+
+            background-color: #fefffe;
+
+        }
+
+
+
+    </style>
+
+    <body id="app" class="m-4">
+
+        <!-- Top Navigation -->
+        <div class="top-navigation font-medium border-b w-full md:w-full">
+
+            <ul class="flex flex-wrap -mb-px">
+                    
+                <li class="me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Goals</a>
+
+                </li>
+
+                <li class=" active-tab me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">IDP</a>
+
+                </li>
+
+                <li class="me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg">Analytics</a>
+                
+                </li>
+
+                <li class="me-2">
+
+                    <a href="#" class="inline-block p-4 border-b-2 rounded-t-lg" style="color: #40a8e1; border-color: #40a8e1;">Calibrations</a>
+
+                </li>
+                            
+            </ul>
+            
+        </div>
+
+        <div class=" flex-col flex sm:flex-row sm:justify-between sm:items-center my-4 ">
+
+            <div class="calibration-title text-xl font-semibold">Calibrations report</div>
+
+            <nav class="breadcrumb text-sm flex mt-2 sm:mt-0">
+
+                <div class="flex">
+
+                    <a href="#" class="font-semibold">Performance</a>
+
+                    <button class="icon">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            
+                        </svg>
+        
+                    </button>
+
+                </div>
+
+                <div class="flex">
+
+                    <a href="#" class="font-semibold">Calibrations</a>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+
+        <div class="flex flex-col md:flex-row">
+
+            <!-- Sidebar for Tabs -->
+            <div class="w-full md:w-1/4 p-4 border-r sidebar overflow-x-auto mr-4 rounded-md text-sm color">
+
+                <div v-for="(box, index) in boxes" :key="index" class="mb-4 box border border-color rounded-lg">
+            
+                    <button
+                        class="w-full p-2 text-left"
+                        @click="selectBox(index)"
+                    >
+                        <p class="font-bold">{{ box.name }}</p>
+            
+                        <div class="box-cards m-2 pl-2 text-xs" :style="{ borderLeft: '5px solid ' + box.color }">
+                            <p class="text-sm">{{ box.details }}</p>
+                        </div>
+                        
+                        <div class="flex items-center space-x-1">
+                            <p class="font-semibold text-xl">{{ box.count }}</p>
+                            <p>{{ box.percentage }} of person</p>
+                        </div>
+                    </button>
+            
+                </div>
+            
+            </div>
+                      
+            <!-- person Table Section -->
+            <div class="person-table overflow-x-auto border w-full mt-6 sm:mt-0 rounded-lg p-4 shadow-md w-3/4">
+
+              <!-- Top Section with Search and Export Button -->
+                <div class="mb-4 flex  flex-row justify-between items-center space-y-4 lg:space-y-0 lg:space-x-4">
+                    
+                    <div class="relative w-full lg:w-1/4">
+
+                        <input type="text" placeholder="Search anything ..." class="border p-2 pl-10 rounded w-full">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-2 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M9 17a8 8 0 100-16 8 8 0 000 16z" />
+                        
+                        </svg>
+
+                    </div>
+
+                    <div class="flex">
+
+                        <div class="lg:mr-12 ml-4 mr-4">
+                            
+                            <select id="year-select" v-model="selectedYear" class="block w-24 p-2 border select-year border-color rounded-md shadow-sm">
+                            
+                                <option v-for="year in years" :key="year" :value="year">{{ year }}</option>
+                            
+                            </select>
+                        
+                        </div>
+
+                        <div class="border rounded-lg">
+
+                            <button class="px-3 py-2 flex items-center pb-0">
+
+                                <span class="font-medium">Export CSV</span>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                
+                                
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+                                
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+          
+                <!-- Table Section -->
+                <div class="overflow-x-auto">
+
+                    <table class="min-w-full table-auto">
+
+                        <thead class="text-left">
+
+                            <tr>
+
+                                <th class="px-4 py-2">Personal Details</th>
+
+                                <th class="px-4 py-2">Diversity</th>
+
+                                <th class="px-4 py-2">Supervisor</th>
+
+                                <th class="px-4 py-2">Calibration</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody class="color">
+
+                            <tr v-for="person in selectedBox.person" :key="person.id" class="border-b">
+
+                                <td class="py-4 px-4">
+
+                                    <div class="flex items-center space-x-4 mr-4">
+
+                                        <img src="https://via.placeholder.com/100" class="h-24 w-24 rounded-full" alt="Profile">
+
+                                        <div class="w-screen sm:w-auto">
+
+                                            <span class="font-semibold text-sm">{{ person.name }}</span>
+                                            
+                                            <div class="text-sm">{{ person.id }}</div>
+
+                                            <div class="text-sm">{{ person.department }}</div>
+
+                                            <div class="text-sm">{{ person.responsibility }}</div>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="py-4 px-4">
+
+                                    <div class="text-sm w-screen sm:w-auto">
+
+                                        <div>Age: {{ person.diversity.age }}</div>
+
+                                        <div>Gender: {{ person.diversity.gender }}</div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="py-4 px-4">
+
+                                    <div class="w-screen sm:w-auto">
+
+                                        <div class="font-semibold text-sm">{{ person.supervisor.name }}</div>
+
+                                        <div class="text-sm">{{ person.supervisor.id }}</div>
+
+                                        <div class="text-sm">{{ person.supervisor.department }}</div>
+                                        
+                                        <div class="text-sm">{{ person.supervisor.responsibility }}</div>
+
+                                    </div>
+
+                                </td>
+
+                                <td v-for="person.calibration" class="py-4 px-4 w-screen sm:w-auto ">
+
+                                    <span class="font-semibold text-sm">{{ person.calibration.box }}</span>
+
+                                    <div class="pl-2 text-xs" :style="{ borderLeft: '5px solid ' + person.calibration.color }">
+
+                                        <p class="text-sm">{{ person.calibration.comment1 }}</p>
+
+                                        <p class="text-sm"></p>
+
+                                    </div>
+                    
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+          
+              <!-- Pagination -->
+                <div class="flex flex-col lg:flex-row justify-between items-center mt-4 color">
+
+                    <span>Page 1 of 10</span>
+
+                    <div class="space-x-4 border-color">
+
+                        <button class="px-4 py-2 border font-bold rounded-lg">Previous</button>
+
+                        <button class="px-4 py-2 border font-bold rounded-lg">Next</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>  
+
+    </body>
+
+    <script>
+        const { createApp } = Vue;
+    
+        createApp({
+            data() {
+                return {
+                    selectedYear: 2024,
+                    years: [2021, 2022, 2023, 2024],
+                    boxes: [
+                        {
+                            name: 'Box 1',
+                            details: 'Exceed Expectations, Partially Achieves Expectations',
+                            count: 95,
+                            percentage: '15%',
+                            color: '#cfd92b',
+                            person: [
+                                { id: '#95406-F', name: 'Christine Adolwa', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 38, gender: 'Female' }, supervisor: { name: 'Lorna Muthoni', id: '#95400-G', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 3', comment1: 'Exceed Expectations', comment2: 'Partially achieves expectation', color: '#61fed1' }},
+                                { id: '#95406-G', name: 'Collins Martin', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 34, gender: 'Male' }, supervisor: { name: 'Fredrick O. Waiske', id: '#95400-H', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 2', comment1: 'Partially Achieves Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-H', name: 'Mary Wanjiru', department: 'Finance', responsibility: 'Financial Management', diversity: { age: 30, gender: 'Female' }, supervisor: { name: 'John Kimani', id: '#95400-I', department: 'Finance', responsibility: 'Financial Planning' }, calibration: { box: 'Box 1', comment1: 'Exceed Expectations', comment2: '', color: '#cfd92b' }},
+                                { id: '#95406-I', name: 'Linda Njiru', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 34, gender: 'Female' }, supervisor: { name: 'Paul Owuor', id: '#95400-J', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 2', comment1: 'Partially Achieves Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-J', name: 'James Kinyua', department: 'Marketing', responsibility: 'Corporate Branding', diversity: { age: 29, gender: 'Male' }, supervisor: { name: 'Sarah Muthoni', id: '#95400-K', department: 'Marketing', responsibility: 'Brand Management' }, calibration: { box: 'Box 2', comment1: 'Meets Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-K', name: 'Angela Mutua', department: 'Finance', responsibility: 'Budget Management', diversity: { age: 36, gender: 'Female' }, supervisor: { name: 'Jackson Wambua', id: '#95400-L', department: 'Finance', responsibility: 'Cost Management' }, calibration: { box: 'Box 1', comment1: 'Exceed Expectations', comment2: '', color: '#cfd92b' }},
+                                { id: '#95406-M', name: 'Margaret Ndungu', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 34, gender: 'Female' }, supervisor: { name: 'Michael Musyoka', id: '#95400-L', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 3', comment1: 'Exceeds Expectations', comment2: '', color: '#61fed1' }}
+                            ]
+                        },
+                        {
+                            name: 'Box 2',
+                            details: 'Partially Achieves Expectations',
+                            count: 35,
+                            percentage: '10%',
+                            color: '#fdffa9',
+                            person: [
+                                { id: '#95406-N', name: 'Kevin Omondi', department: 'Marketing', responsibility: 'Sales Management', diversity: { age: 32, gender: 'Male' }, supervisor: { name: 'Dorothy Kamau', id: '#95400-M', department: 'Marketing', responsibility: 'Sales Strategy' }, calibration: { box: 'Box 3', comment1: 'Exceeds Expectations', comment2: '', color: '#61fed1' }},
+                                { id: '#95406-O', name: 'Sarah Ochieng', department: 'IT', responsibility: 'Software Development', diversity: { age: 28, gender: 'Female' }, supervisor: { name: 'Joseph Mwangi', id: '#95400-N', department: 'IT', responsibility: 'System Design' }, calibration: { box: 'Box 2', comment1: 'Partially Achieves Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-P', name: 'Jane Njeri', department: 'Customer Service', responsibility: 'Client Relations', diversity: { age: 40, gender: 'Female' }, supervisor: { name: 'Patrick Wanjohi', id: '#95400-O', department: 'Customer Service', responsibility: 'Client Feedback' }, calibration: { box: 'Box 4', comment1: 'Meets Expectations', comment2: '', color: '#f8d41c' }},
+                                { id: '#95406-Q', name: 'Peter Mwangi', department: 'Finance', responsibility: 'Cost Management', diversity: { age: 50, gender: 'Male' }, supervisor: { name: 'Lilian Otieno', id: '#95400-P', department: 'Finance', responsibility: 'Risk Management' }, calibration: { box: 'Box 4', comment1: 'Meets Expectations', comment2: '', color: '#f8d41c' }},
+                                { id: '#95406-R', name: 'Joyce Mwangi', department: 'IT', responsibility: 'Tech Support', diversity: { age: 29, gender: 'Female' }, supervisor: { name: 'Ken Ochieng', id: '#95400-Q', department: 'IT', responsibility: 'Tech Infrastructure' }, calibration: { box: 'Box 1', comment1: 'Exceeds Expectations', comment2: '', color: '#cfd92b' }},
+                                { id: '#95406-S', name: 'Daniel Omolo', department: 'Operations', responsibility: 'Logistics Management', diversity: { age: 38, gender: 'Male' }, supervisor: { name: 'Margaret Wanjiku', id: '#95400-R', department: 'Operations', responsibility: 'Fleet Management' }, calibration: { box: 'Box 2', comment1: 'Meets Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-T', name: 'Sharon Wairimu', department: 'Customer Service', responsibility: 'Client Engagement', diversity: { age: 26, gender: 'Female' }, supervisor: { name: 'Paul Mwangi', id: '#95400-S', department: 'Customer Service', responsibility: 'Customer Experience' }, calibration: { box: 'Box 1', comment1: 'Exceeds Expectations', comment2: '', color: '#cfd92b' }}
+                            ]
+                        },
+                        {
+                            name: 'Box 3',
+                            details: 'Partially Achieves Expectations',
+                            count: 35,
+                            percentage: '10%',
+                            color: '#82ffdb',
+                            person: [
+                                { id: '#95406-N', name: 'Kevin Omondi', department: 'Marketing', responsibility: 'Sales Management', diversity: { age: 32, gender: 'Male' }, supervisor: { name: 'Dorothy Kamau', id: '#95400-M', department: 'Marketing', responsibility: 'Sales Strategy' }, calibration: { box: 'Box 3', comment1: 'Exceeds Expectations', comment2: '', color: '#82ffdb' }},
+                                { id: '#95406-O', name: 'Sarah Ochieng', department: 'IT', responsibility: 'Software Development', diversity: { age: 28, gender: 'Female' }, supervisor: { name: 'Joseph Mwangi', id: '#95400-N', department: 'IT', responsibility: 'System Design' }, calibration: { box: 'Box 2', comment1: 'Partially Achieves Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-P', name: 'Jane Njeri', department: 'Customer Service', responsibility: 'Client Relations', diversity: { age: 40, gender: 'Female' }, supervisor: { name: 'Patrick Wanjohi', id: '#95400-O', department: 'Customer Service', responsibility: 'Client Feedback' }, calibration: { box: 'Box 4', comment1: 'Meets Expectations', comment2: '', color: '#f8d41c' }},
+                                { id: '#95406-Q', name: 'Peter Mwangi', department: 'Finance', responsibility: 'Cost Management', diversity: { age: 50, gender: 'Male' }, supervisor: { name: 'Lilian Otieno', id: '#95400-P', department: 'Finance', responsibility: 'Risk Management' }, calibration: { box: 'Box 4', comment1: 'Meets Expectations', comment2: '', color: '#f8d41c' }},
+                                { id: '#95406-R', name: 'Joyce Mwangi', department: 'IT', responsibility: 'Tech Support', diversity: { age: 29, gender: 'Female' }, supervisor: { name: 'Ken Ochieng', id: '#95400-Q', department: 'IT', responsibility: 'Tech Infrastructure' }, calibration: { box: 'Box 1', comment1: 'Exceeds Expectations', comment2: '', color: '#cfd92b' }},
+                                { id: '#95406-S', name: 'Daniel Omolo', department: 'Operations', responsibility: 'Logistics Management', diversity: { age: 38, gender: 'Male' }, supervisor: { name: 'Margaret Wanjiku', id: '#95400-R', department: 'Operations', responsibility: 'Fleet Management' }, calibration: { box: 'Box 2', comment1: 'Meets Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-T', name: 'Sharon Wairimu', department: 'Customer Service', responsibility: 'Client Engagement', diversity: { age: 26, gender: 'Female' }, supervisor: { name: 'Paul Mwangi', id: '#95400-S', department: 'Customer Service', responsibility: 'Customer Experience' }, calibration: { box: 'Box 1', comment1: 'Exceeds Expectations', comment2: '', color: '#cfd92b' }}
+                            ]
+                        },
+                        {
+                            name: 'Box 4',
+                            details: 'Partially Achieves Expectations',
+                            count: 35,
+                            percentage: '10%',
+                            color: '#f8d41c',
+                            person: [
+                                { id: '#95406-N', name: 'Kevin Omondi', department: 'Marketing', responsibility: 'Sales Management', diversity: { age: 32, gender: 'Male' }, supervisor: { name: 'Dorothy Kamau', id: '#95400-M', department: 'Marketing', responsibility: 'Sales Strategy' }, calibration: { box: 'Box 3', comment1: 'Exceeds Expectations', comment2: '', color: '#82ffdb' }},
+                                { id: '#95406-O', name: 'Sarah Ochieng', department: 'IT', responsibility: 'Software Development', diversity: { age: 28, gender: 'Female' }, supervisor: { name: 'Joseph Mwangi', id: '#95400-N', department: 'IT', responsibility: 'System Design' }, calibration: { box: 'Box 2', comment1: 'Partially Achieves Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-P', name: 'Jane Njeri', department: 'Customer Service', responsibility: 'Client Relations', diversity: { age: 40, gender: 'Female' }, supervisor: { name: 'Patrick Wanjohi', id: '#95400-O', department: 'Customer Service', responsibility: 'Client Feedback' }, calibration: { box: 'Box 4', comment1: 'Meets Expectations', comment2: '', color: '#f8d41c' }},
+                                { id: '#95406-Q', name: 'Peter Mwangi', department: 'Finance', responsibility: 'Cost Management', diversity: { age: 50, gender: 'Male' }, supervisor: { name: 'Lilian Otieno', id: '#95400-P', department: 'Finance', responsibility: 'Risk Management' }, calibration: { box: 'Box 4', comment1: 'Meets Expectations', comment2: '', color: '#f8d41c' }},
+                                { id: '#95406-R', name: 'Joyce Mwangi', department: 'IT', responsibility: 'Tech Support', diversity: { age: 29, gender: 'Female' }, supervisor: { name: 'Ken Ochieng', id: '#95400-Q', department: 'IT', responsibility: 'Tech Infrastructure' }, calibration: { box: 'Box 1', comment1: 'Exceeds Expectations', comment2: '', color: '#cfd92b' }},
+                                { id: '#95406-S', name: 'Daniel Omolo', department: 'Operations', responsibility: 'Logistics Management', diversity: { age: 38, gender: 'Male' }, supervisor: { name: 'Margaret Wanjiku', id: '#95400-R', department: 'Operations', responsibility: 'Fleet Management' }, calibration: { box: 'Box 2', comment1: 'Meets Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-T', name: 'Sharon Wairimu', department: 'Customer Service', responsibility: 'Client Engagement', diversity: { age: 26, gender: 'Female' }, supervisor: { name: 'Paul Mwangi', id: '#95400-S', department: 'Customer Service', responsibility: 'Customer Experience' }, calibration: { box: 'Box 1', comment1: 'Exceeds Expectations', comment2: '', color: '#cfd92b' }}
+                            ]
+                        },
+                        {
+                            name: 'Box 5',
+                            details: 'Partially Achieves Expectations',
+                            count: 35,
+                            percentage: '10%',
+                            color: '#fdffa9',
+                            person: [
+                                { id: '#95406-F', name: 'Christine Adolwa', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 38, gender: 'Female' }, supervisor: { name: 'Lorna Muthoni', id: '#95400-G', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 3', comment1: 'Exceed Expectations', comment2: 'Partially achieves expectation', color: '#61fed1' }},
+                                { id: '#95406-G', name: 'Collins Martin', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 34, gender: 'Male' }, supervisor: { name: 'Fredrick O. Waiske', id: '#95400-H', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 2', comment1: 'Partially Achieves Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-H', name: 'Mary Wanjiru', department: 'Finance', responsibility: 'Financial Management', diversity: { age: 30, gender: 'Female' }, supervisor: { name: 'John Kimani', id: '#95400-I', department: 'Finance', responsibility: 'Financial Planning' }, calibration: { box: 'Box 1', comment1: 'Exceed Expectations', comment2: '', color: '#cfd92b' }},
+                                { id: '#95406-I', name: 'Linda Njiru', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 34, gender: 'Female' }, supervisor: { name: 'Paul Owuor', id: '#95400-J', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 2', comment1: 'Partially Achieves Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-J', name: 'James Kinyua', department: 'Marketing', responsibility: 'Corporate Branding', diversity: { age: 29, gender: 'Male' }, supervisor: { name: 'Sarah Muthoni', id: '#95400-K', department: 'Marketing', responsibility: 'Brand Management' }, calibration: { box: 'Box 2', comment1: 'Meets Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-K', name: 'Angela Mutua', department: 'Finance', responsibility: 'Budget Management', diversity: { age: 36, gender: 'Female' }, supervisor: { name: 'Jackson Wambua', id: '#95400-L', department: 'Finance', responsibility: 'Cost Management' }, calibration: { box: 'Box 1', comment1: 'Exceed Expectations', comment2: '', color: '#cfd92b' }},
+                                { id: '#95406-M', name: 'Margaret Ndungu', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 34, gender: 'Female' }, supervisor: { name: 'Michael Musyoka', id: '#95400-L', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 3', comment1: 'Exceeds Expectations', comment2: '', color: '#61fed1' }}
+                            ]
+                        },
+                        {
+                            name: 'Box 6',
+                            details: 'Partially Achieves Expectations',
+                            count: 35,
+                            percentage: '10%',
+                            color: '#fdffa9',
+                            person: [
+                                { id: '#95406-N', name: 'Kevin Omondi', department: 'Marketing', responsibility: 'Sales Management', diversity: { age: 32, gender: 'Male' }, supervisor: { name: 'Dorothy Kamau', id: '#95400-M', department: 'Marketing', responsibility: 'Sales Strategy' }, calibration: { box: 'Box 3', comment1: 'Exceeds Expectations', comment2: '', color: '#82ffdb' }},
+                                { id: '#95406-O', name: 'Sarah Ochieng', department: 'IT', responsibility: 'Software Development', diversity: { age: 28, gender: 'Female' }, supervisor: { name: 'Joseph Mwangi', id: '#95400-N', department: 'IT', responsibility: 'System Design' }, calibration: { box: 'Box 2', comment1: 'Partially Achieves Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-P', name: 'Jane Njeri', department: 'Customer Service', responsibility: 'Client Relations', diversity: { age: 40, gender: 'Female' }, supervisor: { name: 'Patrick Wanjohi', id: '#95400-O', department: 'Customer Service', responsibility: 'Client Feedback' }, calibration: { box: 'Box 4', comment1: 'Meets Expectations', comment2: '', color: '#f8d41c' }},
+                                { id: '#95406-Q', name: 'Peter Mwangi', department: 'Finance', responsibility: 'Cost Management', diversity: { age: 50, gender: 'Male' }, supervisor: { name: 'Lilian Otieno', id: '#95400-P', department: 'Finance', responsibility: 'Risk Management' }, calibration: { box: 'Box 4', comment1: 'Meets Expectations', comment2: '', color: '#f8d41c' }},
+                                { id: '#95406-R', name: 'Joyce Mwangi', department: 'IT', responsibility: 'Tech Support', diversity: { age: 29, gender: 'Female' }, supervisor: { name: 'Ken Ochieng', id: '#95400-Q', department: 'IT', responsibility: 'Tech Infrastructure' }, calibration: { box: 'Box 1', comment1: 'Exceeds Expectations', comment2: '', color: '#cfd92b' }},
+                                { id: '#95406-S', name: 'Daniel Omolo', department: 'Operations', responsibility: 'Logistics Management', diversity: { age: 38, gender: 'Male' }, supervisor: { name: 'Margaret Wanjiku', id: '#95400-R', department: 'Operations', responsibility: 'Fleet Management' }, calibration: { box: 'Box 2', comment1: 'Meets Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-T', name: 'Sharon Wairimu', department: 'Customer Service', responsibility: 'Client Engagement', diversity: { age: 26, gender: 'Female' }, supervisor: { name: 'Paul Mwangi', id: '#95400-S', department: 'Customer Service', responsibility: 'Customer Experience' }, calibration: { box: 'Box 1', comment1: 'Exceeds Expectations', comment2: '', color: '#cfd92b' }}
+                            ]
+                        },
+                        {
+                            name: 'Box 7',
+                            details: 'Partially Achieves Expectations',
+                            count: 35,
+                            percentage: '10%',
+                            color: '#fdffa9',
+                            person: [
+                                { id: '#95406-F', name: 'Christine Adolwa', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 38, gender: 'Female' }, supervisor: { name: 'Lorna Muthoni', id: '#95400-G', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 3', comment1: 'Exceed Expectations', comment2: 'Partially achieves expectation', color: '#82ffdb' }},
+                                { id: '#95406-G', name: 'Collins Martin', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 34, gender: 'Male' }, supervisor: { name: 'Fredrick O. Waiske', id: '#95400-H', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 2', comment1: 'Partially Achieves Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-H', name: 'Mary Wanjiru', department: 'Finance', responsibility: 'Financial Management', diversity: { age: 30, gender: 'Female' }, supervisor: { name: 'John Kimani', id: '#95400-I', department: 'Finance', responsibility: 'Financial Planning' }, calibration: { box: 'Box 1', comment1: 'Exceed Expectations', comment2: '', color: '#cfd92b' }},
+                                { id: '#95406-I', name: 'Linda Njiru', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 34, gender: 'Female' }, supervisor: { name: 'Paul Owuor', id: '#95400-J', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 2', comment1: 'Partially Achieves Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-J', name: 'James Kinyua', department: 'Marketing', responsibility: 'Corporate Branding', diversity: { age: 29, gender: 'Male' }, supervisor: { name: 'Sarah Muthoni', id: '#95400-K', department: 'Marketing', responsibility: 'Brand Management' }, calibration: { box: 'Box 2', comment1: 'Meets Expectations', comment2: '', color: '#fdffa9' }},
+                                { id: '#95406-K', name: 'Angela Mutua', department: 'Finance', responsibility: 'Budget Management', diversity: { age: 36, gender: 'Female' }, supervisor: { name: 'Jackson Wambua', id: '#95400-L', department: 'Finance', responsibility: 'Cost Management' }, calibration: { box: 'Box 1', comment1: 'Exceed Expectations', comment2: '', color: '#cfd92b' }},
+                                { id: '#95406-M', name: 'Margaret Ndungu', department: 'Human Resource', responsibility: 'Corporate responsibility', diversity: { age: 34, gender: 'Female' }, supervisor: { name: 'Michael Musyoka', id: '#95400-L', department: 'Human Resource', responsibility: 'Corporate responsibility' }, calibration: { box: 'Box 3', comment1: 'Exceeds Expectations', comment2: '', color: '#61fed1' }}
+                            ]
+                        },
+                    ],
+                    selectedBoxIndex: 0,
+                };
+            },
+            computed: {
+                selectedBox() {
+                    return this.boxes[this.selectedBoxIndex];
+                }
+            },
+            methods: {
+                selectBox(index) {
+                    this.selectedBoxIndex = index;
+                }
+            }
+        }).mount('#app');
+    </script>
+                </html>
+
