@@ -38,6 +38,12 @@
 
         }
 
+        .border-color {
+
+            border-color: #9cabbe;
+
+        }
+
         .top-navigation {
 
             color: #2f4870; 
@@ -80,11 +86,11 @@
 
         .left-section {
 
-            color: #233b64;
+            color: #2f4870;
 
             background-color: #fefffe;
 
-            height: 30rem;
+            max-height: 30rem;
 
         }
 
@@ -122,11 +128,24 @@
 
         }
 
-        .icon {
+        .breadcrumb-icon {
 
             color: #8291a6;
 
         }
+
+        .dashboard-icon {
+
+            color: #860df7;
+
+        }
+
+        .text-color {
+
+            color: #2f4870;
+
+        }
+
 
         .circle-bg {
             stroke: #e6e6e6;
@@ -150,7 +169,27 @@
         }
         .dashboard-cards{
             border-top: solid 5px #476187;
+            background-color: #fefffe;
         }
+
+        .supervisor-chat span{
+
+            color: #37a20e;
+
+        }
+
+        .goal-chat span{
+
+            color: #37a20e;
+
+        }
+
+        .idp-chart span {
+
+            color: #911ff6;
+
+        }
+
     </style>
 
     <body id="app" class="m-4">
@@ -204,7 +243,7 @@
 
                     <a href="#" class="font-semibold text-gray-500">Performance</a>
 
-                    <button class="icon">
+                    <button class="breadcrumb-icon">
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -220,7 +259,7 @@
 
                     <a href="#" class="font-semibold text-gray-500">Self Assessment</a>
 
-                    <button class="icon">
+                    <button class="breadcrumb-icon">
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -248,30 +287,31 @@
                     <img class="rounded-full w-32 h-32 md:w-40 md:h-40 mx-auto" src="https://via.placeholder.com/100" alt="Profile Image">
 
                     <!-- Left Aligned Content -->
-                    <div class="mt-4 w-full text-left">
-                        <h2 class="text-lg md:text-xl font-bold">Christine Adolwa</h2>
-                        <span class="block text-sm md:text-base">Human Resource</span>
+                    <div v-for="staff" class="mt-4 w-full text-left">
+                        <h2 class="text-lg md:text-xl font-bold">{{ staff.name }}</h2>
+                        <span class="block text-sm md:text-base">{{ staff.responsibility }}</span>
                         <p class="font-semibold mt-2 text-sm md:text-base">Department</p>
-                        <span class="block text-sm mt-1 md:mt-2">HR & Corporate Sustainability</span>
+                        <span class="block text-sm mt-1 md:mt-2">{{ staff.department }}</span>
                         <p class="font-semibold mt-2 text-sm md:text-base">Email</p>
-                        <span class="block text-sm">christineadolwa@isuzu.co.ke</span>
+                        <span class="block text-sm">{{ staff.email }}</span>
                     </div>
 
                     <!-- Centered Button -->
-                    <button class="mt-6 py-1 px-4 w-full border font-semibold rounded-lg">Edit your profile</button>
+                    <button class="mt-6 py-1 px-4 mb-2 border-color w-full border font-semibold rounded-lg">Edit your profile</button>
+
                 </div>
             </div>
 
 
 
             <!-- Right Section (Cards) -->
-            <div class="w-full lg:w-3/4 space-y-6">
+            <div class="w-full lg:w-3/4 space-y-6 text-color">
 
                 <!-- Goals Analysis and IDP Analysis -->
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Goals Analysis Card -->
-                        <div class="dashboard-cards rounded-xl p-4 bg-white mt-2 ">
+                        <div class="dashboard-cards rounded-xl p-4 mt-2 ">
                             <!-- Header -->
                             <h3 class="font-semibold text-lg md:text-xl mb-4 card-heading">Goals Analysis</h3>
 
@@ -284,10 +324,10 @@
                                             :key="item.id"
                                             class="flex items-center mb-2"
                                     >
-            <span
-                    class="inline-block w-3 h-3 rounded-full mr-2"
-                    :style="{ backgroundColor: item.color }"
-            ></span>
+                                    <span
+                                            class="inline-block w-3 h-3 rounded-full mr-2"
+                                            :style="{ backgroundColor: item.color }"
+                                    ></span>
                                         {{ item.label }}
                                     </li>
                                 </ul>
@@ -322,20 +362,20 @@
                                     </svg>
 
                                     <!-- Center Text -->
-                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center space-y-1">
-            <span class="text-lg font-bold text-gray-800">
-              {{ goalAnalysisData[0].percentage }}%
-            </span>
-                                        <span class="text-sm text-gray-600">
-              {{ goalAnalysisData[0].label }}
-            </span>
+                                    <div class="goal-chat absolute inset-0 flex flex-col items-center justify-center text-center space-y-1">
+                                        <span class="text-2xl font-bold">
+                                        {{ goalAnalysisData[0].percentage }}%
+                                        </span>
+                                        <span class="text-xs">
+                                        {{ goalAnalysisData[0].label }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- IDP Analysis Card -->
-                        <div class="dashboard-cards rounded-xl p-4 bg-white mt-2 ">
+                        <div class="dashboard-cards rounded-xl p-4 mt-2 ">
                             <!-- Header -->
                             <h3 class="font-semibold text-lg md:text-xl mb-4 card-heading">IDP Analysis</h3>
 
@@ -386,13 +426,13 @@
                                     </svg>
 
                                     <!-- Center Text -->
-                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center space-y-1">
-            <span class="text-lg font-bold text-gray-800">
-              {{ idpAnalysisData[0].percentage }}%
-            </span>
-                                        <span class="text-sm text-gray-600">
-              {{ idpAnalysisData[0].label }}
-            </span>
+                                    <div class="idp-chart absolute inset-0 flex flex-col items-center justify-center text-center space-y-1">
+                                        <span class="text-2xl font-bold">
+                                        {{ idpAnalysisData[0].percentage }}%
+                                        </span>
+                                        <span class="text-xs">
+                                        {{ idpAnalysisData[0].label }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -406,25 +446,28 @@
 
                     <!-- Supervisor Feedback Card -->
                     <!-- Supervisor Feedback Card -->
-                    <div class="dashboard-cards rounded-xl p-4 bg-white mt-2">
+                    <div class="dashboard-cards rounded-xl p-4 mt-2">
                         <!-- Header -->
                         <h3 class="font-semibold text-lg md:text-xl mb-4 card-heading">Supervisor Feedback</h3>
 
                         <!-- Flex Container for List and Circular Chart -->
                         <div class="flex items-start space-x-6">
                             <!-- List of Legend Items -->
-                            <ul class="flex-1 text-sm">
+                            <ul class="flex-1 text-sm mt-4">
                                 <li
                                         v-for="item in feedbackAnalysisData"
                                         :key="item.id"
-                                        class="flex items-center mb-2"
+                                        class="supervisor-chat flex items-center mb-2"
                                 >
-                <span
-                        class="inline-block w-3 h-3 rounded-full mr-2"
-                        :style="{ backgroundColor: item.color }"
-                ></span>
+                                <span
+                                        class="inline-block w-3 h-3 rounded-full mr-2"
+                                        :style="{ backgroundColor: item.color }"
+                                ></span>
                                     {{ item.label }}
                                 </li>
+
+                                <button class="mt-8 border-color text-base border-2 w-28 p-1 rounded-lg">Review</button>
+
                             </ul>
 
                             <!-- Circular Progress Chart -->
@@ -432,7 +475,7 @@
                                 <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                                     <!-- Background Circle -->
                                     <circle
-                                            class="text-gray-200"
+                                            class=""
                                             cx="18"
                                             cy="18"
                                             r="15.9155"
@@ -457,13 +500,13 @@
                                 </svg>
 
                                 <!-- Center Text -->
-                                <div class="absolute inset-0 flex flex-col items-center justify-center text-center space-y-1">
-                <span class="text-lg font-bold text-gray-800">
-                    {{ feedbackAnalysisData[0].percentage }}%
-                </span>
-                                    <span class="text-sm text-gray-600">
-                    {{ feedbackAnalysisData[0].label }}
-                </span>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center text-center supervisor-chat">
+                                    <span class="text-2xl font-bold">
+                                        {{ feedbackAnalysisData[0].percentage }}%
+                                    </span>
+                                    <span class="text-xs">
+                                        {{ feedbackAnalysisData[0].label }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -471,15 +514,15 @@
 
 
 
-                    <div class="dashboard-cards rounded-xl p-4 bg-white mt-2">
+                    <div class="dashboard-cards rounded-xl p-4 mt-2">
 
-                        <div class="bg-white h-full p-4 rounded mt-2">
+                        <div class="h-full p-4 rounded mt-2">
 
                             <div class="flex justify-between">
 
-                                <h3 class="font-semibold text-lg md:text-xl relative card-heading">Updates</h3>
+                                <h3 class="font-semibold text-lg md:text-xl mb-4 card-heading text-color">Updates</h3>
 
-                                <div class="icon">
+                                <div class="dashboard-icon">
 
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-12 h-12">
 
@@ -499,7 +542,7 @@
 
                             </ul>
 
-                            <button class="mt-6 border-2 w-28 rounded-lg">Review</button>
+                            <button class="border-2 border-color mt-4 p-1 w-28 rounded-lg">Review</button>
 
                         </div>
 
@@ -525,11 +568,11 @@
 
                 <img class="rounded-full w-14 h-14 md:w-16 md:h-16" src="https://via.placeholder.com/50" alt="Supervisor Image">
 
-                <div class="ml-4">
+                <div v-for="supervisor.name" class="ml-4">
 
-                    <p class="font-bold text-base md:text-lg">Lorna Muthoni</p>
+                    <p class="font-bold text-base md:text-lg">{{ supervisor.name }}</p>
 
-                    <span class="text-sm">Human Resource</span>
+                    <span class="text-sm">{{ supervisor.department }}</span>
 
                 </div>
 
@@ -543,6 +586,25 @@
         createApp({
             data() {
                 return {
+
+                    staff: {
+
+                            id: 1,
+                            name: 'Christine Adolwa',
+                            responsibility: 'Human Resource',
+                            department: 'HR & Corporate Sustainability',
+                            email: 'christineadolwa@isuzu.co.ke'
+                        },
+
+                    supervisor: {
+
+                            user_id: 1,
+                            name: 'Lorna Muthoni',
+                            department: 'Human Resource',
+
+                        },
+                    
+
                     // Goals Analysis Data
                     goalAnalysisData: [
                         {
