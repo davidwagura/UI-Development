@@ -94,7 +94,7 @@
 
         .goal-tabs .section{
 
-            max-height: 17rem;
+            max-height: 20rem;
 
         }
 
@@ -530,7 +530,7 @@
                 </nav>
 
                 <!-- Goal Details -->
-                <div class="goal-details w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0">
+                <div class="goal-details w-full md:max-h-64 sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0">
                     
                     <div v-if="selectedGoal !== null" class="goal-content">
                     
@@ -563,7 +563,7 @@
                 </div>
 
                 <!-- Summary Section -->
-                <div class="summary-section border w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0">
+                <div class="summary-section md:max-h-64 border w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0">
                 
                     <h2 class="title font-semibold text-center p-2">Goal Summary</h2>
                 
@@ -598,7 +598,7 @@
         </div>
         
         <!-- Comments Section -->
-        <div class="comment-section shadow-lg rounded-xl p-4 mt-12">
+        <div class="comment-section shadow-lg rounded-xl p-4 mt-12 md:mt-0">
 
             <!-- Tabs -->
             <ul class="max-w-auto w-full sm:w-1/4 flex justify-start space-x-4 p-1 rounded">
