@@ -217,12 +217,11 @@
 
         }
 
-        /* .select {
+        .delete-button {
 
-            width: 12rem;
+            color: #b70101;
 
-        } */
-
+        }
     </style>
 
     <body id="app" class="m-4">
@@ -358,7 +357,7 @@
                             </div>
 
                             <!-- Right side: SVG with actions (Edit, Delete) -->
-                            <div class="relative ml-auto">
+                            <div class="relative ml-auto text-color">
                                 <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         class="h-6 w-6 cursor-pointer"
@@ -383,7 +382,7 @@
                                     <ul class="py-2 text-sm text-gray-700 divide-y">
                                         <!-- Edit option -->
                                         <li
-                                                class="flex items-center px-4 hover:bg-gray-100 rounded cursor-pointer"
+                                                class="flex items-center px-4 rounded cursor-pointer"
                                                 @click="editGoal"
                                         >
                                             <svg
@@ -392,10 +391,11 @@
                                                     viewBox="0 0 21 20"
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
+                                                    class="text-color"
                                             >
                                                 <path
                                                         d="M0.400391 15.1556V19.1025H4.65087L17.187 7.46182L12.9365 3.51495L0.400391 15.1556ZM3.7101 16.9975H2.66731V16.0292L12.9365 6.49352L13.9793 7.46182L3.7101 16.9975ZM20.474 2.92555L17.8217 0.462696C17.595 0.252196 17.3116 0.157471 17.0169 0.157471C16.7222 0.157471 16.4389 0.262721 16.2235 0.462696L14.1493 2.38877L18.3998 6.33565L20.474 4.40957C20.916 3.9991 20.916 3.33602 20.474 2.92555Z"
-                                                        fill="#9F9F9F"
+                                                        fill="currentColor"
                                                 ></path>
                                             </svg>
                                             <span class="block px-4 py-2">Edit</span>
@@ -403,7 +403,7 @@
 
                                         <!-- Delete option -->
                                         <li
-                                                class="flex items-center px-4 hover:bg-gray-100 rounded cursor-pointer"
+                                                class="flex items-center px-4 delete-button rounded cursor-pointer"
                                                 @click="deleteGoal"
                                         >
                                             <svg
@@ -412,10 +412,11 @@
                                                     viewBox="0 0 16 20"
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
+                                            
                                             >
                                                 <path
                                                         d="M1.13103 17.7948C1.13103 19.0062 2.12216 19.9973 3.33353 19.9973H12.1435C13.3549 19.9973 14.346 19.0062 14.346 17.7948V4.5798H1.13103V17.7948ZM3.33353 6.7823H12.1435V17.7948H3.33353V6.7823ZM11.5929 1.27605L10.4917 0.174805H4.98541L3.88416 1.27605H0.0297852V3.47855H15.4473V1.27605H11.5929Z"
-                                                        fill="#9F9F9F"
+                                                        fill="currentColor"
                                                 ></path>
                                             </svg>
                                             <span class="block px-4 py-2">Delete</span>
