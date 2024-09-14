@@ -92,7 +92,7 @@
 
         .goal-tabs .section{
 
-            max-height: 17rem;
+            max-height: 20rem;
 
         }
 
@@ -332,7 +332,7 @@
         <!-- My Business Goals Section -->
         <div class="business-goals flex-col flex sm:flex-row sm:justify-between sm:items-center my-4 ">
 
-            <div class="text-xl font-semibold">My business goals</div>
+            <div class="text-xl font-semibold text-color">My business goals</div>
 
             <nav class="space-x-4 text-sm flex mt-2 sm:mt-0">
 
@@ -376,7 +376,7 @@
 
         <div>
 
-            <div class="flex flex-col sm:flex-row sm:space-x-4">
+            <div class="flex flex-col sm:flex-row md:space-x-6">
 
                 <!-- Goals Tabs -->
                 <nav class="goal-tabs w-full sm:w-1/4 pr-4">
@@ -510,7 +510,7 @@
                 </nav>
 
                 <!-- Goal Details -->
-                <div class="goal-details w-full sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0">
+                <div class="goal-details w-full sm:w-3/4 p-4 md:max-h-64 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0">
                     
                     <div v-if="selectedGoal !== null" class="goal-content">
                     
@@ -543,7 +543,7 @@
                 </div>
 
                 <!-- Summary Section -->
-                <div class="summary-section border w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0">
+                <div class="summary-section border md:max-h-64 w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0">
                 
                     <h2 class="title font-semibold text-center p-2">Goal Summary</h2>
                 
@@ -578,18 +578,21 @@
         </div>
         
         <!-- Comments Section -->
-        <div class="comment-section shadow-lg rounded-xl p-4 mt-12">
+        <div class="comment-section shadow-lg rounded-xl p-4 mt-12 md:mt-0">
 
             <div class="text-color">
 
-                <div class="flex tab-content border-b border-color p-4">
+                <div class="flex md:flex-row tab-content border-b border-color p-4">
 
-                    <input type="checkbox" class=" color">
-
-                    <p class="ml-2">By checking you confirm that the discussion between you and supervisor happened on <span>{{ currentDate }}</span></p>
-
+                    <input type="checkbox" class="color mb-2 md:mb-0">
+                
+                    <p class="ml-2 md:ml-2 text-sm md:text-base">
+                        By checking you confirm that the discussion between you and the supervisor happened on 
+                        <span>{{ currentDate }}</span>
+                    </p>
+                
                 </div>
-
+                
                 <div class="text-color mt-4">
 
                     <div>
@@ -744,6 +747,12 @@
         
                 },
                 
+                mounted() {
+        
+                    this.initializeQuillEditor();
+
+                },
+
                 methods: {
                         
                     submitGoal() {
@@ -776,7 +785,30 @@
                         const yyyy = today.getFullYear();
 
                         return dd + '/' + mm + '/' + yyyy; // Format: DD/MM/YYYY
-                    }
+                    },
+
+                    initializeQuillEditor() {
+                        this.$nextTick(() => { // Ensure the DOM is updated before initializing
+                            const editorContainer = document.querySelector('.quill-editor'); // Target correct element
+                            if (editorContainer) {
+                                if (this.quillInstance) {
+                                    this.quillInstance = null; // Destroy previous instance
+                                    editorContainer.innerHTML = ''; // Clear editor container
+                                }
+                                this.quillInstance = new Quill(editorContainer, {
+                                    theme: 'snow',
+                                    modules: {
+                                        toolbar: [
+                                            ['bold', 'italic', 'underline'],
+                                            [{'list': 'ordered'}, {'list': 'bullet'}],
+                                            ['link']
+                                        ]
+                                    }
+                                }); // Load selected goal metrics
+                            }
+                        });
+                    },
+
 
                 },
 
