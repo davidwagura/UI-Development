@@ -610,9 +610,9 @@
             <div v-if="showModal" class="modal-overlay"></div>
 
             <!-- Add Goal Modal -->
-            <div v-if="showModal && modalType === 'add'" class="modal fixed inset-y-0 left-0 w-full max-w-md bg-white rounded-lg shadow-lg flex flex-col">
+            <div v-if="showModal && modalType === 'add'" class="modal fixed inset-x-0 bottom-0 h-full max-w-md bg-white rounded-t-lg shadow-lg flex flex-col">
                 <!-- Modal Content -->
-                <div class="h-full flex flex-col">
+                <div class="flex flex-col h-full">
                     <!-- Header -->
                     <div class="gray-background p-4 border-b border-color flex items-center justify-between bg-white sticky top-0 z-10">
                         <div>
@@ -627,66 +627,41 @@
                         </button>
                     </div>
                     <!-- Content -->
-
-                    <div class="p-4 overflow-auto border m-4 rounded-lg">
+                    <div class="p-4 overflow-auto flex-grow">
                         <!-- Business Goal Section -->
                         <div class="mb-4">
                             <h3 class="font-medium mb-2">Business Goal</h3>
                             <textarea v-model="newGoalTitle" class="w-full border rounded-lg p-2" placeholder="Enter the business goal"></textarea>
                         </div>
                         <!-- Business Metric Section -->
-                        <div class="m-1 border gray-background p-4 rounded-lg ">
+                        <div class="m-1 border gray-background p-4 rounded-lg">
                             <h3 class="font-medium mb-2">Business Metric</h3>
-
                             <div class="flex items-center space-x-2 w-full sm:w-auto">
-
                                 <textarea v-model="newGoalMetrics" class="w-full border rounded-lg p-2 mb-4" placeholder="Enter the business metrics"></textarea>
-
                                 <button type="button" @click="cancelComment" class="flex items-center justify-center w-9 h-9 bg-red-600 rounded-md hover:bg-red-700">
-    
                                     <div class="flex items-center justify-center w-5 h-5 border-2 border-white rounded-full">
-    
-                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            
-                                        </svg>
-                
-                                    </div>
-        
-                                </button>
-                            </div>
-
-
-                            <div class="flex items-center space-x-2 w-full sm:w-auto">
-
-                                <textarea v-model="newGoalMetrics" class="w-full border rounded-lg p-2 mb-4" placeholder="Enter the business metrics"></textarea>
-
-                                <button type="button" @click="cancelComment" class="flex items-center justify-center w-9 h-9 bg-green-600 rounded-md hover:bg-green-700">
-    
-                                    <div class="flex items-center justify-center w-5 h-5 border-2 border-white rounded-full">
-    
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7H5"/>
-            
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                         </svg>
-            
                                     </div>
-        
                                 </button>
-
                             </div>
-
+                            <div class="flex items-center space-x-2 w-full sm:w-auto">
+                                <textarea v-model="newGoalMetrics" class="w-full border rounded-lg p-2 mb-4" placeholder="Enter the business metrics"></textarea>
+                                <button type="button" @click="cancelComment" class="flex items-center justify-center w-9 h-9 bg-green-600 rounded-md hover:bg-green-700">
+                                    <div class="flex items-center justify-center w-5 h-5 border-2 border-white rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7H5"></path>
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
                         </div>
-
                     </div>
-
                     <div class="flex items-center mb-4 ml-2">
                         <input type="checkbox" id="cascade" class="mr-2">
-                        <label for="cascade" >By checking here, you agree the goal to cascade to all reportees</label>
+                        <label for="cascade">By checking here, you agree the goal to cascade to all reportees</label>
                     </div>
-
                     <!-- Footer -->
                     <div class="footer p-4 border-t border-color flex justify-end space-x-4 bg-white">
                         <button @click="saveDraft" class="btn1 px-4 py-2 border border-color rounded-lg">Save Draft</button>
@@ -696,13 +671,13 @@
             </div>
 
             <!-- Edit Goal Modal -->
-            <div v-if="showModal && modalType === 'edit'" class="modal fixed inset-y-0 left-0 w-full max-w-md bg-white rounded-lg shadow-lg flex flex-col">
+            <div v-if="showModal && modalType === 'edit'" class="modal fixed inset-x-0 bottom-0 h-full max-w-md bg-white rounded-t-lg shadow-lg flex flex-col">
                 <!-- Modal Content -->
-                <div class="h-full flex flex-col">
+                <div class="flex flex-col h-full">
                     <!-- Header -->
                     <div class="gray-background p-4 border-b flex items-center justify-between bg-white sticky top-0 z-10">
                         <div>
-                            <h1 class="text-xl font-bold">Edit business goal</h1>
+                            <h1 class="text-xl font-bold">Edit Business Goal</h1>
                             <p class="text-sm">You can edit business goal or business metrics</p>
                         </div>
                         <!-- Close Button -->
@@ -713,71 +688,48 @@
                         </button>
                     </div>
                     <!-- Content -->
-                    <div class="p-4 overflow-auto border m-4 rounded-lg">
+                    <div class="p-4 overflow-auto flex-grow">
                         <!-- Business Goal Section -->
                         <div class="mb-4">
                             <h3 class="font-medium mb-2">Business Goal</h3>
                             <textarea v-model="editGoalTitle" class="w-full border rounded-lg p-2" placeholder="Update the business goal"></textarea>
                         </div>
                         <!-- Business Metric Section -->
-                        <div class="m-1 border gray-background p-4 rounded-lg ">
+                        <div class="m-1 border gray-background p-4 rounded-lg">
                             <h3 class="font-medium mb-2">Business Metric</h3>
-
                             <div class="flex items-center space-x-2 w-full sm:w-auto">
-
                                 <textarea v-model="editGoalMetrics" class="w-full border rounded-lg p-2 mb-2" placeholder="Update the business metrics"></textarea>
-
                                 <button type="button" @click="cancelComment" class="flex items-center justify-center w-9 h-9 bg-red-600 rounded-md hover:bg-red-700">
-    
                                     <div class="flex items-center justify-center w-5 h-5 border-2 border-white rounded-full">
-    
-                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            
-                                        </svg>
-                
-                                    </div>
-        
-                                </button>
-                            </div>
-
-
-                            <div class="flex items-center space-x-2 w-full sm:w-auto">
-
-                                <textarea v-model="editGoalMetrics" class="w-full border rounded-lg p-2 mb-4" placeholder="Update the business metrics"></textarea>
-
-                                <button type="button" @click="cancelComment" class="flex items-center justify-center w-9 h-9 bg-green-600 rounded-md hover:bg-green-700">
-    
-                                    <div class="flex items-center justify-center w-5 h-5 border-2 border-white rounded-full">
-    
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7H5"/>
-            
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                         </svg>
-            
                                     </div>
-        
                                 </button>
-
                             </div>
-
+                            <div class="flex items-center space-x-2 w-full sm:w-auto">
+                                <textarea v-model="editGoalMetrics" class="w-full border rounded-lg p-2 mb-4" placeholder="Update the business metrics"></textarea>
+                                <button type="button" @click="cancelComment" class="flex items-center justify-center w-9 h-9 bg-green-600 rounded-md hover:bg-green-700">
+                                    <div class="flex items-center justify-center w-5 h-5 border-2 border-white rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7H5"></path>
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
                         </div>
-
-                    </div>
-
-                    <div class="m-2">
-
-                        <h3 class="font-medium text-lg">Goal status</h3>
-                        <select v-model="selectedStatus" class="block p-2 w-full border border-gray-300 rounded-md">
-                            <option v-for="oneStatus in status" :key="oneStatus" :value="oneStatus">{{ oneStatus }}</option>
-                          </select>
+                        <!-- Goal Status Section -->
+                        <div class="m-2">
+                            <h3 class="font-medium text-lg">Goal Status</h3>
+                            <select v-model="selectedStatus" class="block p-2 w-full border border-gray-300 rounded-md">
+                                <option v-for="oneStatus in status" :key="oneStatus" :value="oneStatus">{{ oneStatus }}</option>
+                            </select>
+                        </div>
                     </div>
                     <!-- Footer -->
-                    <div class="flex flex-2 footer p-4 border-t border-color flex justify-end space-x-4 bg-white">
-                        <button @click="discardChanges" class="btn1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Save draft</button>
-                        <button @click="updateGoal" class="btn2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Update final</button>
+                    <div class="footer p-4 border-t border-color flex justify-end space-x-4 bg-white">
+                        <button @click="discardChanges" class="btn1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Save Draft</button>
+                        <button @click="updateGoal" class="btn2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Update Final</button>
                     </div>
                 </div>
             </div>
