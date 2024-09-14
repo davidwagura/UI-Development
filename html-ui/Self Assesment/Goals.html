@@ -21,9 +21,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" ></script>
 
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        
-        <link rel="stylesheet" href="./styles.css">
-
     </head>
 
     <style>
@@ -178,77 +175,27 @@
             color: #ffffff;
 
         }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
 
         .modal {
-
-            position: fixed;
-
-            top: 0;
-
-            left: -100%;
-
-            width: 400px;
-
-            height: 100%;
-
-            background-color: #fefeff;
-
-            box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
-
-            transition: left 0.3s ease;
-
-            z-index: 1000;
-
+            z-index: 1001;
+            transition: opacity 0.3s ease;
         }
-        
+
         .modal.show {
-
-            left: 0;
-
-        }
-        
-        .modal-overlay {
-
-            position: fixed;
-
-            top: 0;
-
-            left: 0;
-
-            width: 100%;
-
-            height: 100%;
-
-            background-color: rgba(0, 0, 0, 0.5);
-
-            display: none;
-
-            z-index: 999;
-            
-        }
-        
-        .modal-content {
-
-            max-height: 100vh;
-
+            opacity: 1;
         }
 
         .modal-overlay.show {
-
             display: block;
-
-        }
-        
-        .modal-content .title {
-
-            background-color: #eff1f1;
-
-        }
-        
-        .modal-content .metric {
-
-            background-color: #f2f2f2;
-
         }
 
         .footer .btn1 {
@@ -374,117 +321,6 @@
 
                     <!-- modal -->
                     <div v-if="showModal" class="modal-overlay show" @click="showModal = false"></div>
-
-                    <div>
-                        <!-- Overlay -->
-                        <div :class="{ 'modal-overlay': true, 'show': showModal }"></div>
-                    
-                        <!-- Modal -->
-                        <div :class="{ 'modal': true, 'show': showModal }">
-
-                            <!-- Close Button -->
-                            <button @click="showModal = false" class="absolute top-4 right-2 text-gray-500 hover:text-gray-700">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                
-                                </svg>
-
-                            </button>
-                        
-                            <!-- Title and Description -->
-                            <div class="modal-content overflow-y-auto">
-                                
-                                <div class="title p-4 border-b">
-
-                                    <h1 class="text-lg font-bold">Add business goal</h1>
-
-                                    <p class="text-sm text-gray-500">Create a Business goal and add relevant business metrics</p>
-
-                                </div>
-                    
-                                <!-- Content -->
-                                <div class="p-6 border rounded-lg shadow-lg mt-4 m-4">
-
-                                    <!-- Business Goal Section -->
-                                    <div>
-
-                                        <h3 class="font-medium">Business goal</h3>
-
-                                        <!-- <div v-model="newGoalTitle" class="quill-editor border rounded p-2 mt-2"></div> -->
-
-                                        <textarea v-modal="newGoalTitle" class="w-full border rounded-lg p-2"></textarea>
-
-
-                                    </div>
-                            
-                                    <!-- Business Metric Section -->
-                                    <div class="metric mt-4 border rounded-lg p-4">
-
-                                        <h3 class="font-medium">Business metric</h3>
-
-                                        <div class="items-center">
-
-                                            <!-- <div v-model="newGoalMetrics" class="quill-editor h-16 w-full rounded p-2 mt-2"></div> -->
-
-                                            <textarea v-modal="newGoalMetrics" class="w-full border rounded-lg p-2"></textarea>
-                                            
-                                            <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mx-2 flex justify-end" viewBox="0 0 20 20" fill="red">
-
-                                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                                            
-                                            </svg> -->
-
-                                        </div>
-                                          
-                                        <div class="items-center">
-
-                                            <!-- <div class="quill-editor p-2 mt-2" v-model="newGoalDescription"></div> -->
-
-                                            <!-- <div class="quill-editor"></div>
-
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mx-2" viewBox="0 0 20 20" fill="green">
-                                                
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                                              
-                                            </svg> -->
-
-                                        </div>
-                                        
-                                    </div>
-
-                                </div>
-
-                                <!-- Cascade Checkbox -->
-                                <div class="flex items-center m-6">
-
-                                    <input type="checkbox" id="cascade" class="mr-2">
-
-                                    <label for="cascade" class="text-sm">By checking here, you agree the goal to cascade to all reportees</label>
-
-                                </div>
-
-
-                                <hr class="mt-32 border-color">
-
-                        
-                                <!-- Footer Buttons -->
-                                <div class="footer p-4 flex justify-end space-x-6">
-
-                                    <button class="btn-1 px-4 py-2 border border-color rounded-lg">Save Draft</button>
-
-                                    <button @click="submitGoal" class="btn2 px-4 py-2 border rounded-lg">Add Final</button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
                     <div class="section overflow-y-auto space-y-2"> <!-- Set max-height -->
 
                         <a v-for="(goal, index) in goals" :key="goal.id" href="#" @click.prevent="selectedGoal = index" class="block rounded" :style="{ backgroundColor: selectedGoal === index ? '#40a8e1' : '#d5d9db', color: selectedGoal === index ? '#ffffff' : '#324d74' }">
@@ -702,6 +538,64 @@
 
                     </div>                           
 
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="relative">
+
+            <!-- Overlay -->
+            <div v-if="showModal" class="modal-overlay"></div>
+
+            <!-- Modal -->
+            <div v-if="showModal" class="modal fixed inset-y-0 left-0 w-full max-w-md bg-white rounded-lg shadow-lg flex flex-col">
+
+                <!-- Modal Content -->
+                <div class="h-full flex flex-col">
+
+                    <!-- Header -->
+                    <div class="p-4 border-b flex items-center justify-between bg-white sticky top-0 z-10">
+                        <div>
+                            <h1 class="text-xl font-bold">Add Business Goal</h1>
+                            <p class="text-sm text-gray-500">Create a Business goal and add relevant business metrics</p>
+                        </div>
+                        <!-- Close Button -->
+                        <button @click="showModal = false" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="flex-1 p-6 overflow-auto">
+                        <!-- Business Goal Section -->
+                        <div class="mb-4">
+                            <h3 class="font-medium mb-2">Business Goal</h3>
+                            <textarea v-model="newGoalTitle" class="w-full border rounded-lg p-2" placeholder="Enter the business goal"></textarea>
+                        </div>
+
+                        <!-- Business Metric Section -->
+                        <div>
+                            <h3 class="font-medium mb-2">Business Metric</h3>
+                            <textarea v-model="newGoalMetrics" class="w-full border rounded-lg p-2 mb-4" placeholder="Enter the business metrics"></textarea>
+                        </div>
+
+                        <!-- Cascade Checkbox -->
+                        <div class="flex items-center mb-4">
+                            <input type="checkbox" id="cascade" class="mr-2">
+                            <label for="cascade" class="text-sm">By checking here, you agree the goal to cascade to all reportees</label>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="p-4 border-t flex justify-end space-x-4 bg-white">
+                        <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Save Draft</button>
+                        <button @click="submitGoal" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Add Final</button>
+                    </div>
 
                 </div>
 
@@ -968,6 +862,5 @@
             }).mount('#app');
         </script>
     </body>
-    
 </html>
    
