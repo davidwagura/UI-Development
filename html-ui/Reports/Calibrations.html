@@ -309,7 +309,7 @@
                       <tr v-for="person in filteredStaff" :key="person.id" class="border-b">
                         <td class="py-4 px-4">
                           <div class="flex items-center space-x-4 mr-4">
-                            <img src="https://via.placeholder.com/100" class="h-24 w-24 rounded-full" alt="Profile">
+                            <img src="https://via.placeholder.com/100" class="h-20 w-20 rounded-full" alt="Profile">
                             <div class="w-screen sm:w-auto">
                               <span class="font-semibold text-sm">{{ person.name }}</span>
                               <div class="text-sm">{{ person.id }}</div>
@@ -364,16 +364,15 @@
                     selectedYear: 2024,
                     years: [2021, 2022, 2023, 2024],
                     boxes: [
-                        { id: 1, name: "Box 1", business_result: "Exceed Expectations", sustainability_behaviour: "Partially Achieves Expectation", color: "#ccd61c" },
-                        { id: 2, name: "Box 2", business_result: "Partially Achieves Expectation", sustainability_behaviour: "Achieves Expectation", color: "#fbff97" },
-                        { id: 3, name: "Box 3", business_result: "Partially Achieves Expectation", sustainability_behaviour: "Achieves Expectation", color: "#46fec9" },
-                        { id: 4, name: "Box 4", business_result: "Achieves Expectation", sustainability_behaviour: "Exceeds Expectation", color: "#f9d51c" },
-                        { id: 5, name: "Box 5", business_result: "Achieves Expectation", sustainability_behaviour: "Achieves Expectation", color: "#a2c9ff" },
-                        { id: 6, name: "Box 6", business_result: "Achieves Expectation", sustainability_behaviour: "Partially Achieves Expectation", color: "#fbd1d3" },
-                        { id: 7, name: "Box 7", business_result: "Exceeds Expectation", sustainability_behaviour: "Exceeds Expectation", color: "#dedfde" },
-                        
-                        { id: 8, name: "Box 8", business_result: "Achieves Expectation", sustainability_behaviour: "Partially Achieves Expectation", color: "#fbd1d3" },
-                        { id: 9, name: "Box 9", business_result: "Exceeds Expectation", sustainability_behaviour: "Exceeds Expectation", color: "#dedfde" },
+                        { id: 1, name: "Box 1", business_result: "Partially Achieves Expectation", sustainability_behaviour: "Partially Achieves Expectation", color: "#919301" },
+                        { id: 2, name: "Box 2", business_result: "Partially Achieves Expectation", sustainability_behaviour: "Achieves Expectation", color: "#c3bf16" },
+                        { id: 3, name: "Box 3", business_result: "Partially Achieves Expectation", sustainability_behaviour: "Exceeds Expectation", color: "#009940" },
+                        { id: 4, name: "Box 4", business_result: "Achieves Expectation", sustainability_behaviour: "Partially Achieves Expectation", color: "#e9a387" },
+                        { id: 5, name: "Box 5", business_result: "Achieves Expectation", sustainability_behaviour: "Achieves Expectation", color: "#7eabb5" },
+                        { id: 6, name: "Box 6", business_result: "Achieves Expectation", sustainability_behaviour: "Exceeds Expectation", color: "#d28f01" },
+                        { id: 7, name: "Box 7", business_result: "Exceeds Expectation", sustainability_behaviour: "Partially Achieves Expectation", color: "#d8b7e0" },
+                        { id: 8, name: "Box 8", business_result: "Exceeds Expectation", sustainability_behaviour: "Achieves Expectation", color: "#d3fe4f" },
+                        { id: 9, name: "Box 9", business_result: "Exceeds Expectation", sustainability_behaviour: "Exceeds Expectation", color: "#d1be9d" },
 
                     ],
                     staff_calibrations: [
@@ -398,7 +397,7 @@
                                     name: 'Collins Martin',
                                     department: 'Human Resource',
                                     responsibility: 'Corporate responsibility',
-                                    diversity: { age: 34, gender: 'Female' },
+                                    diversity: { age: 34, gender: 'Male' },
                                     supervisor: {
                                         name: 'Fredrick O. Waiske',
                                         id: '#95400-G',
@@ -424,29 +423,9 @@
                                     name: 'Paul Owuor',
                                     department: 'Human Resource',
                                     responsibility: 'Corporate responsibility',
-                                    diversity: { age: 34, gender: 'Female' },
+                                    diversity: { age: 34, gender: 'Male' },
                                     supervisor: {
                                         name: 'Collins K. Martin',
-                                        id: '#95400-G',
-                                        department: 'Human Resource',
-                                        responsibility: 'Corporate responsibility',
-                                    }
-                                },
-                            ]
-                        },
-
-
-                        {
-                            box_id: 1,
-                            staff: [
-                                {
-                                    id: '#95406-F',
-                                    name: 'Michael Musyoka',
-                                    department: 'Human Resource',
-                                    responsibility: 'Corporate responsibility',
-                                    diversity: { age: 34, gender: 'Female' },
-                                    supervisor: {
-                                        name: 'Lorna Muthoni',
                                         id: '#95400-G',
                                         department: 'Human Resource',
                                         responsibility: 'Corporate responsibility',
@@ -458,11 +437,11 @@
                             box_id: 2,
                             staff: [
                                 {
-                                    id: '#95406-F',
+                                    id: '#95408-F',
                                     name: 'Margaret Ndungu',
-                                    department: 'Human Resource',
-                                    responsibility: 'Corporate responsibility',
-                                    diversity: { age: 34, gender: 'Female' },
+                                    department: 'Finance',
+                                    responsibility: 'Financial analysis',
+                                    diversity: { age: 36, gender: 'Female' },
                                     supervisor: {
                                         name: 'Michael Musyoka',
                                         id: '#95400-G',
@@ -471,24 +450,37 @@
                                     }
                                 },
                                 {
-                                    id: '#95406-F',
-                                    name: 'Paul Owuor',
-                                    department: 'Human Resource',
-                                    responsibility: 'Corporate responsibility',
+                                    id: '#95409-F',
+                                    name: 'Seline Kioko',
+                                    department: 'Finance',
+                                    responsibility: 'Payroll management',
                                     diversity: { age: 34, gender: 'Female' },
                                     supervisor: {
-                                        name: 'Collins K. Martin',
+                                        name: 'Fredrick O. Waiske',
                                         id: '#95400-G',
                                         department: 'Human Resource',
                                         responsibility: 'Corporate responsibility',
                                     }
                                 },
                                 {
-                                    id: '#95406-F',
-                                    name: 'Michael Musyoka',
-                                    department: 'Human Resource',
-                                    responsibility: 'Corporate responsibility',
-                                    diversity: { age: 34, gender: 'Female' },
+                                    id: '#95410-F',
+                                    name: 'Hellen Wafula',
+                                    department: 'Finance',
+                                    responsibility: 'Budget planning',
+                                    diversity: { age: 35, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Paul Owuor',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95411-M',
+                                    name: 'Samson Karanja',
+                                    department: 'Finance',
+                                    responsibility: 'Audit',
+                                    diversity: { age: 38, gender: 'Male' },
                                     supervisor: {
                                         name: 'Lorna Muthoni',
                                         id: '#95400-G',
@@ -502,11 +494,11 @@
                             box_id: 3,
                             staff: [
                                 {
-                                    id: '#95898-H',
-                                    name: 'Samson Karanja',
-                                    department: 'Human Resource',
-                                    responsibility: 'Corporate responsibility',
-                                    diversity: { age: 38, gender: 'Female' },
+                                    id: '#95413-M',
+                                    name: 'Sospeter Ojamong',
+                                    department: 'IT',
+                                    responsibility: 'System administration',
+                                    diversity: { age: 32, gender: 'Male' },
                                     supervisor: {
                                         name: 'Lorna Muthoni',
                                         id: '#95400-G',
@@ -515,11 +507,24 @@
                                     }
                                 },
                                 {
-                                    id: '#94909-F',
-                                    name: 'Seline Kioko',
-                                    department: 'Human Resource',
-                                    responsibility: 'Corporate responsibility',
-                                    diversity: { age: 34, gender: 'Female' },
+                                    id: '#95414-F',
+                                    name: 'Karen Wangila',
+                                    department: 'IT',
+                                    responsibility: 'Network security',
+                                    diversity: { age: 29, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Paul Owuor',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95415-M',
+                                    name: 'Brian Kimani',
+                                    department: 'IT',
+                                    responsibility: 'Software development',
+                                    diversity: { age: 28, gender: 'Male' },
                                     supervisor: {
                                         name: 'Fredrick O. Waiske',
                                         id: '#95400-G',
@@ -528,13 +533,13 @@
                                     }
                                 },
                                 {
-                                    id: '#999007-F',
-                                    name: 'Hellen Wafula',
-                                    department: 'Human Resource',
-                                    responsibility: 'Corporate responsibility',
-                                    diversity: { age: 34, gender: 'Female' },
+                                    id: '#95416-M',
+                                    name: 'George Mwangi',
+                                    department: 'IT',
+                                    responsibility: 'Data management',
+                                    diversity: { age: 30, gender: 'Male' },
                                     supervisor: {
-                                        name: 'Paul Owuor',
+                                        name: 'Collins Martin',
                                         id: '#95400-G',
                                         department: 'Human Resource',
                                         responsibility: 'Corporate responsibility',
@@ -546,13 +551,52 @@
                             box_id: 4,
                             staff: [
                                 {
-                                    id: '#95898-H',
-                                    name: 'Sospeter Ojamong',
-                                    department: 'Human Resource',
-                                    responsibility: 'Corporate responsibility',
-                                    diversity: { age: 38, gender: 'Male' },
+                                    id: '#95418-F',
+                                    name: 'Alice Kamau',
+                                    department: 'Marketing',
+                                    responsibility: 'Brand management',
+                                    diversity: { age: 35, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Fredrick O. Waiske',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95419-M',
+                                    name: 'David Mwangi',
+                                    department: 'Marketing',
+                                    responsibility: 'Market research',
+                                    diversity: { age: 31, gender: 'Male' },
+                                    supervisor: {
+                                        name: 'Michael Musyoka',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95420-F',
+                                    name: 'Sandra Mutua',
+                                    department: 'Marketing',
+                                    responsibility: 'Digital marketing',
+                                    diversity: { age: 29, gender: 'Female' },
                                     supervisor: {
                                         name: 'Lorna Muthoni',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95421-M',
+                                    name: 'John Onyango',
+                                    department: 'Marketing',
+                                    responsibility: 'Content creation',
+                                    diversity: { age: 34, gender: 'Male' },
+                                    supervisor: {
+                                        name: 'Collins Martin',
                                         id: '#95400-G',
                                         department: 'Human Resource',
                                         responsibility: 'Corporate responsibility',
@@ -564,13 +608,110 @@
                             box_id: 5,
                             staff: [
                                 {
-                                    id: '#95898-H',
-                                    name: 'Karen Wangila',
-                                    department: 'Human Resource',
-                                    responsibility: 'Corporate responsibility',
-                                    diversity: { age: 38, gender: 'Female' },
+                                    id: '#95423-M',
+                                    name: 'Thomas Kinyua',
+                                    department: 'Operations',
+                                    responsibility: 'Logistics management',
+                                    diversity: { age: 33, gender: 'Male' },
                                     supervisor: {
                                         name: 'Lorna Muthoni',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95424-F',
+                                    name: 'Diana Waithera',
+                                    department: 'Operations',
+                                    responsibility: 'Supply chain',
+                                    diversity: { age: 30, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Fredrick O. Waiske',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95425-M',
+                                    name: 'Joseph Kilonzo',
+                                    department: 'Operations',
+                                    responsibility: 'Fleet management',
+                                    diversity: { age: 34, gender: 'Male' },
+                                    supervisor: {
+                                        name: 'Collins Martin',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95426-F',
+                                    name: 'Ann Ndungu',
+                                    department: 'Operations',
+                                    responsibility: 'Procurement',
+                                    diversity: { age: 32, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Michael Musyoka',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                            ]
+                        },
+
+                        {
+                            box_id: 6,
+                            staff: [
+                                {
+                                    id: '#95428-F',
+                                    name: 'Faith Chebet',
+                                    department: 'Legal',
+                                    responsibility: 'Compliance management',
+                                    diversity: { age: 39, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Michael Musyoka',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95429-M',
+                                    name: 'Kevin Otieno',
+                                    department: 'Legal',
+                                    responsibility: 'Contract review',
+                                    diversity: { age: 42, gender: 'Male' },
+                                    supervisor: {
+                                        name: 'Lorna Muthoni',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95430-F',
+                                    name: 'Eunice Wanjiru',
+                                    department: 'Legal',
+                                    responsibility: 'Risk management',
+                                    diversity: { age: 36, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Fredrick O. Waiske',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95431-M',
+                                    name: 'Patrick Kimutai',
+                                    department: 'Legal',
+                                    responsibility: 'Dispute resolution',
+                                    diversity: { age: 40, gender: 'Male' },
+                                    supervisor: {
+                                        name: 'Paul Owuor',
                                         id: '#95400-G',
                                         department: 'Human Resource',
                                         responsibility: 'Corporate responsibility',
@@ -579,14 +720,14 @@
                             ]
                         },
                         {
-                            box_id: 6,
+                            box_id: 7,
                             staff: [
                                 {
-                                    id: '#95898-H',
-                                    name: 'Ruth Kirubi',
-                                    department: 'Human Resource',
-                                    responsibility: 'Corporate responsibility',
-                                    diversity: { age: 38, gender: 'Female' },
+                                    id: '#95433-M',
+                                    name: 'Victor Mwema',
+                                    department: 'Procurement',
+                                    responsibility: 'Supplier management',
+                                    diversity: { age: 39, gender: 'Male' },
                                     supervisor: {
                                         name: 'Lorna Muthoni',
                                         id: '#95400-G',
@@ -594,8 +735,161 @@
                                         responsibility: 'Corporate responsibility',
                                     }
                                 },
+                                {
+                                    id: '#95434-F',
+                                    name: 'Brenda Achieng',
+                                    department: 'Procurement',
+                                    responsibility: 'Purchase order management',
+                                    diversity: { age: 33, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Paul Owuor',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95435-F',
+                                    name: 'Joy Muthoni',
+                                    department: 'Procurement',
+                                    responsibility: 'Inventory management',
+                                    diversity: { age: 32, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Michael Musyoka',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95436-M',
+                                    name: 'Felix Njenga',
+                                    department: 'Procurement',
+                                    responsibility: 'Vendor negotiation',
+                                    diversity: { age: 37, gender: 'Male' },
+                                    supervisor: {
+                                        name: 'Fredrick O. Waiske',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
                             ]
                         },
+                        {
+                            box_id: 8,
+                            staff: [
+                                {
+                                    id: '#95438-M',
+                                    name: 'Anthony Waweru',
+                                    department: 'Sales',
+                                    responsibility: 'Client acquisition',
+                                    diversity: { age: 31, gender: 'Male' },
+                                    supervisor: {
+                                        name: 'Paul Owuor',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95439-F',
+                                    name: 'Sophia Khamisi',
+                                    department: 'Sales',
+                                    responsibility: 'Product promotion',
+                                    diversity: { age: 29, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Lorna Muthoni',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95440-M',
+                                    name: 'Isaac Njoroge',
+                                    department: 'Sales',
+                                    responsibility: 'Lead generation',
+                                    diversity: { age: 34, gender: 'Male' },
+                                    supervisor: {
+                                        name: 'Fredrick O. Waiske',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95441-F',
+                                    name: 'Violet Mutiso',
+                                    department: 'Sales',
+                                    responsibility: 'Customer relations',
+                                    diversity: { age: 33, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Michael Musyoka',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                            ]
+                        },
+                        {
+                            box_id: 9,
+                            staff: [
+                                {
+                                    id: '#95443-F',
+                                    name: 'Nancy Karanja',
+                                    department: 'Customer Service',
+                                    responsibility: 'Customer support',
+                                    diversity: { age: 28, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Paul Owuor',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95444-M',
+                                    name: 'Julius Wekesa',
+                                    department: 'Customer Service',
+                                    responsibility: 'Complaint resolution',
+                                    diversity: { age: 32, gender: 'Male' },
+                                    supervisor: {
+                                        name: 'Fredrick O. Waiske',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95445-F',
+                                    name: 'Susan Mutua',
+                                    department: 'Customer Service',
+                                    responsibility: 'Service quality assurance',
+                                    diversity: { age: 29, gender: 'Female' },
+                                    supervisor: {
+                                        name: 'Lorna Muthoni',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                                {
+                                    id: '#95446-M',
+                                    name: 'Stephen Mwangi',
+                                    department: 'Customer Service',
+                                    responsibility: 'Client onboarding',
+                                    diversity: { age: 34, gender: 'Male' },
+                                    supervisor: {
+                                        name: 'Michael Musyoka',
+                                        id: '#95400-G',
+                                        department: 'Human Resource',
+                                        responsibility: 'Corporate responsibility',
+                                    }
+                                },
+                            ]
+                        }   
                     ]
                 };
             },
