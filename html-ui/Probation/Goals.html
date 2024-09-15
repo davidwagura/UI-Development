@@ -16,6 +16,8 @@
 
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" ></script>
+
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -62,12 +64,6 @@
 
         }
 
-        .icon {
-
-            color: #8291a6;
-
-        }
-
         .active-tab {
 
             color: #40a8e1;
@@ -78,9 +74,10 @@
 
         .text-color {
 
-            color: #2f4870;
+            color: #3a4c74;
 
         }
+
 
         .goal-tabs a{
 
@@ -115,9 +112,11 @@
         }
 
 
-        .goal-details span{
+        .goal-status span{
 
-            background-color: #e8e097;
+            background-color: #fcffd0;
+
+            color: #ddd964;
 
         }
 
@@ -181,90 +180,54 @@
 
         }
 
-        .modal {
-
-            position: fixed;
-
-            top: 0;
-
-            left: -100%;
-
-            width: 400px;
-
-            height: 100%;
-
-            background-color: #fefeff;
-
-            box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
-
-            transition: left 0.3s ease;
-
-            z-index: 1000;
-
-        }
-        
-        .modal.show {
-
-            left: 0;
-
-        }
-        
         .modal-overlay {
-
             position: fixed;
-
             top: 0;
-
             left: 0;
-
-            width: 100%;
-
-            height: 100%;
-
-            background-color: rgba(0, 0, 0, 0.5);
-
-            display: none;
-
-            z-index: 999;
-            
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
         }
-        
-        .modal-content {
 
-            max-height: 100vh;
+        .modal {
+            z-index: 1001;
+            transition: opacity 0.3s ease;
+        }
 
+        .modal.show {
+            opacity: 1;
         }
 
         .modal-overlay.show {
-
             display: block;
-
-        }
-        
-        .modal-content .title {
-
-            background-color: #eff1f1;
-
         }
 
-        
-        .modal-content h1,
+        .footer .btn1 {
 
-        .modal-content h3 {
+            border-color: #92a3b6;
 
-            color: #344b70;
+            background-color: #fefeff;
+                
+        }
+
+        .footer .btn2 {
+
+            background-color: #43a6e1;
+
+            color: #FFFFFF;
 
         }
-        
-        .modal-content p {
 
-            color: #768aa5;
-            
+        .border-color {
+
+            border-color: #9cabbe;
+
         }
-        
-        .modal-content .metric {
 
-            background-color: #f2f2f2;
+        .delete-button {
+
+            color: #b70101;
 
         }
 
@@ -334,13 +297,13 @@
 
             <div class="text-xl font-semibold text-color">My business goals</div>
 
-            <nav class="space-x-4 text-sm flex mt-2 sm:mt-0">
+            <nav class="space-x-4 text-sm flex mt-2 sm:mt-0 text-color">
 
                 <div class="flex">
 
-                    <a href="#" class="font-semibold text-gray-500">Performance</a>
+                    <a href="#" class="font-semibold">Performance</a>
 
-                    <button class="icon">
+                    <button>
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -354,9 +317,9 @@
 
                 <div class="flex">
 
-                    <a href="#" class="font-semibold text-gray-500">Probation</a>
+                    <a href="#" class="font-semibold">Probation</a>
 
-                    <button class="icon">
+                    <button>
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 
@@ -368,7 +331,7 @@
 
                 </div>
 
-                <a href="#" class="font-semibold text-gray-500">Goals</a>
+                <a href="#" class="font-semibold">Goals</a>
 
             </nav>
 
@@ -383,113 +346,7 @@
 
                     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
-                    <a href="#" @click="showModal = true" class="block rounded py-2 mb-4 text-center">+ New goal</a>
-
-                    <!-- modal -->
-                    <div v-if="showModal" class="modal-overlay show" @click="showModal = false"></div>
-
-                    <div>
-                        <!-- Overlay -->
-                        <div :class="{ 'modal-overlay': true, 'show': showModal }"></div>
-                    
-                        <!-- Modal -->
-                        <div :class="{ 'modal': true, 'show': showModal }">
-
-                            <!-- Close Button -->
-                            <button @click="showModal = false" class="absolute top-4 right-2 text-gray-500 hover:text-gray-700">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-
-                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                
-                                </svg>
-
-                            </button>
-                        
-                            <!-- Title and Description -->
-                            <div class="modal-content overflow-y-auto">
-                                
-                                <div class="title p-4 border-b">
-
-                                    <h1 class="text-lg font-bold">Add business goal</h1>
-
-                                    <p class="text-sm text-gray-500">Create a Business goal and add relevant business metrics</p>
-
-                                </div>
-                    
-                                <!-- Content -->
-                                <div class="p-6 border rounded-lg shadow-lg mt-4 m-4">
-
-                                    <!-- Business Goal Section -->
-                                    <div>
-
-                                        <h3 class="font-medium">Business goal</h3>
-
-                                        <div v-model="newGoalTitle" class="quill-editor border rounded p-2 mt-2"></div>
-
-                                    </div>
-                            
-                                    <!-- Business Metric Section -->
-                                    <div class="metric mt-4 border rounded-lg p-4">
-
-                                        <h3 class="font-medium">Business metric</h3>
-
-                                        <div class="items-center">
-
-                                            <!-- <div v-model="newGoalMetrics" class="quill-editor h-16 w-full border border-gray-300 rounded p-2 mt-2"></div> -->
-                                            <div class="quill-editor"></div>
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mx-2 flex justify-end" viewBox="0 0 20 20" fill="red">
-
-                                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                                            
-                                            </svg>
-
-                                        </div>
-                                          
-                                        <div class="items-center">
-
-                                            <!-- <div class="quill-editor p-2 mt-2" v-model="newGoalDescription"></div> -->
-
-                                            <div class="quill-editor"></div>
-
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mx-2" viewBox="0 0 20 20" fill="green">
-                                                
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                                              
-                                            </svg>
-
-                                        </div>
-                                        
-                                    </div>
-
-                                </div>
-
-                                <!-- Cascade Checkbox -->
-                                <div class="flex items-center m-3">
-
-                                    <input type="checkbox" id="cascade" class="mr-2">
-
-                                    <label for="cascade" class="text-sm">By checking here, you agree the goal to cascade to all repository</label>
-
-                                </div>
-
-                        
-                                <!-- Footer Buttons -->
-                                <div class="footer p-4 border-t flex justify-end space-x-6">
-
-                                    <button class="btn-1 px-4 py-2 border rounded-lg">Save Draft</button>
-
-                                    <button @click="submitGoal" class="btn2 px-4 py-2 border rounded-lg">Add Final</button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <a href="#" @click.prevent="openAddGoalModal" class="block rounded py-2 mb-4 text-center">+ New goal</a>
 
                     <div class="section overflow-y-auto space-y-2"> <!-- Set max-height -->
 
@@ -510,28 +367,94 @@
                 </nav>
 
                 <!-- Goal Details -->
-                <div class="goal-details w-full sm:w-3/4 p-4 md:max-h-64 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0">
+                <div class="goal-details w-full md:max-h-64 sm:w-3/4 p-4 rounded shadow-lg space-y-4 h-auto mt-4 sm:mt-0">
                     
                     <div v-if="selectedGoal !== null" class="goal-content">
-                    
-                        <div class="flex flex-col sm:flex-row mb-4 items-start sm:items-center w-full">
-                                
-                            <h3 class="font-semibold text-lg">{{ goals[selectedGoal].description }}</h3>
-                        
-                            <span class="ml-2 rounded-full text-sm py-1 px-2 mt-2 sm:mt-0">{{ goals[selectedGoal].status }}</span>
-                        
-                            <div class="ml-auto">
 
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <div class="flex flex-col sm:flex-row mb-4 items-start sm:items-center w-full justify-between">
 
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-
-                                </svg>
-
+                            <!-- Left side content: goal description and status -->
+                            <div class="flex items-start sm:items-center goal-status">
+                                <h3 class="text-color font-semibold text-lg">
+                                    {{ goals[selectedGoal].description }}
+                                </h3>
+                                <span class="ml-2 rounded-full text-sm py-1 px-2 mt-2 sm:mt-0">
+                                    {{ goals[selectedGoal].status }}
+                                </span>
                             </div>
 
-                        </div>     
-                        
+                            <!-- Right side: SVG with actions (Edit, Delete) -->
+                            <div class="relative ml-auto text-color ">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6 cursor-pointer"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        @click="showPopup = !showPopup"
+                                >
+                                    <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                                    ></path>
+                                </svg>
+
+                                <!-- Popup with Edit and Delete -->
+                                <div
+                                        v-if="showPopup"
+                                        class="absolute right-0 w-44 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow"
+                                >
+                                    <ul class="py-2 text-sm divide-y">
+                                        <!-- Edit option -->
+                                        <li
+                                                class="flex items-center px-4 rounded cursor-pointer"
+                                                @click="editGoal"
+                                        >
+                                            <svg
+                                                    width="21"
+                                                    height="20"
+                                                    viewBox="0 0 21 20"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="text-color"
+                                            >
+                                                <path
+                                                        d="M0.400391 15.1556V19.1025H4.65087L17.187 7.46182L12.9365 3.51495L0.400391 15.1556ZM3.7101 16.9975H2.66731V16.0292L12.9365 6.49352L13.9793 7.46182L3.7101 16.9975ZM20.474 2.92555L17.8217 0.462696C17.595 0.252196 17.3116 0.157471 17.0169 0.157471C16.7222 0.157471 16.4389 0.262721 16.2235 0.462696L14.1493 2.38877L18.3998 6.33565L20.474 4.40957C20.916 3.9991 20.916 3.33602 20.474 2.92555Z"
+                                                        fill="currentColor"
+                                                ></path>
+                                            </svg>
+                                            <span class="block px-4 py-2">Edit</span>
+                                        </li>
+
+                                        <!-- Delete option -->
+                                        <li
+                                                class="flex items-center px-4 delete-button rounded cursor-pointer"
+                                                @click="deleteGoal"
+                                        >
+                                            <svg
+                                                    width="16"
+                                                    height="20"
+                                                    viewBox="0 0 16 20"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                            
+                                            >
+                                                <path
+                                                        d="M1.13103 17.7948C1.13103 19.0062 2.12216 19.9973 3.33353 19.9973H12.1435C13.3549 19.9973 14.346 19.0062 14.346 17.7948V4.5798H1.13103V17.7948ZM3.33353 6.7823H12.1435V17.7948H3.33353V6.7823ZM11.5929 1.27605L10.4917 0.174805H4.98541L3.88416 1.27605H0.0297852V3.47855H15.4473V1.27605H11.5929Z"
+                                                        fill="currentColor"
+                                                ></path>
+                                            </svg>
+                                            <span class="block px-4 py-2">Delete</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+
                         <div class="p-4 rounded content">
                         
                             <div v-html="goals[selectedGoal].metrics" class="pl-4 space-y-2 text-sm"></div>
@@ -541,7 +464,6 @@
                     </div>
                                             
                 </div>
-
                 <!-- Summary Section -->
                 <div class="summary-section border md:max-h-64 w-full sm:w-1/4 p-4 rounded block text-sm mt-4 sm:mt-0">
                 
@@ -639,6 +561,137 @@
         </div>
 
 
+        <div class="text-color">
+            <!-- Overlay -->
+            <div v-if="showModal" class="modal-overlay"></div>
+
+            <!-- Add Goal Modal -->
+            <div v-if="showModal && modalType === 'add'" class="modal fixed inset-x-0 bottom-0 h-full max-w-md bg-white rounded-t-lg shadow-lg flex flex-col">
+                <!-- Modal Content -->
+                <div class="flex flex-col h-full">
+                    <!-- Header -->
+                    <div class="gray-background p-4 border-b border-color flex items-center justify-between bg-white sticky top-0 z-10">
+                        <div>
+                            <h1 class="text-xl font-bold">Add Business Goal</h1>
+                            <p class="text-sm text-gray-500">Create a Business goal and add relevant business metrics</p>
+                        </div>
+                        <!-- Close Button -->
+                        <button @click="closeModal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Content -->
+                    <div class="p-4 overflow-auto flex-grow">
+                        <!-- Business Goal Section -->
+                        <div class="mb-4">
+                            <h3 class="font-medium mb-2">Business Goal</h3>
+                            <textarea v-model="newGoalTitle" class="w-full border rounded-lg p-2" placeholder="Enter the business goal"></textarea>
+                        </div>
+                        <!-- Business Metric Section -->
+                        <div class="m-1 border gray-background p-4 rounded-lg">
+                            <h3 class="font-medium mb-2">Business Metric</h3>
+                            <div class="flex items-center space-x-2 w-full sm:w-auto">
+                                <textarea v-model="newGoalMetrics" class="w-full border rounded-lg p-2 mb-4" placeholder="Enter the business metrics"></textarea>
+                                <button type="button" @click="cancelComment" class="flex items-center justify-center w-7 h-7 bg-red-600 rounded-md hover:bg-red-700">
+                                    <div class="flex items-center justify-center w-4 h-4 border-2 border-white rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="flex items-center space-x-2 w-full sm:w-auto">
+                                <textarea v-model="newGoalMetrics" class="w-full border rounded-lg p-2 mb-4" placeholder="Enter the business metrics"></textarea>
+                                <button type="button" @click="cancelComment" class="flex items-center justify-center w-7 h-7 bg-green-600 rounded-md hover:bg-green-700">
+                                    <div class="flex items-center justify-center w-4 h-4 border-2 border-white rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7H5"></path>
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-4 ml-2">
+                        <input type="checkbox" id="cascade" class="mr-2">
+                        <label for="cascade">By checking here, you agree the goal to cascade to all reportees</label>
+                    </div>
+                    <!-- Footer -->
+                    <div class="footer p-4 border-t border-color flex justify-end space-x-4 bg-white">
+                        <button @click="saveDraft" class="btn1 px-4 py-2 border border-color rounded">Save Draft</button>
+                        <button @click="addGoal" class="btn2 px-4 py-2 rounded border">Add Final</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Goal Modal -->
+            <div v-if="showModal && modalType === 'edit'" class="modal fixed inset-x-0 bottom-0 h-full max-w-md bg-white rounded-t-lg shadow-lg flex flex-col">
+                <!-- Modal Content -->
+                <div class="flex flex-col h-full">
+                    <!-- Header -->
+                    <div class="gray-background p-4 border-b flex items-center justify-between bg-white sticky top-0 z-10">
+                        <div>
+                            <h1 class="text-xl font-bold">Edit Business Goal</h1>
+                            <p class="text-sm">You can edit business goal or business metrics</p>
+                        </div>
+                        <!-- Close Button -->
+                        <button @click="closeModal" class="focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Content -->
+                    <div class="p-4 overflow-auto flex-grow">
+                        <!-- Business Goal Section -->
+                        <div class="mb-4">
+                            <h3 class="font-medium mb-2">Business Goal</h3>
+                            <textarea v-model="editGoalTitle" class="w-full border rounded-lg p-2" placeholder="Update the business goal"></textarea>
+                        </div>
+                        <!-- Business Metric Section -->
+                        <div class="m-1 border gray-background p-4 rounded-lg">
+                            <h3 class="font-medium mb-2">Business Metric</h3>
+                            <div class="flex items-center space-x-2 w-full sm:w-auto">
+                                <textarea v-model="editGoalMetrics" class="w-full border rounded-lg p-2 mb-2" placeholder="Update the business metrics"></textarea>
+                                <button type="button" @click="cancelComment" class="flex items-center justify-center w-7 h-7 bg-red-600 rounded-md hover:bg-red-700">
+                                    <div class="flex items-center justify-center w-4 h-4 border-2 border-white rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="flex items-center space-x-2 w-full sm:w-auto">
+                                <textarea v-model="editGoalMetrics" class="w-full border rounded-lg p-2 mb-4" placeholder="Update the business metrics"></textarea>
+                                <button type="button" @click="cancelComment" class="flex items-center justify-center w-7 h-7 bg-green-600 rounded-md hover:bg-green-700">
+                                    <div class="flex items-center justify-center w-4 h-4 border-2 border-white rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7H5"></path>
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Goal Status Section -->
+                        <div class="m-2">
+                            <h3 class="font-medium text-lg">Goal Status</h3>
+                            <select v-model="selectedStatus" class="block p-2 w-full border border-gray-300 rounded-md">
+                                <option v-for="oneStatus in status" :key="oneStatus" :value="oneStatus">{{ oneStatus }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Footer -->
+                    <div class="footer p-4 border-t border-color flex justify-end space-x-4 bg-white">
+                        <button @click="discardChanges" class="btn1 px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-100">Save Draft</button>
+                        <button @click="updateGoal" class="btn2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Update Final</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <script>
 
             const { createApp } = Vue;
@@ -649,8 +702,15 @@
         
                     return {
         
+
+                        apiUrl: 'https://example.com/api/comments',
+                        showPopup: false,
                         showModal: false,
-        
+                        modalType: '', // 'add' or 'edit'
+                        newGoalTitle: '',
+                        newGoalMetrics: '',
+                        editGoalTitle: '',
+                        editGoalMetrics: '',        
                         selectedGoal: 0,
         
                         newGoalTitle: "",
@@ -755,28 +815,31 @@
 
                 methods: {
                         
-                    submitGoal() {
-                        // Collect the data from Quill editors
-                        const newMetrics = this.quillMetric.root.innerHTML;
-                        const newDescription = this.quill.root.innerHTML;
-        
-                        // Push the new goal to the goals array
-                        this.goals.push({
-                            id: this.goals.length + 1,
-                            title: this.newGoalTitle,
-                            metrics: newMetrics,
-                            description: newDescription,
-                            status: "Not Started",
-                        });
-        
-                        // Reset the input fields
-                        this.newGoalTitle = "";
-                        this.quill.setText('');
-                        this.quillMetric.setText('');
-        
-                        // Close the modal
+                    openAddGoalModal() {
+                        this.modalType = 'add';
+                        this.showModal = true;
+                    },
+                    openEditGoalModal(goal) {
+                        // Set the initial values for the edit form
+                        this.editGoalTitle = goal.title;
+                        this.editGoalMetrics = goal.metrics;
+                        this.modalType = 'edit';
+                        this.showModal = true;
+                    },
+                    closeModal() {
                         this.showModal = false;
-                    },  
+                    },
+                    editGoal() {
+                        this.showPopup = false; // Close the popup after clicking Edit
+                        console.log('Edit action triggered');
+                        this.modalType = 'edit';
+                        this.showModal = true;
+                    },
+                    deleteGoal() {
+                        this.showPopup = false; // Close the popup after clicking Delete
+                        // Your logic for deleting the goal
+                        console.log('Delete action triggered');
+                    },
                     
                     getCurrentDate() {
                         const today = new Date();
