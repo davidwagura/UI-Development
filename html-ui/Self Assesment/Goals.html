@@ -129,7 +129,7 @@
 
         .summary-section span {
 
-            color: #a0aec1;
+            color: #8595b3;
 
         }
 
@@ -440,25 +440,25 @@
                 
                     <p class="border-b py-2 flex font-medium justify-between">Goal Status:
 
-                        <span id="goal-status" class="text-xs">{{ goals[selectedGoal].status }}</span>
+                        <span id="goal-status" class="text-sm font-normal">{{ goals[selectedGoal].status }}</span>
                     
                     </p>
                 
                     <p class="border-b py-2 font-medium flex justify-between">Date Created:
 
-                        <span id="date-created" class="text-xs">{{ goals[selectedGoal].created }}</span>
+                        <span id="date-created" class="text-sm font-normal">{{ goals[selectedGoal].created }}</span>
                     
                     </p>
 
                     <p class="border-b py-2 flex font-medium justify-between block">Mid-year Ends In:
                     
-                        <span id="mid-year" class="text-xs">2 months</span>
+                        <span id="mid-year" class="text-sm font-normal">2 months</span>
                     
                     </p>
                     
                     <p class="border-b py-2 flex font-medium justify-between">End-year Date:
                     
-                        <span id="end-year" class="text-xs">12/05/2024</span>
+                        <span id="end-year" class="text-sm font-normal">12/05/2024</span>
                 
                     </p>
             
@@ -576,7 +576,7 @@
 
                         <h2 class="font-semibold">Business results</h2>
 
-                        <div class="background-color rounded-lg border w-1/2 p-2 mb-2">
+                        <div class="gray-background rounded-lg border w-1/2 p-2 mb-2">
 
                             <div v-html="ratings.business_results"></div> 
 
